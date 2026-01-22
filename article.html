@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">אור בפרשה - מאמר</title>
+    <title id="page-title">אור בפרשה</title>
     
     <script src="data.js"></script>
     
@@ -21,54 +21,49 @@
         }
     </script>
     <style>
-        body { background-color: #f2f0eb; }
-        .article-card { background-color: #fcfaf7; box-shadow: 0 40px 80px -20px rgba(26, 46, 53, 0.08); border-radius: 4rem; position: relative; z-index: 10; }
+        body { background-color: #f2f0eb; margin: 0; padding: 0; }
+        .article-card { background-color: #fcfaf7; box-shadow: 0 40px 80px -20px rgba(26, 46, 53, 0.08); border-radius: 3rem; overflow: hidden; }
         
-        /* הגדרת תמונת הרקע עם חיתוך אמנותי */
         .article-hero-image { 
             width: 100%; 
-            height: 350px; 
+            height: 300px; 
             object-fit: cover; 
-            mask-image: linear-gradient(to bottom, black 60%, transparent 100%); 
-            -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%); 
-            border-radius: 4rem 4rem 0 0; 
-            display: none; /* יופעל על ידי JS אם קיימת תמונה */
+            background-color: #e5e7eb; /* רקע אפור זמני */
+            display: block !important; /* מוודא שהתמונה לא תוסתר */
+            mask-image: linear-gradient(to bottom, black 70%, transparent 100%); 
+            -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
         }
         
-        .minimal-quote { border-right: 3px solid #a47148; padding: 1rem 2rem; margin: 2.5rem 0; font-family: 'Varela Round', sans-serif; font-size: 1.25rem; color: #a47148; line-height: 1.8; background: rgba(164, 113, 72, 0.03); border-radius: 0 10px 10px 0; }
-        
-        .back-minimal { position: absolute; top: 2.5rem; right: 2.5rem; display: flex; align-items: center; gap: 0.4rem; color: #1a2e35; opacity: 0.5; font-size: 0.85rem; font-weight: 700; transition: all 0.3s; z-index: 100; cursor: pointer; background: white; padding: 8px 16px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.05); }
-        .back-minimal:hover { opacity: 1; transform: translateX(3px); color: #a47148; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        
-        /* תיקון לריווח בטקסט ארוך */
-        #article-content p { white-space: pre-line; margin-bottom: 2rem; }
+        .minimal-quote { border-right: 4px solid #a47148; padding: 1.5rem 2rem; margin: 2.5rem 0; font-family: 'Varela Round', sans-serif; font-size: 1.2rem; color: #a47148; line-height: 1.8; background: rgba(164, 113, 72, 0.05); }
+        .back-minimal { position: fixed; top: 1.5rem; right: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: #1a2e35; background: white; padding: 10px 20px; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 1000; font-weight: bold; border: none; cursor: pointer; }
+        #article-content p { margin-bottom: 1.5rem; white-space: pre-line; }
     </style>
 </head>
-<body class="font-soft antialiased text-slate-700 relative">
+<body class="font-soft antialiased text-slate-700">
 
     <button onclick="history.back()" class="back-minimal">
-        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        <span class="material-symbols-outlined">arrow_forward</span>
         חזרה
     </button>
 
-    <main class="max-w-4xl mx-auto px-6 py-16">
-        <article class="article-card overflow-hidden mt-10">
+    <main class="max-w-4xl mx-auto px-4 py-12">
+        <article class="article-card mt-8">
             <img id="article-image" src="" alt="" class="article-hero-image">
             
-            <header class="pt-12 pb-8 px-10 md:px-28 text-center relative">
-                <span id="parasha-category" class="text-[10px] font-bold tracking-[0.6em] text-clay uppercase mb-4 block"></span>
-                <h1 id="article-title" class="font-serif text-4xl md:text-5xl font-black text-midnight leading-tight mb-3"></h1>
-                <p id="article-subtitle" class="font-soft text-xl md:text-2xl text-slate-400 font-light max-w-xl mx-auto leading-relaxed"></p>
+            <header class="pt-10 pb-8 px-8 md:px-24 text-center">
+                <span id="parasha-category" class="text-[10px] font-bold tracking-[0.5em] text-clay uppercase mb-3 block"></span>
+                <h1 id="article-title" class="font-serif text-3xl md:text-5xl font-black text-midnight leading-tight mb-4"></h1>
+                <p id="article-subtitle" class="font-soft text-lg md:text-xl text-slate-400 font-light max-w-2xl mx-auto"></p>
             </header>
 
-            <div id="article-content" class="px-10 md:px-28 pb-10 text-lg md:text-xl leading-[1.9] text-midnight/80 text-right">
+            <div id="article-content" class="px-8 md:px-24 pb-10 text-lg md:text-xl leading-[1.9] text-midnight/90 text-right">
                 </div>
 
-            <footer class="px-10 md:px-28 pb-16">
+            <footer class="px-8 md:px-24 pb-16">
                 <div class="flex items-center gap-4">
-                    <div id="author-avatar" class="w-12 h-12 rounded-full bg-midnight text-cream flex items-center justify-center font-bold text-lg shrink-0 shadow-inner"></div>
+                    <div id="author-avatar" class="w-12 h-12 rounded-full bg-midnight text-cream flex items-center justify-center font-bold text-lg shrink-0 shadow-lg"></div>
                     <div class="h-px bg-clay/20 flex-grow"></div>
-                    <div class="text-left text-clay text-[11px] font-bold tracking-widest uppercase">
+                    <div class="text-clay text-xs font-bold tracking-widest uppercase">
                         <span id="author-name"></span> • <span id="publish-date"></span>
                     </div>
                 </div>
@@ -77,64 +72,51 @@
     </main>
 
     <script>
-        // שליפת מזהה הפרשה מהכתובת (URL)
         const params = new URLSearchParams(window.location.search);
         const parashaId = params.get('parasha') || 'bereshit';
         
-        // שליפת הנתונים מהקובץ data.js
-        const data = parashotData[parashaId];
+        // וודא שמשתנה parashotData קיים מ-data.js
+        if (typeof parashotData !== 'undefined' && parashotData[parashaId]) {
+            const data = parashotData[parashaId];
 
-        if (data) {
-            // עדכון כותרות וטקסטים בסיסיים
-            document.getElementById('page-title').innerText = "אור בפרשה - " + (data.title || "");
+            // עדכון טקסטים
+            document.getElementById('page-title').innerText = data.title || "מאמר";
             document.getElementById('article-title').innerText = data.title || "";
             document.getElementById('article-subtitle').innerText = data.subtitle || "";
             document.getElementById('parasha-category').innerText = data.category || "";
-            document.getElementById('author-name').innerText = data.author || "מערכת אור בפרשה";
+            document.getElementById('author-name').innerText = data.author || "אור בפרשה";
             document.getElementById('publish-date').innerText = data.date || "";
 
-            // הצגת תמונה אם קיימת בנתונים
-            if (data.image && data.image.trim() !== "") {
-                const imgEl = document.getElementById('article-image');
+            // עדכון תמונה - שיטה חסינה
+            const imgEl = document.getElementById('article-image');
+            if (data.image && data.image.length > 10) {
                 imgEl.src = data.image;
-                imgEl.style.setProperty('display', 'block', 'important');
+            } else {
+                imgEl.style.display = 'none';
             }
-            
-            // יצירת האות הראשונה של השם עבור העיגול (Avatar)
-            const authorText = data.author || "אור";
-            const initial = authorText.includes(" ") ? authorText.split(" ")[1].charAt(0) : authorText.charAt(0);
-            document.getElementById('author-avatar').innerText = initial;
 
-            // הזרקת תוכן המאמר
+            // אוואטר
+            const name = data.author || "א";
+            document.getElementById('author-avatar').innerText = name.includes(" ") ? name.split(" ")[1].charAt(0) : name.charAt(0);
+
+            // תוכן
             const contentDiv = document.getElementById('article-content');
-            contentDiv.innerHTML = ''; // ניקוי תוכן קיים
-
+            contentDiv.innerHTML = '';
             if (data.content && Array.isArray(data.content)) {
                 data.content.forEach(item => {
-                    let el;
-                    if (item.type === 'quote') {
-                        el = document.createElement('blockquote');
-                        el.className = "minimal-quote";
-                    } else if (item.type === 'h3') {
-                        el = document.createElement('h3');
-                        el.className = "font-serif text-2xl md:text-3xl font-bold text-midnight mt-14 mb-6";
-                    } else {
-                        el = document.createElement('p');
-                        el.className = "mb-8 font-normal opacity-90";
-                    }
-                    
+                    const tag = item.type === 'quote' ? 'blockquote' : (item.type || 'p');
+                    const el = document.createElement(tag);
                     el.innerText = item.text;
+                    
+                    if (tag === 'p') el.className = "mb-6 text-right";
+                    else if (tag === 'h3') el.className = "font-serif text-2xl font-bold text-midnight mt-10 mb-4";
+                    else if (tag === 'blockquote') el.className = "minimal-quote text-right";
+                    
                     contentDiv.appendChild(el);
                 });
             }
         } else {
-            // הודעה במידה והפרשה לא נמצאה ב-data.js
-            document.body.innerHTML = `
-                <div class="flex flex-col items-center justify-center h-screen font-soft text-midnight">
-                    <h2 class="text-2xl mb-4">המאמר לא נמצא במערכת</h2>
-                    <button onclick="history.back()" class="text-clay font-bold underline">חזרה לדף הקודם</button>
-                </div>
-            `;
+            document.body.innerHTML = "<div class='text-center py-20 font-soft'>המאמר לא נמצא ב-data.js</div>";
         }
     </script>
 </body>
