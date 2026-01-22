@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אור בפרשה - כל המאמרים</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&family=Noto+Serif+Hebrew:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        archiveMain: '#1e293b', // כחול נייבי עמוק
+                    },
+                    fontFamily: {
+                        sans: ['Heebo', 'sans-serif'],
+                        serif: ['Noto Serif Hebrew', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-white m-0 p-0 antialiased text-slate-800">
+
+    <div class="fixed inset-0 z-[-10] flex flex-col">
+        <div class="h-[35vh] w-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1920&q=80');"></div>
+        <div class="flex-grow bg-white"></div>
+    </div>
+    
+    <div class="fixed inset-0 z-[-5] pointer-events-none" style="background: linear-gradient(to bottom, rgba(30, 41, 59, 0.4) 0%, rgba(255, 255, 255, 1) 35%, white 100%);"></div>
+
+    <main class="max-w-5xl mx-auto px-6">
+        
+        <div class="pt-8">
+            <a href="index.html" class="inline-flex items-center gap-2 text-slate-700 hover:text-black transition-colors font-bold text-sm">
+                <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                חזרה לדף הבית
+            </a>
+        </div>
+
+        <header class="text-center pt-10 pb-12">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-slate-100 text-slate-700 rounded-2xl mb-4 shadow-sm">
+                <span class="material-symbols-outlined text-4xl">library_books</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-2">ארכיון כל המאמרים</h1>
+            <p class="text-md text-slate-500 font-light">כל פרשיות התורה במקום אחד - מבראשית ועד וזאת הברכה</p>
+        </header>
+
+        <nav class="flex flex-wrap justify-center gap-4 mb-12 text-sm font-bold text-slate-600">
+            <a href="#gen" class="hover:text-emerald-600">בראשית</a>
+            <a href="#exo" class="hover:text-orange-600">שמות</a>
+            <a href="#lev" class="hover:text-purple-600">ויקרא</a>
+            <a href="#num" class="hover:text-amber-600">במדבר</a>
+            <a href="#deu" class="hover:text-sky-600">דברים</a>
+        </nav>
+
+        <section id="gen" class="mb-16">
+            <h2 class="text-2xl font-serif font-bold text-emerald-700 mb-6 border-b border-emerald-100 pb-2">ספר בראשית</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">בראשית</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">נח</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">לך לך</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">וירא</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">חיי שרה</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">תולדות</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">ויצא</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">וישלח</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">וישב</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">מקץ</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">ויגש</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">ויחי</a>
+            </div>
+        </section>
+
+        <section id="exo" class="mb-16">
+            <h2 class="text-2xl font-serif font-bold text-orange-700 mb-6 border-b border-orange-100 pb-2">ספר שמות</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">שמות</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">וארא</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">בא</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">בשלח</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">יתרו</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">משפטים</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">תרומה</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">תצוה</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">כי תשא</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">ויקהל</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">פקודי</a>
+            </div>
+        </section>
+
+        <section id="lev" class="mb-16">
+            <h2 class="text-2xl font-serif font-bold text-purple-700 mb-6 border-b border-purple-100 pb-2">ספר ויקרא</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">ויקרא</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">צו</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">שמיני</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">תזריע</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">מצורע</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">אחרי מות</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">קדושים</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">אמור</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">בהר</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">בחקותי</a>
+            </div>
+        </section>
+
+        <section id="num" class="mb-16">
+            <h2 class="text-2xl font-serif font-bold text-amber-700 mb-6 border-b border-amber-100 pb-2">ספר במדבר</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">במדבר</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">נשא</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">בהעלותך</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">שלח</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">קרח</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">חקת</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">בלק</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">פינחס</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">מטות</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">מסעי</a>
+            </div>
+        </section>
+
+        <section id="deu" class="mb-24">
+            <h2 class="text-2xl font-serif font-bold text-sky-700 mb-6 border-b border-sky-100 pb-2">ספר דברים</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">דברים</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">ואתחנן</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">עקב</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">ראה</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">שופטים</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">כי תצא</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">כי תבוא</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">נצבים</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">וילך</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">האזינו</a>
+                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">וזאת הברכה</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-50 py-12 border-t border-slate-100 text-center">
+        <p class="text-slate-400 text-xs tracking-widest">&copy; תשפ"ו • אור בפרשה </p>
+    </footer>
+
+</body>
+                  </html>
+                  
