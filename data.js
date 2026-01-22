@@ -14,7 +14,7 @@ const parashotData = {
         title: "פרשת חיי-שרה",
         subtitle: "חיי הנצח",
         category: "ספר בראשית",
-        image: "https://images.unsplash.com/photo-1629215031175-763467c6999a?q=80&w=2000&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=2000&auto=format&fit=crop",
         author: "אור בפרשה",
         date: "שבת חיי שרה",
         content: [
