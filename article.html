@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">טוען מאמר...</title>
+    
+    <script src="data.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@400;700;900&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { midnight: '#1a2e35', clay: '#a47148', cream: '#fcfaf7' },
+                    fontFamily: { serif: ['"Noto Serif Hebrew"', 'serif'], soft: ['"Varela Round"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #f2f0eb; }
+        .article-card { background-color: #fcfaf7; box-shadow: 0 40px 80px -20px rgba(26, 46, 53, 0.08); border-radius: 4rem; position: relative; z-index: 10; }
+        .article-hero-image { width: 100%; height: 200px; object-fit: cover; mask-image: linear-gradient(to bottom, black 40%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%); border-radius: 4rem 4rem 0 0; display: none; }
+        .minimal-quote { border-right: 2px solid #a47148; padding: 0.8rem 2rem; margin: 2.5rem 0; font-family: 'Varela Round', sans-serif; font-size: 1.2rem; color: #a47148; line-height: 1.7; }
+        .back-minimal { position: absolute; top: 2.5rem; right: 2.5rem; display: flex; align-items: center; gap: 0.4rem; color: #1a2e35; opacity: 0.4; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; transition: all 0.3s; z-index: 100; cursor: pointer; background: none; border: none; }
+        .back-minimal:hover { opacity: 1; transform: translateX(3px); color: #a47148; }
+    </style>
+</head>
+<body class="font-soft antialiased text-slate-700 relative">
+
+    <button onclick="history.back()" class="back-minimal">
+        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+        חזרה
+    </button>
+
+    <main class="max-w-4xl mx-auto px-6 py-16">
+        <article class="article-card overflow-hidden mt-10">
+            <img id="article-image" src="" alt="" class="article-hero-image">
+            <header class="pt-12 pb-8 px-10 md:px-28 text-center relative">
+                <span id="parasha-category" class="text-[10px] font-bold tracking-[0.6em] text-clay uppercase mb-4 block"></span>
+                <h1 id="article-title" class="font-serif text-4xl md:text-5xl font-black text-midnight leading-tight mb-3"></h1>
+                <p id="article-subtitle" class="font-soft text-xl md:text-2xl text-slate-400 font-light max-w-xl mx-auto leading-relaxed"></p>
+            </header>
+            <div id="article-content" class="px-10 md:px-28 pb-10 text-lg md:text-xl leading-[2] text-midnight/80"></div>
+            <footer class="px-10 md:px-28 pb-16">
+                <div class="flex items-center gap-4">
+                    <div id="author-avatar" class="w-10 h-10 rounded-full bg-midnight text-cream flex items-center justify-center font-bold text-sm shrink-0"></div>
+                    <div class="h-px bg-clay/20 flex-grow"></div>
+                    <div class="text-left text-clay text-[11px] font-bold tracking-widest uppercase">
+                        <span id="author-name"></span> • <span id="publish-date"></span>
+                    </div>
+                </div>
+            </footer>
+        </article>
+    </main>
+
+    <script>
+        // המנוע שמושך את הנתונים מהקובץ החיצוני
+        const params = new URLSearchParams(window.location.search);
+        const parashaId = params.get('parasha') || 'bereshit';
+        
+        // parashotData מגיע מקובץ data.js
+        const data = parashotData[parashaId];
+
+        if (data) {
+            document.getElementById('page-title').innerText = data.title;
+            document.getElementById('article-title').innerText = data.title;
+            document.getElementById('article-subtitle').innerText = data.subtitle;
+            document.getElementById('parasha-category').innerText = data.category;
+            document.getElementById('author-name').innerText = data.author;
+            document.getElementById('publish-date').innerText = data.date;
+
+            if (data.image) {
+                const imgEl = document.getElementById('article-image');
+                imgEl.src = data.image;
+                imgEl.style.display = 'block';
+            }
+            
+            const initial = data.author.includes("הרב") ? data.author.split(" ")[1].charAt(0) : data.author.charAt(0);
+            document.getElementById('author-avatar').innerText = initial;
+
+            const contentDiv = document.getElementById('article-content');
+            data.content.forEach(item => {
+                const el = document.createElement(item.type === 'quote' ? 'blockquote' : item.type);
+                el.innerText = item.text;
+                if (item.type === 'p') el.className = "mb-7 text-right font-normal";
+                else if (item.type === 'h3') el.className = "font-serif text-2xl md:text-3xl font-bold text-midnight mt-12 mb-5";
+                else if (item.type === 'quote') el.className = "minimal-quote text-right";
+                contentDiv.appendChild(el);
+            });
+        } else {
+            document.body.innerHTML = "<div class='text-center py-20 font-soft'>המאמר לא נמצא...</div>";
+        }
+    </script>
+</body>
+</html>
