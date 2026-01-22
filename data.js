@@ -22,7 +22,7 @@ const parashotData = {
         title: "פרשת חיי-שרה",
         subtitle: "חיי הנצח",
         category: "ספר בראשית",
-        image: "https://images.unsplash.com/photo-1507646845453-22e7535c665e?q=80&w=2000&auto=format&fit=crop",
+        image: "https://shayleyeladim.b-cdn.net/images/coloring-pages/parashat/bereshit/chaiei_sarah.jpg&s=10",
         author: "אור בפרשה",
         date: "שבת חיי שרה",
         content: [
