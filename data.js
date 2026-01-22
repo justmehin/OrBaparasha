@@ -18,11 +18,12 @@ const parashotData = {
     "noach": { title: "פרשת נח", category: "ספר בראשית", content: [{ type: "p", text: "כאן יופיע המאמר על פרשת נח..." }] },
     "lech-lecha": { title: "פרשת לך לך", category: "ספר בראשית", content: [{ type: "p", text: "כאן יופיע המאמר על פרשת לך לך..." }] },
     "vayeira": { title: "פרשת וירא", category: "ספר בראשית", content: [{ type: "p", text: "כאן יופיע המאמר על פרשת וירא..." }] },
-        "chayei-sarah": {
+    "chayei-sarah": {
         title: "פרשת חיי-שרה",
         subtitle: "חיי הנצח",
         category: "ספר בראשית",
-        image: "https://shayleyeladim.b-cdn.net/images/coloring-pages/parashat/bereshit/chaiei_sarah.jpg&s=10",
+        // קישור חדש ותקין:
+        image: "https://images.unsplash.com/photo-1629215031175-763467c6999a?q=80&w=2000&auto=format&fit=crop",
         author: "אור בפרשה",
         date: "שבת חיי שרה",
         content: [
@@ -115,7 +116,7 @@ const parashotData = {
             }
         ]
     },
-
+                  
     "toledot": { title: "פרשת תולדות", category: "ספר בראשית", content: [{ type: "p", text: "כאן יופיע המאמר על פרשת תולדות..." }] },
     "vayetze": { title: "פרשת ויצא", category: "ספר בראשית", content: [{ type: "p", text: "כאן יופיע המאמר על פרשת ויצא..." }] },
     "vayishlach": { title: "פרשת וישלח", category: "ספר בראשית", content: [{ type: "p", text: "כאן יופיע המאמר על פרשת וישלח..." }] },
