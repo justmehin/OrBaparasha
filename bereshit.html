@@ -14,7 +14,7 @@
             theme: {
                 extend: {
                     colors: {
-                        brandGreen: '#05976a', // הצבע הירוק שביקשת
+                        brandGreen: '#05976a', 
                     },
                     fontFamily: {
                         sans: ['Heebo', 'sans-serif'],
@@ -53,101 +53,36 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-24">
             
-            <a href="article.html?parasha=bereshit" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-emerald-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-emerald-50 text-[#05976a] rounded-lg flex items-center justify-center text-xs font-bold uppercase">א</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-[#05976a] transition-colors">בראשית</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-[#05976a] transition-colors">chevron_left</span>
-            </a>
+            <script>
+                // רשימת כל פרשיות בראשית מסונכרנות עם data.js
+                const parashot = [
+                    { id: "bereshit", name: "בראשית", gem: "א" },
+                    { id: "noach", name: "נח", gem: "ב" },
+                    { id: "lech-lecha", name: "לך לך", gem: "ג" },
+                    { id: "vayeira", name: "וירא", gem: "ד" },
+                    { id: "chayei-sarah", name: "חיי שרה", gem: "ה" },
+                    { id: "toledot", name: "תולדות", gem: "ו" },
+                    { id: "vayetze", name: "ויצא", gem: "ז" },
+                    { id: "vayishlach", name: "וישלח", gem: "ח" },
+                    { id: "vayeishev", name: "וישב", gem: "ט" },
+                    { id: "mikeitz", name: "מקץ", gem: "י" },
+                    { id: "vayigash", name: "ויגש", gem: "יא" },
+                    { id: "vayechi", name: "ויחי", gem: "יב" }
+                ];
 
-            <a href="article.html?parasha=noach" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-emerald-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-emerald-50 text-[#05976a] rounded-lg flex items-center justify-center text-xs font-bold uppercase">ב</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-[#05976a] transition-colors">נח</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-[#05976a] transition-colors">chevron_left</span>
-            </a>
-
-            <a href="article.html?parasha=lech-lecha" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-emerald-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-emerald-50 text-[#05976a] rounded-lg flex items-center justify-center text-xs font-bold uppercase">ג</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-[#05976a] transition-colors">לך לך</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-[#05976a] transition-colors">chevron_left</span>
-            </a>
-
-            <a href="article.html?parasha=vayeira" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-emerald-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-emerald-50 text-[#05976a] rounded-lg flex items-center justify-center text-xs font-bold uppercase">ד</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-[#05976a] transition-colors">וירא</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-[#05976a] transition-colors">chevron_left</span>
-            </a>
-
-            <a href="article.html?parasha=chayei-sarah" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-emerald-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-emerald-50 text-[#05976a] rounded-lg flex items-center justify-center text-xs font-bold uppercase">ה</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-[#05976a] transition-colors">חיי שרה</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-[#05976a] transition-colors">chevron_left</span>
-            </a>
-
-            <a href="article.html?parasha=toledot" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-emerald-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-emerald-50 text-[#05976a] rounded-lg flex items-center justify-center text-xs font-bold uppercase">ו</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-[#05976a] transition-colors">תולדות</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-[#05976a] transition-colors">chevron_left</span>
-            </a>
-
-            <a href="article.html?parasha=vayetze" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-emerald-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-emerald-50 text-[#05976a] rounded-lg flex items-center justify-center text-xs font-bold uppercase">ז</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-[#05976a] transition-colors">ויצא</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-[#05976a] transition-colors">chevron_left</span>
-            </a>
-
-            <a href="article.html?parasha=vayishlach" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-emerald-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-emerald-50 text-[#05976a] rounded-lg flex items-center justify-center text-xs font-bold uppercase">ח</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-[#05976a] transition-colors">וישלח</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-[#05976a] transition-colors">chevron_left</span>
-            </a>
-
-            <a href="article.html?parasha=vayeishev" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-emerald-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-emerald-50 text-[#05976a] rounded-lg flex items-center justify-center text-xs font-bold uppercase">ט</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-[#05976a] transition-colors">וישב</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-[#05976a] transition-colors">chevron_left</span>
-            </a>
-
-            <a href="article.html?parasha=mikeitz" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-emerald-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-emerald-50 text-[#05976a] rounded-lg flex items-center justify-center text-xs font-bold uppercase">י</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-[#05976a] transition-colors">מקץ</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-[#05976a] transition-colors">chevron_left</span>
-            </a>
-
-            <a href="article.html?parasha=vayigash" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-emerald-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-emerald-50 text-[#05976a] rounded-lg flex items-center justify-center text-xs font-bold uppercase">יא</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-[#05976a] transition-colors">ויגש</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-[#05976a] transition-colors">chevron_left</span>
-            </a>
-
-            <a href="article.html?parasha=vayechi" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-emerald-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-emerald-50 text-[#05976a] rounded-lg flex items-center justify-center text-xs font-bold uppercase">יב</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-[#05976a] transition-colors">ויחי</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-[#05976a] transition-colors">chevron_left</span>
-            </a>
+                // יצירה אוטומטית של הכפתורים כדי למנוע טעויות ידניות
+                parashot.forEach(p => {
+                    document.write(`
+                        <a href="article.html?parasha=${p.id}" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-emerald-100 hover:shadow-md transition-all group flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <span class="w-8 h-8 bg-emerald-50 text-[#05976a] rounded-lg flex items-center justify-center text-xs font-bold uppercase">${p.gem}</span>
+                                <h3 class="text-xl font-bold text-slate-800 group-hover:text-[#05976a] transition-colors">${p.name}</h3>
+                            </div>
+                            <span class="material-symbols-outlined text-slate-300 group-hover:text-[#05976a] transition-colors">chevron_left</span>
+                        </a>
+                    `);
+                });
+            </script>
 
         </div>
 
