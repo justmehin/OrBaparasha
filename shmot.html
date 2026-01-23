@@ -54,7 +54,6 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-24">
             
             <script>
-                // רשימת הפרשיות - המזהה (id) חייב להתאים למה שתכתוב ב-data.js
                 const parashotShemot = [
                     { id: "shemot", name: "שמות", gem: "א" },
                     { id: "vaera", name: "וארא", gem: "ב" },
@@ -70,6 +69,7 @@
                 ];
 
                 parashotShemot.forEach(p => {
+                    // שים לב לשינוי כאן: article2.html במקום article.html
                     document.write(`
                         <a href="article2.html?parasha=${p.id}" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-orange-100 hover:shadow-md transition-all group flex items-center justify-between">
                             <div class="flex items-center gap-4">
