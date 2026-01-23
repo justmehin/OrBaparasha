@@ -14,7 +14,7 @@
             theme: {
                 extend: {
                     colors: {
-                        archiveMain: '#1e293b', // כחול נייבי עמוק
+                        archiveMain: '#1e293b', 
                     },
                     fontFamily: {
                         sans: ['Heebo', 'sans-serif'],
@@ -62,84 +62,73 @@
         <section id="gen" class="mb-16">
             <h2 class="text-2xl font-serif font-bold text-emerald-700 mb-6 border-b border-emerald-100 pb-2">ספר בראשית</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">בראשית</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">נח</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">לך לך</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">וירא</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">חיי שרה</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">תולדות</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">ויצא</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">וישלח</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">וישב</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">מקץ</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">ויגש</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">ויחי</a>
+                <script>
+                    const gen = [
+                        {id: "bereshit", n: "בראשית"}, {id: "noach", n: "נח"}, {id: "lech-lecha", n: "לך לך"},
+                        {id: "vayeira", n: "וירא"}, {id: "chayei-sarah", n: "חיי שרה"}, {id: "toledot", n: "תולדות"},
+                        {id: "vayetzei", n: "ויצא"}, {id: "vayishlach", n: "וישלח"}, {id: "vayerhev", n: "וישב"},
+                        {id: "miketz", n: "מקץ"}, {id: "vayigash", n: "ויגש"}, {id: "vayechi", n: "ויחי"}
+                    ];
+                    gen.forEach(p => document.write(`<a href="article.html?parasha=${p.id}" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-emerald-200 transition-all text-center font-bold text-slate-700">${p.n}</a>`));
+                </script>
             </div>
         </section>
 
         <section id="exo" class="mb-16">
             <h2 class="text-2xl font-serif font-bold text-orange-700 mb-6 border-b border-orange-100 pb-2">ספר שמות</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">שמות</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">וארא</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">בא</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">בשלח</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">יתרו</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">משפטים</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">תרומה</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">תצוה</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">כי תשא</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">ויקהל</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">פקודי</a>
+                <script>
+                    const exo = [
+                        {id: "shemot", n: "שמות"}, {id: "vaera", n: "וארא"}, {id: "bo", n: "בא"},
+                        {id: "beshalach", n: "בשלח"}, {id: "yitro", n: "יתרו"}, {id: "mishpatim", n: "משפטים"},
+                        {id: "terumah", n: "תרומה"}, {id: "tetzaveh", n: "תצוה"}, {id: "ki-tissa", n: "כי תשא"},
+                        {id: "vayakhel", n: "ויקהל"}, {id: "pekudei", n: "פקודי"}
+                    ];
+                    exo.forEach(p => document.write(`<a href="article2.html?parasha=${p.id}" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-orange-200 transition-all text-center font-bold text-slate-700">${p.n}</a>`));
+                </script>
             </div>
         </section>
 
         <section id="lev" class="mb-16">
             <h2 class="text-2xl font-serif font-bold text-purple-700 mb-6 border-b border-purple-100 pb-2">ספר ויקרא</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">ויקרא</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">צו</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">שמיני</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">תזריע</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">מצורע</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">אחרי מות</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">קדושים</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">אמור</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">בהר</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">בחקותי</a>
+                <script>
+                    const lev = [
+                        {id: "vayikra", n: "ויקרא"}, {id: "tzav", n: "צו"}, {id: "shmini", n: "שמיני"},
+                        {id: "tazria", n: "תזריע"}, {id: "metzora", n: "מצורע"}, {id: "acharei-mot", n: "אחרי מות"},
+                        {id: "kedoshim", n: "קדושים"}, {id: "emor", n: "אמור"}, {id: "behar", n: "בהר"}, {id: "bechukotai", n: "בחקותי"}
+                    ];
+                    lev.forEach(p => document.write(`<a href="article3.html?parasha=${p.id}" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-purple-200 transition-all text-center font-bold text-slate-700">${p.n}</a>`));
+                </script>
             </div>
         </section>
 
         <section id="num" class="mb-16">
             <h2 class="text-2xl font-serif font-bold text-amber-700 mb-6 border-b border-amber-100 pb-2">ספר במדבר</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">במדבר</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">נשא</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">בהעלותך</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">שלח</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">קרח</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">חקת</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">בלק</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">פינחס</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">מטות</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">מסעי</a>
+                <script>
+                    const num = [
+                        {id: "bamidbar", n: "במדבר"}, {id: "naso", n: "נשא"}, {id: "behaalotcha", n: "בהעלותך"},
+                        {id: "shlach", n: "שלח"}, {id: "korach", n: "קרח"}, {id: "chukat", n: "חקת"},
+                        {id: "balak", n: "בלק"}, {id: "pinchas", n: "פינחס"}, {id: "matot", n: "מטות"}, {id: "masei", n: "מסעי"}
+                    ];
+                    num.forEach(p => document.write(`<a href="article4.html?parasha=${p.id}" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-amber-200 transition-all text-center font-bold text-slate-700">${p.n}</a>`));
+                </script>
             </div>
         </section>
 
         <section id="deu" class="mb-24">
             <h2 class="text-2xl font-serif font-bold text-sky-700 mb-6 border-b border-sky-100 pb-2">ספר דברים</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">דברים</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">ואתחנן</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">עקב</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">ראה</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">שופטים</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">כי תצא</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">כי תבוא</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">נצבים</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">וילך</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">האזינו</a>
-                <a href="#" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">וזאת הברכה</a>
+                <script>
+                    const deu = [
+                        {id: "devarim", n: "דברים"}, {id: "vaetchanan", n: "ואתחנן"}, {id: "eikev", n: "עקב"},
+                        {id: "reeh", n: "ראה"}, {id: "shoftim", n: "שופטים"}, {id: "ki-teitzei", n: "כי תצא"},
+                        {id: "ki-tavo", n: "כי תבוא"}, {id: "nitzavim", n: "נצבים"}, {id: "vayeilech", n: "וילך"},
+                        {id: "haazinu", n: "האזינו"}, {id: "vezot-haberacha", n: "וזאת הברכה"}
+                    ];
+                    deu.forEach(p => document.write(`<a href="article5.html?parasha=${p.id}" class="p-3 bg-white border border-slate-100 rounded-xl shadow-sm hover:shadow-md hover:border-sky-200 transition-all text-center font-bold text-slate-700">${p.n}</a>`));
+                </script>
             </div>
         </section>
 
@@ -150,5 +139,4 @@
     </footer>
 
 </body>
-                  </html>
-                  
+</html>
