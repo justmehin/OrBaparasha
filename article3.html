@@ -3,85 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>אור בפרשה - ספר ויקרא</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&family=Noto+Serif+Hebrew:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    
+    <title id="page-title">אור בפרשה</title>
+
+    <script src="data.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@400;700;900&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
+    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        brandPurple: '#9333ea', 
+                    colors: { 
+                        brandPurple: '#9333ea',
+                        midnight: '#1a2e35', 
+                        cream: '#fcfaf7' 
                     },
-                    fontFamily: {
-                        sans: ['Heebo', 'sans-serif'],
-                        serif: ['Noto Serif Hebrew', 'serif'],
+                    fontFamily: { 
+                        serif: ['"Noto Serif Hebrew"', 'serif'], 
+                        soft: ['"Varela Round"', 'sans-serif'] 
                     }
                 }
             }
         }
     </script>
-</head>
-<body class="font-sans bg-white m-0 p-0 antialiased text-slate-800">
-
-    <div class="fixed inset-0 z-[-5] pointer-events-none" style="background: linear-gradient(to bottom, #f5f3ff 0%, #ffffff 40%, #ffffff 100%);"></div>
-
-    <main class="max-w-4xl mx-auto px-6">
+    <style>
+        body { background-color: #f2f0eb; margin: 0; padding: 0; }
+        .article-card { background-color: #fcfaf7; box-shadow: 0 40px 80px -20px rgba(147, 51, 234, 0.15); border-radius: 2.5rem; overflow: hidden; }
         
-        <div class="pt-8">
-            <a href="index.html" class="inline-flex items-center gap-2 text-purple-600 hover:text-purple-500 transition-colors font-bold text-sm">
-                <span class="material-symbols-outlined text-lg">arrow_forward</span>
-                חזרה לדף הבית
-            </a>
-        </div>
+        /* גרדייאנט סגול בראש המאמר */
+        .hero-gradient {
+            background: linear-gradient(135deg, #7e22ce 0%, #9333ea 50%, #1a2e35 100%);
+            position: relative;
+        }
 
-        <header class="text-center pt-10 pb-12">
-            <div class="inline-flex items-center justify-center w-16 h-16 bg-purple-50 text-purple-600 rounded-2xl mb-4 shadow-sm border border-purple-100">
-                <span class="material-symbols-outlined text-4xl">temple_hindu</span>
-            </div>
-            <h1 class="text-4xl md:text-5xl font-serif font-bold text-slate-800 mb-2">ספר ויקרא</h1>
-            <p class="text-md text-slate-500 font-light">תורת כהנים - על קדושת האדם, הזמן והמקום</p>
-        </header>
+        .pattern-overlay {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0);
+            background-size: 32px 32px;
+        }
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-24">
-            
-            <script>
-                const parashotVayikra = [
-                    { id: "vayikra", name: "ויקרא", gem: "א" },
-                    { id: "tzav", name: "צו", gem: "ב" },
-                    { id: "shmini", name: "שמיני", gem: "ג" },
-                    { id: "tazria", name: "תזריע", gem: "ד" },
-                    { id: "metzora", name: "מצורע", gem: "ה" },
-                    { id: "acharei-mot", name: "אחרי מות", gem: "ו" },
-                    { id: "kedoshim", name: "קדושים", gem: "ז" },
-                    { id: "emory", name: "אמור", gem: "ח" },
-                    { id: "behar", name: "בהר", gem: "ט" },
-                    { id: "bechukotai", name: "בחוקותי", gem: "י" }
-                ];
+        .minimal-quote { 
+            border-right: 4px solid #9333ea; 
+            padding: 1.5rem 2rem; 
+            margin: 2.5rem 0; 
+            font-family: 'Varela Round', sans-serif; 
+            color: #6b21a8; 
+            line-height: 1.8; 
+            background: rgba(147, 51, 234, 0.05); 
+        }
 
-                parashotVayikra.forEach(p => {
-                    document.write(`
-                        <a href="article3.html?parasha=${p.id}" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-purple-200 hover:shadow-md transition-all group flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                                <span class="w-8 h-8 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xs font-bold uppercase">${p.gem}</span>
-                                <h3 class="text-xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors">${p.name}</h3>
-                            </div>
-                            <span class="material-symbols-outlined text-slate-300 group-hover:text-purple-500 transition-colors">chevron_left</span>
-                        </a>
-                    `);
-                });
-            </script>
+        .back-minimal { 
+            position: fixed; top: 1.5rem; right: 1.5rem; 
+            display: flex; align-items: center; gap: 0.5rem; 
+            color: #9333ea; background: white; padding: 10px 20px; 
+            border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+            z-index: 1000; font-weight: bold; transition: all 0.2s;
+            border: none; cursor: pointer;
+        }
+        .back-minimal:hover { transform: scale(1.05); background-color: #faf5ff; }
+    </style>
+</head>
+<body class="font-soft antialiased text-slate-700">
 
-        </div>
+    <button onclick="history.back()" class="back-minimal">
+        <span class="material-symbols-outlined">arrow_forward</span>
+        חזרה
+    </button>
 
+    <main class="max-w-4xl mx-auto px-4 py-12 md:py-20">
+        <article class="article-card mt-8">
+
+            <header class="hero-gradient pt-20 pb-16 px-8 md:px-24 text-center">
+                <div class="pattern-overlay"></div>
+                <div class="relative z-10">
+                    <span id="parasha-category" class="text-[11px] font-bold tracking-[0.5em] text-white/90 bg-white/10 px-4 py-1 rounded-full uppercase mb-6 inline-block"></span>
+                    <h1 id="article-title" class="font-serif text-3xl md:text-5xl font-black text-white leading-tight mb-4"></h1>
+                    <p id="article-subtitle" class="font-soft text-lg md:text-xl text-cream/80 font-light max-w-2xl mx-auto italic"></p>
+                </div>
+            </header>
+
+            <div id="article-content" class="px-8 md:px-24 py-12 text-lg md:text-xl leading-[1.9] text-midnight/90 text-right">
+                </div>
+
+            <footer class="px-8 md:px-24 pb-16">
+                <div class="flex items-center gap-4">
+                    <div id="author-avatar" class="w-12 h-12 rounded-full bg-brandPurple text-cream flex items-center justify-center font-bold text-lg shrink-0 shadow-lg"></div>
+                    <div class="h-px bg-brandPurple/10 flex-grow"></div>
+                    <div class="text-brandPurple text-xs font-bold tracking-widest uppercase">
+                        <span id="author-name"></span> • <span id="publish-date"></span>
+                    </div>
+                </div>
+            </footer>
+        </article>
     </main>
 
-    <footer class="bg-white py-12 border-t border-slate-100 text-center">
-        <p class="text-slate-400 text-xs tracking-widest">&copy; תשפ"ו • אור בפרשה </p>
-    </footer>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const parashaId = params.get('parasha') || 'vayikra';
 
+        if (typeof parashotData !== 'undefined' && parashotData[parashaId]) {
+            const data = parashotData[parashaId];
+
+            document.title = "אור בפרשה | " + (data.title || "");
+            document.getElementById('article-title').innerText = data.title || "";
+            document.getElementById('article-subtitle').innerText = data.subtitle || "";
+            document.getElementById('parasha-category').innerText = data.category || "פרשת השבוע";
+            document.getElementById('author-name').innerText = data.author || "מערכת אור בפרשה";
+            document.getElementById('publish-date').innerText = data.date || "";
+
+            const author = data.author || "א";
+            document.getElementById('author-avatar').innerText = author.charAt(0);
+
+            const contentDiv = document.getElementById('article-content');
+            contentDiv.innerHTML = ''; 
+
+            if (data.content && Array.isArray(data.content)) {
+                data.content.forEach(item => {
+                    let el;
+                    if (item.type === 'h3') {
+                        el = document.createElement('h3');
+                        el.className = "font-serif text-2xl font-bold text-purple-800 mt-10 mb-4";
+                    } else if (item.type === 'quote') {
+                        el = document.createElement('blockquote');
+                        el.className = "minimal-quote";
+                    } else {
+                        el = document.createElement('p');
+                        el.className = "mb-6";
+                    }
+                    el.innerText = item.text;
+                    contentDiv.appendChild(el);
+                });
+            }
+        } else {
+            document.getElementById('article-content').innerHTML = `
+                <div class="text-center py-20">
+                    <h2 class="text-2xl font-bold text-brandPurple">המאמר לא נמצא</h2>
+                    <p class="mt-4 text-slate-500">וודא שקובץ data.js מעודכן ושם הפרשה בקישור נכון.</p>
+                </div>
+            `;
+        }
+    </script>
 </body>
 </html>
