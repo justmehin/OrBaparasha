@@ -24,7 +24,7 @@ const parashotData = {
     "toledot": {
         "title": "פרשת תולדות",
         "subtitle": "איך הורים מגיבים כשהילד סוטה מן הדרך?",
-        "category": "פרשת תולדות",
+        "category": "אור בפרשה",
         "author": "הרב נריה בולאק",
         "date": "תשפ\"ו",
         "content": [
