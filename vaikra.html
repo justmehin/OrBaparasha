@@ -50,85 +50,47 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-24">
             
-            <a href="#" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-purple-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xs font-bold uppercase">א</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors">ויקרא</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-purple-500 transition-colors">chevron_left</span>
-            </a>
+            <script>
+                // רשימת פרשיות ויקרא עם ה-ID המתאים ל-data.js
+                const parashotVayikra = [
+                    { id: "vayikra", name: "ויקרא", gem: "א" },
+                    { id: "tzav", name: "צו", gem: "ב" },
+                    { id: "shmini", name: "שמיני", gem: "ג" },
+                    { id: "tazria", name: "תזריע", gem: "ד" },
+                    { id: "metzora", name: "מצורע", gem: "ה" },
+                    { id: "acharei-mot", name: "acharei-mot", name_heb: "אחרי מות", gem: "ו" },
+                    { id: "kedoshim", name: "קדושים", gem: "ז" },
+                    { id: "emory", name: "אמור", gem: "ח" },
+                    { id: "behar", name: "בהר", gem: "ט" },
+                    { id: "bechukotai", name: "בחוקותי", gem: "י" }
+                ];
 
-            <a href="#" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-purple-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xs font-bold uppercase">ב</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors">צו</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-purple-500 transition-colors">chevron_left</span>
-            </a>
+                // תיקון קטן למבנה הנתונים כדי שיתאים ללולאה
+                const list = [
+                    { id: "vayikra", name: "ויקרא", gem: "א" },
+                    { id: "tzav", name: "צו", gem: "ב" },
+                    { id: "shmini", name: "שמיני", gem: "ג" },
+                    { id: "tazria", name: "תזריע", gem: "ד" },
+                    { id: "metzora", name: "מצורע", gem: "ה" },
+                    { id: "acharei-mot", name: "אחרי מות", gem: "ו" },
+                    { id: "kedoshim", name: "קדושים", gem: "ז" },
+                    { id: "emory", name: "אמור", gem: "ח" },
+                    { id: "behar", name: "בהר", gem: "ט" },
+                    { id: "bechukotai", name: "בחקותי", gem: "י" }
+                ];
 
-            <a href="#" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-purple-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xs font-bold uppercase">ג</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors">שמיני</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-purple-500 transition-colors">chevron_left</span>
-            </a>
-
-            <a href="#" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-purple-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xs font-bold uppercase">ד</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors">תזריע</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-purple-500 transition-colors">chevron_left</span>
-            </a>
-
-            <a href="#" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-purple-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xs font-bold uppercase">ה</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors">מצורע</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-purple-500 transition-colors">chevron_left</span>
-            </a>
-
-            <a href="#" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-purple-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xs font-bold uppercase">ו</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors">אחרי מות</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-purple-500 transition-colors">chevron_left</span>
-            </a>
-
-            <a href="#" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-purple-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xs font-bold uppercase">ז</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors">קדושים</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-purple-500 transition-colors">chevron_left</span>
-            </a>
-
-            <a href="#" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-purple-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xs font-bold uppercase">ח</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors">אמור</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-purple-500 transition-colors">chevron_left</span>
-            </a>
-
-            <a href="#" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-purple-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xs font-bold uppercase">ט</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors">בהר</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-purple-500 transition-colors">chevron_left</span>
-            </a>
-
-            <a href="#" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-purple-100 hover:shadow-md transition-all group flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="w-8 h-8 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xs font-bold uppercase">י</span>
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors">בחקותי</h3>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-purple-500 transition-colors">chevron_left</span>
-            </a>
+                list.forEach(p => {
+                    document.write(`
+                        <a href="article3.html?parasha=${p.id}" class="bg-white rounded-2xl p-5 shadow-sm border border-slate-50 hover:border-purple-100 hover:shadow-md transition-all group flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <span class="w-8 h-8 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center text-xs font-bold uppercase">${p.gem}</span>
+                                <h3 class="text-xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors">${p.name}</h3>
+                            </div>
+                            <span class="material-symbols-outlined text-slate-300 group-hover:text-purple-500 transition-colors">chevron_left</span>
+                        </a>
+                    `);
+                });
+            </script>
 
         </div>
 
