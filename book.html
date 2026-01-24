@@ -15,7 +15,6 @@
                 extend: {
                     colors: {
                         beigeTheme: '#f8f1e7',
-                        goldMain: '#D4AF37',
                     },
                     fontFamily: {
                         sans: ['Heebo', 'sans-serif'],
@@ -37,41 +36,41 @@
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
-        /* אפקט הציפה והמסגרת */
+        /* צללית ציפה משמעותית */
         .floating-card {
-            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.08), 0 5px 15px -5px rgba(0, 0, 0, 0.04);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.1), 0 5px 15px -5px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .floating-card:hover {
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-            transform: translateY(-8px);
+            transform: translateY(-5px);
         }
     </style>
 </head>
 <body class="font-sans antialiased text-slate-800">
 
-    <div id="hero-section" class="fixed top-0 left-0 w-full h-[70vh] z-0 overflow-hidden">
-        <div id="hero-bg" class="absolute inset-0 bg-cover bg-center transition-transform duration-1000"></div>
-        <div id="hero-overlay" class="absolute inset-0 bg-black/30 transition-opacity duration-500"></div>
+    <div id="hero-section" class="fixed top-0 left-0 w-full h-[45vh] z-0 overflow-hidden">
+        <div id="hero-bg" class="absolute inset-0 bg-cover bg-center"></div>
+        <div id="hero-overlay" class="absolute inset-0 bg-black/30"></div>
         
-        <div id="hero-content" class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
-            <div id="icon-container" class="w-24 h-24 rounded-full mb-6 shadow-2xl border-4 border-white flex items-center justify-center">
-                <span id="book-icon" class="material-symbols-outlined text-5xl"></span>
+        <div class="absolute top-8 right-8 z-20">
+            <a href="index.html" id="back-link" class="inline-flex items-center gap-2 font-bold text-sm bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-full shadow-lg hover:bg-white transition-all no-underline">
+                <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                חזרה
+            </a>
+        </div>
+
+        <div id="hero-content" class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6 pt-10">
+            <div id="icon-container" class="w-20 h-20 rounded-full mb-4 shadow-xl border-4 border-white/80 flex items-center justify-center">
+                <span id="book-icon" class="material-symbols-outlined text-4xl"></span>
             </div>
-            <h1 id="main-title" class="text-6xl md:text-8xl font-serif font-bold drop-shadow-2xl mb-4"></h1>
-            <p id="main-description" class="text-xl md:text-2xl font-light max-w-2xl opacity-90 drop-shadow-lg"></p>
+            <h1 id="main-title" class="text-5xl md:text-6xl font-serif font-bold drop-shadow-lg mb-2"></h1>
+            <p id="main-description" class="text-lg font-light max-w-xl opacity-90 leading-snug"></p>
         </div>
     </div>
 
-    <div class="fixed top-8 right-8 z-50">
-        <a href="index.html" id="back-link" class="inline-flex items-center gap-2 font-bold text-sm bg-white/90 backdrop-blur-xl px-6 py-3 rounded-full shadow-2xl hover:bg-white transition-all no-underline border border-white/20">
-            <span class="material-symbols-outlined text-lg">arrow_forward</span>
-            חזרה לבית
-        </a>
-    </div>
-
-    <div class="relative z-10 mt-[65vh]">
-        <div class="h-24 bg-gradient-to-t from-beigeTheme to-transparent"></div>
+    <div class="relative z-10 mt-[40vh]">
+        <div class="h-16 bg-gradient-to-t from-beigeTheme to-transparent"></div>
         
         <div class="bg-beigeTheme pb-20 px-6">
             <main class="max-w-4xl mx-auto">
@@ -80,16 +79,16 @@
             </main>
         </div>
 
-        <footer class="py-16 text-center text-slate-400 text-xs tracking-widest bg-beigeTheme border-t border-black/5">
-            &copy; 2026 • אור בפרשה • כל הזכויות שמורות
+        <footer class="py-12 text-center text-slate-400 text-xs tracking-widest bg-beigeTheme border-t border-black/5">
+            &copy; 2026 • אור בפרשה
         </footer>
     </div>
 
     <script>
         const booksData = {
-            'bereshit': { name: 'ספר בראשית', desc: 'סיפורי הבריאה, האבות והתהוות האומה.', color: '#10b981', icon: 'public', hero: 'https://images.unsplash.com/photo-1501290830384-93ad47898391?q=80&w=1600', parashot: [
+            'bereshit': { name: 'ספר בראשית', desc: 'יסודות האמונה ובניית המשפחה היהודית הראשונה.', color: '#10b981', icon: 'public', hero: 'https://images.unsplash.com/photo-1501290830384-93ad47898391?q=80&w=1600', parashot: [
                 { id: 'bereshit', name: 'בראשית', desc: 'בריאת העולם, חטא אדם וחוה וסיפור קין והבל.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
-                { id: 'noach', name: 'נח', desc: 'תיבת נח, המבול וההבטחה לקיום העולם.', img: 'https://images.unsplash.com/photo-1533713619779-3c7333550066?w=400' },
+                { id: 'noach', name: 'נח', desc: 'תיבת נח, המבול וההבטחה לקיום העולם מחדש.', img: 'https://images.unsplash.com/photo-1533713619779-3c7333550066?w=400' },
                 { id: 'lech-lecha', name: 'לך לך', desc: 'מסעו של אברהם אבינו אל הארץ המובטחת.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
                 { id: 'vayeira', name: 'וירא', desc: 'ביקור המלאכים, הפיכת סדום ועקדת יצחק.', img: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400' },
                 { id: 'chayei-sarah', name: 'חיי שרה', desc: 'קניית מערת המכפלה ומציאת רבקה ליצחק.', img: 'https://images.unsplash.com/photo-1505305976870-c0be144022c4?w=400' },
@@ -168,58 +167,58 @@
             
             const grid = document.getElementById('parasha-grid');
             data.parashot.forEach((p) => {
-                const card = `
-                    <a href="article.html?parasha=${p.id}" class="group relative p-[3px] rounded-[2.5rem] no-underline floating-card overflow-hidden">
-                        <div class="absolute inset-0 rounded-[2.5rem] transition-all duration-500 opacity-20 group-hover:opacity-100" style="background-color: ${data.color}"></div>
+                grid.innerHTML += `
+                    <a href="article.html?parasha=${p.id}" class="group relative p-[3px] rounded-3xl no-underline floating-card">
+                        <div class="absolute inset-0 rounded-3xl opacity-100" style="background-color: ${data.color}"></div>
                         
-                        <div class="relative bg-gradient-to-b from-white from-85% to-[#f8f1e7] rounded-[calc(2.5rem-3px)] overflow-hidden flex h-36 md:h-52 items-stretch border border-white/50">
+                        <div class="relative bg-gradient-to-b from-white from-85% to-[#f8f1e7] rounded-[calc(1.5rem-3px)] overflow-hidden flex h-32 md:h-44 items-stretch border border-white/50">
                             
                             <div class="w-32 md:w-64 h-full overflow-hidden flex-shrink-0">
-                                <img src="${p.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt="${p.name}">
+                                <img src="${p.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                             </div>
                             
-                            <div class="p-6 md:p-10 flex flex-col justify-center flex-grow">
-                                <h3 class="text-2xl md:text-4xl font-bold mb-2 transition-colors" style="color: ${data.color}">
+                            <div class="p-4 md:p-8 flex flex-col justify-center flex-grow">
+                                <h3 class="text-xl md:text-3xl font-bold mb-1" style="color: ${data.color}">
                                     ${p.name}
                                 </h3>
-                                <p class="text-slate-500 text-sm md:text-lg line-clamp-2 leading-relaxed font-light">
+                                <p class="text-slate-500 text-xs md:text-base line-clamp-2 leading-relaxed font-light">
                                     ${p.desc}
                                 </p>
                             </div>
 
-                            <div class="flex items-center px-6 md:px-10">
-                                <span class="material-symbols-outlined text-3xl opacity-20 group-hover:opacity-100 group-hover:translate-x-[-8px] transition-all duration-300" style="color: ${data.color}">
+                            <div class="flex items-center px-4 md:px-8">
+                                <span class="material-symbols-outlined opacity-30 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all" style="color: ${data.color}">
                                     arrow_back_ios
                                 </span>
                             </div>
                         </div>
                     </a>
                 `;
-                grid.innerHTML += card;
             });
         }
 
-        // לוגיקת ההתפוגגות (Blur & Fade) בגלילה
+        // לוגיקת גלילה: טשטוש והתפוגגות הכותרת
         window.addEventListener('scroll', () => {
             const scroll = window.scrollY;
             const heroContent = document.getElementById('hero-content');
+            const backBtn = document.getElementById('back-link');
             const heroBg = document.getElementById('hero-bg');
-            const heroOverlay = document.getElementById('hero-overlay');
             
-            // חישוב ערכים לפי גובה הגלילה
-            const opacityValue = Math.max(0, 1 - scroll / 450);
-            const blurValue = Math.min(25, scroll / 18);
-            const moveValue = scroll * 0.25; // מהירות תנועת הטקסט למעלה
-            const scaleValue = 1 + (scroll / 1200);
+            // הגדרות היעלמות
+            const opacityValue = Math.max(0, 1 - scroll / 300);
+            const blurValue = Math.min(20, scroll / 15);
 
-            // יישום על האלמנטים
+            // מחיל את האפקט על הכותרת וגם על כפתור החזרה
             heroContent.style.opacity = opacityValue;
             heroContent.style.filter = `blur(${blurValue}px)`;
-            heroContent.style.transform = `translateY(${moveValue}px)`;
             
-            heroBg.style.transform = `scale(${scaleValue})`;
+            if(backBtn) {
+                backBtn.style.opacity = opacityValue;
+                backBtn.style.filter = `blur(${blurValue / 2}px)`;
+            }
+
             heroBg.style.filter = `blur(${blurValue / 2}px)`;
-            heroOverlay.style.opacity = 0.3 + (scroll / 600);
+            heroBg.style.transform = `scale(${1 + scroll / 1000})`;
         });
     </script>
 </body>
