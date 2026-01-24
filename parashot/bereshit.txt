@@ -1,5 +1,5 @@
 title: בראשיתתתת
-subtitle: ניגיביגי
+subtitle: איןן על הרב נריה, איןן
 image: https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400
 writer: הרב נריהה
 date: תאריך...
