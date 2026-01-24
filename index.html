@@ -17,6 +17,8 @@
                         skyLight: '#f0f9ff',
                         skyMain: '#38bdf8',
                         skyDark: '#075985',
+                        goldMain: '#D4AF37',
+                        beigeTheme: '#eedabe',
                     },
                     fontFamily: {
                         sans: ['Heebo', 'sans-serif'],
@@ -26,39 +28,46 @@
             }
         }
     </script>
+    <style>
+        /* אפקט הגלילה: הרקע משתנה לגרדיאנט עם הגלילה */
+        body {
+            background-color: white;
+            background-attachment: fixed;
+            background-image: linear-gradient(to bottom, white, #eedabe);
+            background-size: 100% 200%;
+            background-position: top;
+            transition: background-position 0.1s ease-out;
+        }
+    </style>
 </head>
-<body class="font-sans bg-white m-0 p-0 antialiased text-slate-800">
+<body class="font-sans m-0 p-0 antialiased text-slate-800">
 
-    <div class="fixed inset-0 z-[-10] flex flex-col bg-white">
-        <div class="w-full flex justify-center bg-white">
-            <img src="images/Picsart_25-10-31_09-51-28-735.jpg" 
-                 class="w-full md:w-[60%] h-[48vh] object-cover object-[center_35%]" 
+    <div class="fixed inset-0 z-[-10] flex flex-col items-center">
+        <div class="w-full flex justify-center">
+            <img src="images/index_image.png" 
+                 class="w-full h-[50vh] md:h-[60vh] object-cover aspect-square md:aspect-video" 
                  alt="אור בפרשה רקע">
         </div>
-        <div class="flex-grow bg-white"></div>
     </div>
     
     <div class="fixed inset-0 z-[-5] pointer-events-none" 
          style="background: linear-gradient(to bottom, 
                 rgba(255, 255, 255, 0) 0%, 
-                rgba(255, 255, 255, 0) 20%, 
-                rgba(255, 255, 255, 0.4) 35%, 
+                rgba(255, 255, 255, 0) 30%, 
                 rgba(255, 255, 255, 0.8) 45%, 
-                rgba(255, 255, 255, 1) 50%, 
-                white 100%);">
+                rgba(255, 255, 255, 1) 55%, 
+                transparent 100%);">
     </div>
 
-    <main class="max-w-3xl mx-auto px-6">
+    <main class="max-w-3xl mx-auto px-6 relative z-10">
         
-        <header class="text-center pt-72 pb-12">
-            <h1 class="text-5xl md:text-6xl font-serif font-bold text-skyDark mb-3 drop-shadow-sm"></h1>
-            <p class="text-lg text-skyDark/70 font-light tracking-wide"></p>
+        <header class="text-center pt-[45vh] md:pt-[55vh] pb-12">
+            <h1 class="text-5xl md:text-6xl font-serif font-bold text-skyDark mb-3"></h1>
         </header>
 
-      <section class="mb-10">
+        <section class="mb-10">
             <div class="rounded-[2.5rem] p-[2px] bg-gradient-to-br from-[#D4AF37] via-[#FBF5B7] to-[#AA8413] shadow-2xl shadow-sky-900/20 transition-all">
-                
-                <div class="bg-white rounded-[2.4rem] p-8 md:p-10 h-full w-full">
+                <div class="bg-white/95 backdrop-blur-sm rounded-[2.4rem] p-8 md:p-10 h-full w-full">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="material-symbols-outlined text-[#D4AF37] text-2xl">auto_stories</span>
                         <span class="text-[#D4AF37] font-bold tracking-widest text-xs uppercase">על הפרוייקט</span>
@@ -72,7 +81,7 @@
         </section>
 
         <div class="flex flex-col gap-4">
-            <a href="bereshit.html" class="bg-white rounded-3xl p-4 pr-5 shadow-lg shadow-slate-200/50 border border-slate-50 hover:border-emerald-100 hover:shadow-2xl hover:shadow-emerald-900/20 hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
+            <a href="bereshit.html" class="bg-white/90 backdrop-blur-sm rounded-3xl p-4 pr-5 shadow-lg border border-slate-50 hover:border-emerald-100 hover:shadow-2xl hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
                 <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex-shrink-0 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
                     <span class="material-symbols-outlined text-3xl">public</span>
                 </div>
@@ -83,7 +92,7 @@
                 <span class="material-symbols-outlined text-slate-300 group-hover:text-emerald-500 pl-2 transition-colors">chevron_left</span>
             </a>
 
-            <a href="shmot.html" class="bg-white rounded-3xl p-4 pr-5 shadow-lg shadow-slate-200/50 border border-slate-50 hover:border-orange-100 hover:shadow-2xl hover:shadow-orange-900/20 hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
+            <a href="shmot.html" class="bg-white/90 backdrop-blur-sm rounded-3xl p-4 pr-5 shadow-lg border border-slate-50 hover:border-orange-100 hover:shadow-2xl hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
                 <div class="w-14 h-14 bg-orange-50 rounded-2xl flex-shrink-0 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-colors">
                     <span class="material-symbols-outlined text-3xl">local_fire_department</span>
                 </div>
@@ -94,7 +103,7 @@
                 <span class="material-symbols-outlined text-slate-300 group-hover:text-orange-500 pl-2 transition-colors">chevron_left</span>
             </a>
 
-            <a href="vaikra.html" class="bg-white rounded-3xl p-4 pr-5 shadow-lg shadow-slate-200/50 border border-slate-50 hover:border-purple-100 hover:shadow-2xl hover:shadow-purple-900/20 hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
+            <a href="vaikra.html" class="bg-white/90 backdrop-blur-sm rounded-3xl p-4 pr-5 shadow-lg border border-slate-50 hover:border-purple-100 hover:shadow-2xl hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
                 <div class="w-14 h-14 bg-purple-50 rounded-2xl flex-shrink-0 flex items-center justify-center text-purple-500 group-hover:bg-purple-500 group-hover:text-white transition-colors">
                     <span class="material-symbols-outlined text-3xl">temple_hindu</span>
                 </div>
@@ -105,7 +114,7 @@
                 <span class="material-symbols-outlined text-slate-300 group-hover:text-purple-500 pl-2 transition-colors">chevron_left</span>
             </a>
 
-            <a href="bamidbar.html" class="bg-white rounded-3xl p-4 pr-5 shadow-lg shadow-slate-200/50 border border-slate-50 hover:border-amber-100 hover:shadow-2xl hover:shadow-amber-900/20 hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
+            <a href="bamidbar.html" class="bg-white/90 backdrop-blur-sm rounded-3xl p-4 pr-5 shadow-lg border border-slate-50 hover:border-amber-100 hover:shadow-2xl hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
                 <div class="w-14 h-14 bg-amber-50 rounded-2xl flex-shrink-0 flex items-center justify-center text-amber-600 group-hover:bg-amber-600 group-hover:text-white transition-colors">
                     <span class="material-symbols-outlined text-3xl">landscape</span>
                 </div>
@@ -116,7 +125,7 @@
                 <span class="material-symbols-outlined text-slate-300 group-hover:text-amber-600 pl-2 transition-colors">chevron_left</span>
             </a>
 
-            <a href="devarim.html" class="bg-white rounded-3xl p-4 pr-5 shadow-lg shadow-slate-200/50 border border-slate-50 hover:border-sky-100 hover:shadow-2xl hover:shadow-sky-900/20 hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
+            <a href="devarim.html" class="bg-white/90 backdrop-blur-sm rounded-3xl p-4 pr-5 shadow-lg border border-slate-50 hover:border-sky-100 hover:shadow-2xl hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
                 <div class="w-14 h-14 bg-sky-50 rounded-2xl flex-shrink-0 flex items-center justify-center text-skyMain group-hover:bg-skyMain group-hover:text-white transition-colors">
                     <span class="material-symbols-outlined text-3xl">record_voice_over</span>
                 </div>
@@ -129,19 +138,27 @@
         </div>
 
         <div class="mt-14 mb-24 flex justify-center">
-            <a href="all.html" class="group relative inline-flex items-center justify-center px-16 py-5 font-bold text-white bg-gradient-to-r from-skyMain to-skyDark rounded-[2rem] shadow-2xl shadow-sky-200 hover:shadow-sky-400 hover:-translate-y-1 transition-all active:scale-95 overflow-hidden no-underline">
-                <div class="absolute inset-0 w-full h-full bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
+            <a href="all.html" class="group relative inline-flex items-center justify-center px-16 py-5 font-bold text-skyDark border-2 border-skyDark bg-white/50 rounded-[2rem] shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all active:scale-95 no-underline">
                 <span class="relative flex items-center gap-3 text-xl">
-                    <span class="material-symbols-outlined">grid_view</span>
+                    <span class="material-symbols-outlined text-2xl">library_books</span>
                     לכל המאמרים
                 </span>
             </a>
         </div>
     </main>
 
-    <footer class="bg-white py-12 border-t border-slate-50 text-center">
+    <footer class="py-12 text-center">
         <p class="text-slate-400 text-xs tracking-widest">&copy; תשפ"ו • אור בפרשה </p>
     </footer>
 
+    <script>
+        window.addEventListener('scroll', () => {
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (scrollHeight > 0) {
+                const scrollPercent = window.scrollY / scrollHeight;
+                document.body.style.backgroundPosition = `center ${scrollPercent * 100}%`;
+            }
+        });
+    </script>
 </body>
 </html>
