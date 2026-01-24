@@ -34,9 +34,9 @@
             background-position: top;
             transition: background-position 0.1s ease-out;
         }
-        /* מעבר חלק לשקיפות */
         #bg-image-container {
             transition: opacity 0.1s ease-out;
+            will-change: opacity; /* משפר ביצועים בזמן גלילה */
         }
     </style>
 </head>
@@ -67,57 +67,88 @@
         </header>
 
         <section class="mb-10 -mt-16 relative z-20"> 
-            <div class="rounded-[2.5rem] p-[2px] bg-gradient-to-br from-[#D4AF37] via-[#FBF5B7] to-[#AA8413] shadow-2xl shadow-sky-900/20">
+            <div class="rounded-[2.5rem] p-[2px] bg-gradient-to-br from-[#D4AF37] via-[#FBF5B7] to-[#AA8413] shadow-2xl shadow-sky-900/20 transition-all">
                 <div class="bg-white/95 backdrop-blur-sm rounded-[2.4rem] p-8 md:p-10 h-full w-full">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="material-symbols-outlined text-[#D4AF37] text-2xl">auto_stories</span>
                         <span class="text-[#D4AF37] font-bold tracking-widest text-xs uppercase">על הפרוייקט</span>
                     </div>
                     <h2 class="text-2xl md:text-3xl font-serif font-bold text-slate-800 mb-4">האור שבפרשה</h2>
-                    <p class="text-slate-600 leading-relaxed">מטרת הפרוייקט המיוחד הזה היא להאיר אור על פרשת השבוע...</p>
+                    <p class="text-slate-600 leading-relaxed">
+                        מטרת הפרוייקט המיוחד הזה היא להאיר אור על פרשת השבוע, לגרום לנו להצליח להגיע לתובנות ולימודים חדשים שמחברים את פרשת השבוע לחיים שלנו. כמובן זו נקודה קצרה שתוכלו גם לשלב בשולחן שבת.
+                    </p>
                 </div>
             </div>
         </section>
 
         <div class="flex flex-col gap-4">
-            <a href="bereshit.html" class="bg-white/90 backdrop-blur-sm rounded-3xl p-4 pr-5 shadow-lg border border-slate-50 hover:shadow-2xl hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
-                <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+            <a href="bereshit.html" class="bg-white/90 backdrop-blur-sm rounded-3xl p-4 pr-5 shadow-lg border border-slate-50 hover:border-emerald-100 hover:shadow-2xl hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
+                <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex-shrink-0 flex items-center justify-center text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-colors">
                     <span class="material-symbols-outlined text-3xl">public</span>
                 </div>
                 <div class="flex-grow">
                     <h3 class="text-xl font-bold text-slate-800 group-hover:text-emerald-700 transition-colors">בראשית</h3>
+                    <p class="text-slate-500 text-sm leading-snug">לכל מאמרי ספר בראשית</p>
                 </div>
-                <span class="material-symbols-outlined text-slate-300 pl-2">chevron_left</span>
+                <span class="material-symbols-outlined text-slate-300 group-hover:text-emerald-500 pl-2 transition-colors">chevron_left</span>
             </a>
 
-            <a href="shmot.html" class="bg-white/90 rounded-3xl p-4 pr-5 shadow-lg flex items-center gap-5 no-underline">
-                 <div class="w-14 h-14 bg-orange-50 text-orange-500 rounded-2xl flex items-center justify-center"><span class="material-symbols-outlined text-3xl">local_fire_department</span></div>
-                 <h3 class="text-xl font-bold text-slate-800 flex-grow">שמות</h3>
-                 <span class="material-symbols-outlined text-slate-300">chevron_left</span>
+            <a href="shmot.html" class="bg-white/90 backdrop-blur-sm rounded-3xl p-4 pr-5 shadow-lg border border-slate-50 hover:border-orange-100 hover:shadow-2xl hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
+                <div class="w-14 h-14 bg-orange-50 rounded-2xl flex-shrink-0 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-3xl">local_fire_department</span>
+                </div>
+                <div class="flex-grow">
+                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-orange-700 transition-colors">שמות</h3>
+                    <p class="text-slate-500 text-sm leading-snug">לכל מאמרי ספר שמות</p>
+                </div>
+                <span class="material-symbols-outlined text-slate-300 group-hover:text-orange-500 pl-2 transition-colors">chevron_left</span>
             </a>
-            <a href="vaikra.html" class="bg-white/90 rounded-3xl p-4 pr-5 shadow-lg flex items-center gap-5 no-underline">
-                 <div class="w-14 h-14 bg-purple-50 text-purple-500 rounded-2xl flex-center justify-center flex items-center"><span class="material-symbols-outlined text-3xl">temple_hindu</span></div>
-                 <h3 class="text-xl font-bold text-slate-800 flex-grow">ויקרא</h3>
-                 <span class="material-symbols-outlined text-slate-300">chevron_left</span>
+
+            <a href="vaikra.html" class="bg-white/90 backdrop-blur-sm rounded-3xl p-4 pr-5 shadow-lg border border-slate-50 hover:border-purple-100 hover:shadow-2xl hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
+                <div class="w-14 h-14 bg-purple-50 rounded-2xl flex-shrink-0 flex items-center justify-center text-purple-500 group-hover:bg-purple-500 group-hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-3xl">temple_hindu</span>
+                </div>
+                <div class="flex-grow">
+                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-purple-700 transition-colors">ויקרא</h3>
+                    <p class="text-slate-500 text-sm leading-snug">לכל מאמרי ספר ויקרא</p>
+                </div>
+                <span class="material-symbols-outlined text-slate-300 group-hover:text-purple-500 pl-2 transition-colors">chevron_left</span>
             </a>
-            <a href="bamidbar.html" class="bg-white/90 rounded-3xl p-4 pr-5 shadow-lg flex items-center gap-5 no-underline">
-                 <div class="w-14 h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center"><span class="material-symbols-outlined text-3xl">landscape</span></div>
-                 <h3 class="text-xl font-bold text-slate-800 flex-grow">במדבר</h3>
-                 <span class="material-symbols-outlined text-slate-300">chevron_left</span>
+
+            <a href="bamidbar.html" class="bg-white/90 backdrop-blur-sm rounded-3xl p-4 pr-5 shadow-lg border border-slate-50 hover:border-amber-100 hover:shadow-2xl hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
+                <div class="w-14 h-14 bg-amber-50 rounded-2xl flex-shrink-0 flex items-center justify-center text-amber-600 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-3xl">landscape</span>
+                </div>
+                <div class="flex-grow">
+                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-amber-800 transition-colors">במדבר</h3>
+                    <p class="text-slate-500 text-sm leading-snug">לכל מאמרי ספר במדבר</p>
+                </div>
+                <span class="material-symbols-outlined text-slate-300 group-hover:text-amber-600 pl-2 transition-colors">chevron_left</span>
             </a>
-            <a href="devarim.html" class="bg-white/90 rounded-3xl p-4 pr-5 shadow-lg flex items-center gap-5 no-underline">
-                 <div class="w-14 h-14 bg-sky-50 text-skyMain rounded-2xl flex items-center justify-center"><span class="material-symbols-outlined text-3xl">record_voice_over</span></div>
-                 <h3 class="text-xl font-bold text-slate-800 flex-grow">דברים</h3>
-                 <span class="material-symbols-outlined text-slate-300">chevron_left</span>
+
+            <a href="devarim.html" class="bg-white/90 backdrop-blur-sm rounded-3xl p-4 pr-5 shadow-lg border border-slate-50 hover:border-sky-100 hover:shadow-2xl hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
+                <div class="w-14 h-14 bg-sky-50 rounded-2xl flex-shrink-0 flex items-center justify-center text-skyMain group-hover:bg-skyMain group-hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-3xl">record_voice_over</span>
+                </div>
+                <div class="flex-grow">
+                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-skyDark transition-colors">דברים</h3>
+                    <p class="text-slate-500 text-sm leading-snug">לכל מאמרי ספר דברים</p>
+                </div>
+                <span class="material-symbols-outlined text-slate-300 group-hover:text-skyMain pl-2 transition-colors">chevron_left</span>
             </a>
         </div>
 
         <div class="mt-14 mb-24 flex justify-center">
-            <a href="all.html" class="px-16 py-5 font-bold text-skyDark border-2 border-skyDark rounded-[2rem] no-underline">לכל המאמרים</a>
+            <a href="all.html" class="group relative inline-flex items-center justify-center px-16 py-5 font-bold text-skyDark border-2 border-skyDark bg-transparent rounded-[2rem] shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all active:scale-95 no-underline">
+                <span class="relative flex items-center gap-3 text-xl">
+                    <span class="material-symbols-outlined text-2xl">library_books</span>
+                    לכל המאמרים
+                </span>
+            </a>
         </div>
     </main>
 
-    <footer class="py-12 text-center text-slate-400 text-xs">&copy; תשפ"ו • אור בפרשה</footer>
+    <footer class="py-12 text-center text-slate-400 text-xs tracking-widest">&copy; תשפ"ו • אור בפרשה </footer>
 
     <script>
         const bgImage = document.getElementById('bg-image-container');
@@ -127,13 +158,12 @@
             if (scrollHeight > 0) {
                 const scrollPercent = window.scrollY / scrollHeight;
                 
-                // 1. הזזת הגרדיאנט ברקע (הקוד הקודם)
+                // עדכון מיקום הגרדיאנט ברקע ה-body
                 document.body.style.backgroundPosition = `center ${scrollPercent * 100}%`;
                 
-                // 2. העלמת התמונה בהדרגה (חדש)
-                // ככל ש-scrollPercent גדל, ה-Opacity קטן
-                bgImage.style.opacity = 1 - (scrollPercent * 1.5); 
-                // הכפלנו ב-1.5 כדי שהיא תיעלם קצת לפני שמגיעים לסוף ממש
+                // העלמת התמונה מהר יותר - תהיה שקופה לגמרי בחצי הדרך (50% גלילה)
+                const newOpacity = 1 - (scrollPercent * 2);
+                bgImage.style.opacity = Math.max(0, newOpacity); 
             }
         });
     </script>
