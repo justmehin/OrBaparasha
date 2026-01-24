@@ -42,11 +42,17 @@
 </head>
 <body class="font-sans m-0 p-0 antialiased text-slate-800">
 
-    <div class="fixed inset-0 z-[-10] flex flex-col items-center transform -translate-y-14 md:translate-y-0">
-        <div class="w-full flex justify-center">
+    <div class="fixed inset-0 z-[-10] flex flex-col items-center">
+        <div class="w-full flex justify-center transform -translate-y-14 md:hidden">
             <img src="images/index_image.png" 
-                 class="w-full h-[50vh] aspect-square md:h-auto md:max-h-[70vh] md:aspect-auto object-cover md:object-contain" 
-                 alt="אור בפרשה רקע">
+                 class="w-full h-[50vh] aspect-square object-cover" 
+                 alt="אור בפרשה רקע מובייל">
+        </div>
+
+        <div class="w-full hidden md:flex justify-center">
+            <img src="images/index_image_desktop.png" 
+                 class="w-full h-auto object-contain" 
+                 alt="אור בפרשה רקע דסקטופ">
         </div>
     </div>
     
