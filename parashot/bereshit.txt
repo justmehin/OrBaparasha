@@ -1,0 +1,17 @@
+title: בראשיתתתת
+subtitle: ניגיביגי
+image: https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400
+writer: הרב נריהה
+date: תאריך...
+profile picture: https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400
+---
+
+פרשת בראשית פותחת ב...
+
+H3: מי אני
+
+אני אוהב בורקס...
+
+quote: אין הנחתום מעיד על עיסתו
+
+center-text:
