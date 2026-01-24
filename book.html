@@ -56,7 +56,7 @@
     <main class="max-w-4xl mx-auto px-6 relative z-10">
         
         <div class="pt-8">
-            <a href="index.html" id="back-link" class="inline-flex items-center gap-2 font-bold text-sm bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-all">
+            <a href="index.html" id="back-link" class="inline-flex items-center gap-2 font-bold text-sm bg-white/80 backdrop-blur-md px-5 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all active:scale-95">
                 <span class="material-symbols-outlined text-lg">arrow_forward</span>
                 חזרה לדף הבית
             </a>
@@ -70,12 +70,12 @@
             <p id="main-description" class="text-lg text-slate-600 font-light max-w-xl mx-auto"></p>
         </header>
 
-        <div id="parasha-grid" class="flex flex-col gap-5 mb-16">
+        <div id="parasha-grid" class="flex flex-col gap-6 mb-16">
             </div>
 
     </main>
 
-    <footer class="py-8 text-center text-slate-400 text-xs tracking-widest">
+    <footer class="py-12 text-center text-slate-400 text-xs tracking-widest border-t border-slate-100 bg-white/30 backdrop-blur-sm">
         &copy; תשפ"ו • אור בפרשה 
     </footer>
 
@@ -84,100 +84,100 @@
             'bereshit': {
                 name: 'ספר בראשית',
                 desc: 'יסודות האמונה, סיפורי האבות ובניית המשפחה היהודית הראשונה.',
-                color: '#10b981', // Emerald
+                color: '#10b981', 
                 icon: 'public',
                 hero: 'https://images.unsplash.com/photo-1501290830384-93ad47898391?q=80&w=1600&auto=format&fit=crop',
                 parashot: [
-                    { name: 'בראשית', desc: 'בריאת העולם בשישה ימים, חטא אדם וחוה וסיפור קין והבל.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
-                    { name: 'נח', desc: 'המבול הגדול, תיבת נח וההבטחה לקיום העולם מחדש.', img: 'https://images.unsplash.com/photo-1533713619779-3c7333550066?w=400' },
-                    { name: 'לך לך', desc: 'קריאת אברהם אבינו לעזוב את מולדתו וללכת אל הארץ המובטחת.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
-                    { name: 'וירא', desc: 'ביקור המלאכים, הפיכת סדום ועקדת יצחק.', img: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400' },
-                    { name: 'חיי שרה', desc: 'קניית מערת המכפלה ומציאת רבקה ליצחק.', img: 'https://images.unsplash.com/photo-1505305976870-c0be144022c4?w=400' },
-                    { name: 'תולדות', desc: 'המאבק בין יעקב ועשיו על הבכורה והברכות.', img: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400' },
-                    { name: 'ויצא', desc: 'חלום הסולם, שנות העבודה אצל לבן והקמת השבטים.', img: 'https://images.unsplash.com/photo-1493246507139-91e8bef99c02?w=400' },
-                    { name: 'וישלח', desc: 'המפגש עם עשיו והמאבק עם המלאך.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' },
-                    { name: 'וישב', desc: 'מכירת יוסף, חלומותיו וירידתו למצרים.', img: 'https://images.unsplash.com/photo-1439853949127-fa647821eba0?w=400' },
-                    { name: 'מקץ', desc: 'פתרון חלומות פרעה ומינוי יוסף למשנה למלך.', img: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400' },
-                    { name: 'ויגש', desc: 'חשיפת יוסף בפני אחיו וירידת יעקב למצרים.', img: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400' },
-                    { name: 'ויחי', desc: 'ברכות יעקב לבניו לפני מותו בסוף תקופת האבות.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' }
+                    { id: 'bereshit', name: 'בראשית', desc: 'בריאת העולם בשישה ימים, חטא אדם וחוה וסיפור קין והבל.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
+                    { id: 'noach', name: 'נח', desc: 'תיבת נח, המבול הגדול וההבטחה לקיום העולם מחדש.', img: 'https://images.unsplash.com/photo-1533713619779-3c7333550066?w=400' },
+                    { id: 'lech-lecha', name: 'לך לך', desc: 'קריאת אברהם אבינו לעזוב את מולדתו וללכת אל הארץ המובטחת.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
+                    { id: 'vayeira', name: 'וירא', desc: 'ביקור המלאכים, הפיכת סדום ועקדת יצחק.', img: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400' },
+                    { id: 'chayei-sarah', name: 'חיי שרה', desc: 'קניית מערת המכפלה ומציאת רבקה ליצחק.', img: 'https://images.unsplash.com/photo-1505305976870-c0be144022c4?w=400' },
+                    { id: 'toledot', name: 'תולדות', desc: 'המאבק בין יעקב ועשיו על הבכורה והברכות.', img: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400' },
+                    { id: 'vayetze', name: 'ויצא', desc: 'חלום הסולם, שנות העבודה אצל לבן והקמת השבטים.', img: 'https://images.unsplash.com/photo-1493246507139-91e8bef99c02?w=400' },
+                    { id: 'vayishlach', name: 'וישלח', desc: 'המפגש עם עשיו והמאבק עם המלאך.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' },
+                    { id: 'vayeishev', name: 'וישב', desc: 'מכירת יוסף, חלומותיו וירידתו למצרים.', img: 'https://images.unsplash.com/photo-1439853949127-fa647821eba0?w=400' },
+                    { id: 'mikeitz', name: 'מקץ', desc: 'פתרון חלומות פרעה ומינוי יוסף למשנה למלך.', img: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400' },
+                    { id: 'vayigash', name: 'ויגש', desc: 'חשיפת יוסף בפני אחיו וירידת יעקב למצרים.', img: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400' },
+                    { id: 'vayechi', name: 'ויחי', desc: 'ברכות יעקב לבניו לפני מותו בסוף תקופת האבות.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' }
                 ]
             },
             'shmot': {
                 name: 'ספר שמות',
                 desc: 'מיציאה מעבדות לחירות, מעמד הר סיני ובניית המשכן.',
-                color: '#f97316', // Orange
+                color: '#f97316', 
                 icon: 'local_fire_department',
                 hero: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?q=80&w=1600&auto=format&fit=crop',
                 parashot: [
-                    { name: 'שמות', desc: 'שעבוד מצרים, לידת משה והסנה הבוער.', img: 'https://images.unsplash.com/photo-1543722530-d2c3201371e7?w=400' },
-                    { name: 'וארא', desc: 'שבע המכות הראשונות וחיזוק לב פרעה.', img: 'https://images.unsplash.com/photo-1510002165351-784860178385?w=400' },
-                    { name: 'בא', desc: 'שלוש המכות האחרונות, קרבן פסח ויציאת מצרים.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
-                    { name: 'בשלח', desc: 'קריעת ים סוף, שירת הים והמן במדבר.', img: 'https://images.unsplash.com/photo-1439405326854-01517487c73b?w=400' },
-                    { name: 'יתרו', desc: 'בוא יתרו למחנה ישראל ועשרת הדיברות.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
-                    { name: 'משפטים', desc: 'מגוון רחב של מצוות חברתיות ומוסריות.', img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400' },
-                    { name: 'תרומה', desc: 'הציווי על הקמת המשכן וכליו.', img: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=400' },
-                    { name: 'תצוה', desc: 'בגדי הכהונה והדלקת המנורה.', img: 'https://images.unsplash.com/photo-1510002165351-784860178385?w=400' },
-                    { name: 'כי תשא', desc: 'חטא העגל, שבירת הלוחות ומחצית השקל.', img: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400' },
-                    { name: 'ויקהל', desc: 'התכנסות עם ישראל לבניית המשכן.', img: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=400' },
-                    { name: 'פקודי', desc: 'סיכום מלאכת המשכן והשראת השכינה.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' }
+                    { id: 'shmot', name: 'שמות', desc: 'שעבוד מצרים, לידת משה והסנה הבוער.', img: 'https://images.unsplash.com/photo-1543722530-d2c3201371e7?w=400' },
+                    { id: 'vaera', name: 'וארא', desc: 'שבע המכות הראשונות וחיזוק לב פרעה.', img: 'https://images.unsplash.com/photo-1510002165351-784860178385?w=400' },
+                    { id: 'bo', name: 'בא', desc: 'שלוש המכות האחרונות ויציאת מצרים.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
+                    { id: 'beshalach', name: 'בשלח', desc: 'קריעת ים סוף ושירת הים המפורסמת.', img: 'https://images.unsplash.com/photo-1439405326854-01517487c73b?w=400' },
+                    { id: 'yitro', name: 'יתרו', desc: 'מעמד הר סיני ומתן עשרת הדיברות.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
+                    { id: 'mishpatim', name: 'משפטים', desc: 'מצוות חברתיות רבות ודיני משפט.', img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400' },
+                    { id: 'terumah', name: 'תרומה', desc: 'הציווי על הקמת המשכן וכליו.', img: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=400' },
+                    { id: 'tetzaveh', name: 'תצוה', desc: 'בגדי הכהונה המפוארים והמנורה.', img: 'https://images.unsplash.com/photo-1510002165351-784860178385?w=400' },
+                    { id: 'ki-tisa', name: 'כי תשא', desc: 'חטא העגל ומחצית השקל.', img: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400' },
+                    { id: 'vayakhel', name: 'ויקהל', desc: 'התכנסות העם לבניית המשכן בפועל.', img: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=400' },
+                    { id: 'pekudei', name: 'פקודי', desc: 'סיכום המלאכה והשראת השכינה.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' }
                 ]
             },
             'vaikra': {
                 name: 'ספר ויקרא',
-                desc: 'עבודת המקדש, הקדושה והחובות המוסריות של הכהנים והעם.',
-                color: '#a855f7', // Purple
+                desc: 'עבודת המקדש, הקדושה והחובות המוסריות.',
+                color: '#a855f7', 
                 icon: 'temple_hindu',
                 hero: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=1600&auto=format&fit=crop',
                 parashot: [
-                    { name: 'ויקרא', desc: 'דיני הקרבנות השונים במשכן.', img: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?w=400' },
-                    { name: 'צו', desc: 'הוראות לכהנים על עבודת המזבח.', img: 'https://images.unsplash.com/photo-1533713619779-3c7333550066?w=400' },
-                    { name: 'שמיני', desc: 'חנוכת המשכן ומות נדב ואביהוא.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
-                    { name: 'תזריע', desc: 'דיני טומאה וטהרה בבני אדם.', img: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=400' },
-                    { name: 'מצורע', desc: 'תהליך הטהרה של המצורע.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
-                    { name: 'אחרי מות', desc: 'עבודת יום הכיפורים בבית המקדש.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
-                    { name: 'קדושים', desc: 'ציווי "קדושים תהיו" ומצוות "ואהבת לרעך כמוך".', img: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400' },
-                    { name: 'אמור', desc: 'מועדי ישראל ודיני כהונה.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' },
-                    { name: 'בהר', desc: 'שנת השמיטה ושנת היובל.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
-                    { name: 'בחקותי', desc: 'הבטחות לברכה ואזהרות על הפרת הברית.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' }
+                    { id: 'vaikra', name: 'ויקרא', desc: 'דיני הקרבנות השונים במשכן.', img: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?w=400' },
+                    { id: 'tzav', name: 'צו', desc: 'הוראות לכהנים על עבודת המזבח.', img: 'https://images.unsplash.com/photo-1533713619779-3c7333550066?w=400' },
+                    { id: 'shemini', name: 'שמיני', desc: 'חנוכת המשכן ומאכלות אסורים.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
+                    { id: 'tazria', name: 'תזריע', desc: 'דיני טומאה וטהרה בבני אדם.', img: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=400' },
+                    { id: 'metzora', name: 'מצורע', desc: 'תהליך הטהרה והחיבור לקהילה.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
+                    { id: 'acharei-mot', name: 'אחרי מות', desc: 'עבודת יום הכיפורים הקדושה.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
+                    { id: 'kedoshim', name: 'קדושים', desc: 'ציווי הקדושה ומצוות ואהבת לרעך.', img: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400' },
+                    { id: 'emor', desc: 'מועדי ישראל ודיני הכהונה.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' },
+                    { id: 'behar', name: 'בהר', desc: 'שנת השמיטה ושנת היובל.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
+                    { id: 'bechukotai', name: 'בחקותי', desc: 'הבטחות לברכה ואזהרות הברית.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' }
                 ]
             },
             'bamidbar': {
                 name: 'ספר במדבר',
-                desc: 'מסע בני ישראל במדבר סיני בדרך אל הארץ המובטחת.',
-                color: '#d97706', // Amber
+                desc: 'מסע בני ישראל במדבר סיני אל הארץ המובטחת.',
+                color: '#d97706', 
                 icon: 'landscape',
                 hero: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=1600&auto=format&fit=crop',
                 parashot: [
-                    { name: 'במדבר', desc: 'מפקד בני ישראל וסידור המחנות במדבר.', img: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=400' },
-                    { name: 'נשא', desc: 'מצוות נזיר, ברכת כהנים וקרבנות הנשיאים.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
-                    { name: 'בהעלותך', desc: 'העלאת המנורה והנהגת הענן והאש.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
-                    { name: 'שלח לך', desc: 'חטא המרגלים ותוצאותיו הכואבות.', img: 'https://images.unsplash.com/photo-1439853949127-fa647821eba0?w=400' },
-                    { name: 'קורח', desc: 'מחלוקת קורח ועדתו נגד משה ואהרון.', img: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400' },
-                    { name: 'חוקת', desc: 'פרה אדומה ופטירת מרים ואהרון.', img: 'https://images.unsplash.com/photo-1507039228107-160565866160?w=400' },
-                    { name: 'בלק', desc: 'בלעם מנסה לקלל את ישראל והופך למברך.', img: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400' },
-                    { name: 'פנחס', desc: 'שכר פנחס ומפקד נוסף של בני ישראל.', img: 'https://images.unsplash.com/photo-1518005020250-68a0508b2400?w=400' },
-                    { name: 'מטות', desc: 'דיני נדרים והמלחמה במדין.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' },
-                    { name: 'מסעי', desc: 'סיכום מסעות ישראל וגבולות הארץ.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' }
+                    { id: 'bamidbar', name: 'במדבר', desc: 'מפקד בני ישראל וסידור המחנות.', img: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=400' },
+                    { id: 'naso', name: 'נשא', desc: 'מצוות נזיר וברכת הכהנים.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
+                    { id: 'behaalotcha', name: 'בהעלותך', desc: 'העלאת המנורה והנהגת הענן.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
+                    { id: 'shelach', name: 'שלח לך', desc: 'חטא המרגלים ותוצאותיו.', img: 'https://images.unsplash.com/photo-1439853949127-fa647821eba0?w=400' },
+                    { id: 'korach', name: 'קורח', desc: 'מחלוקת קורח ועדתו נגד משה.', img: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400' },
+                    { id: 'chukat', name: 'חוקת', desc: 'פרה אדומה ופטירת מרים ואהרון.', img: 'https://images.unsplash.com/photo-1507039228107-160565866160?w=400' },
+                    { id: 'balak', name: 'בלק', desc: 'בלעם מנסה לקלל ונמצא מברך.', img: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400' },
+                    { id: 'pinchas', name: 'פנחס', desc: 'שכר פנחס ומפקד בני ישראל.', img: 'https://images.unsplash.com/photo-1518005020250-68a0508b2400?w=400' },
+                    { id: 'matot', name: 'מטות', desc: 'דיני נדרים והמלחמה במדין.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' },
+                    { id: 'masei', name: 'מסעי', desc: 'סיכום מסעות ישראל וגבולות הארץ.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' }
                 ]
             },
             'devarim': {
                 name: 'ספר דברים',
-                desc: 'נאום הפרידה של משה רבנו וסיכום המצוות וההיסטוריה.',
-                color: '#0284c7', // Sky
+                desc: 'נאום הפרידה של משה רבנו וסיכום המצוות.',
+                color: '#0284c7', 
                 icon: 'record_voice_over',
                 hero: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?q=80&w=1600&auto=format&fit=crop',
                 parashot: [
-                    { name: 'דברים', desc: 'משה מתחיל את נאומו בסיכום המסע.', img: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?w=400' },
-                    { name: 'ואתחנן', desc: 'תפילת משה, עשרת הדיברות וקריאת שמע.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
-                    { name: 'עקב', desc: 'ברכת המזון והבטחת השפע בארץ.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
-                    { name: 'ראה', desc: 'הבחירה בין ברכה לקללה ומצוות הצדקה.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
-                    { name: 'שופטים', desc: 'מינוי דיינים ומנהיגות בישראל.', img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400' },
-                    { name: 'כי תצא', desc: 'עשרות מצוות שבין אדם לחברו.', img: 'https://images.unsplash.com/photo-1518005020250-68a0508b2400?w=400' },
-                    { name: 'כי תבוא', desc: 'ביכורים, מעשרות והברית בארץ.', img: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400' },
-                    { name: 'ניצבים', desc: 'מעמד הברית וקריאה לבחירה בחיים.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' },
-                    { name: 'וילך', desc: 'העברת ההנהגה ליהושע ומצוות הקהל.', img: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400' },
-                    { name: 'האזינו', desc: 'שירת משה כעדות נצחית לעם.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' },
-                    { name: 'וזאת הברכה', desc: 'ברכות משה לפני מותו וסיכום התורה.', img: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=400' }
+                    { id: 'devarim', name: 'דברים', desc: 'משה מתחיל את נאומו בסיכום המסע.', img: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?w=400' },
+                    { id: 'vaetchanan', name: 'ואתחנן', desc: 'תפילת משה וקריאת שמע.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
+                    { id: 'eikev', name: 'עקב', desc: 'ברכת המזון והבטחת השפע.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
+                    { id: 'reeh', name: 'ראה', desc: 'הבחירה בין ברכה לקללה.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
+                    { id: 'shofetim', name: 'שופטים', desc: 'מינוי דיינים ומנהיגות בישראל.', img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400' },
+                    { id: 'ki-tetze', name: 'כי תצא', desc: 'עשרות מצוות חברתיות ומוסריות.', img: 'https://images.unsplash.com/photo-1518005020250-68a0508b2400?w=400' },
+                    { id: 'ki-tavo', name: 'כי תבוא', desc: 'מצוות הביכורים והברית בארץ.', img: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400' },
+                    { id: 'nitzavim', name: 'ניצבים', desc: 'מעמד הברית והבחירה בחיים.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' },
+                    { id: 'vayelech', name: 'וילך', desc: 'העברת ההנהגה ליהושע.', img: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400' },
+                    { id: 'haazinu', name: 'האזינו', desc: 'שירת משה כעדות נצחית.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' },
+                    { id: 'vezot-haberacha', name: 'וזאת הברכה', desc: 'ברכות משה האחרונות וסיכום התורה.', img: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=400' }
                 ]
             }
         };
@@ -194,22 +194,36 @@
             document.getElementById('icon-box').style.backgroundColor = data.color;
             document.getElementById('book-icon').textContent = data.icon;
             document.getElementById('back-link').style.color = data.color;
+            document.getElementById('fade-overlay').style.background = `linear-gradient(to bottom, rgba(255,255,255,0) 0%, ${data.color}11 25%, white 35%, transparent 100%)`;
 
             const grid = document.getElementById('parasha-grid');
-            data.parashot.forEach((p, index) => {
+            data.parashot.forEach((p) => {
                 const card = `
-                    <div class="bg-white/80 backdrop-blur-md rounded-2xl overflow-hidden shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex h-32 md:h-40 group cursor-pointer">
-                        <div class="w-32 md:w-56 h-full overflow-hidden flex-shrink-0">
-                            <img src="${p.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="${p.name}">
+                    <a href="article.html?parasha=${p.id}" class="group relative p-[1.5px] rounded-3xl transition-all duration-300 hover:-translate-y-1.5 no-underline">
+                        <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-slate-200 via-slate-50 to-slate-200 group-hover:from-[${data.color}] group-hover:to-goldMain transition-all duration-500 shadow-sm group-hover:shadow-xl"></div>
+                        
+                        <div class="relative bg-white/95 backdrop-blur-md rounded-[calc(1.5rem-1.5px)] overflow-hidden flex h-32 md:h-44 items-stretch">
+                            
+                            <div class="w-32 md:w-64 h-full overflow-hidden flex-shrink-0">
+                                <img src="${p.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt="${p.name}">
+                            </div>
+                            
+                            <div class="p-4 md:p-8 flex flex-col justify-center flex-grow">
+                                <h3 class="text-xl md:text-3xl font-bold mb-1 transition-colors" style="color: ${data.color}">
+                                    ${p.name}
+                                </h3>
+                                <p class="text-slate-500 text-xs md:text-base line-clamp-2 leading-relaxed font-light">
+                                    ${p.desc}
+                                </p>
+                            </div>
+
+                            <div class="flex items-center px-4 md:px-8">
+                                <span class="material-symbols-outlined text-slate-300 group-hover:translate-x-[-6px] transition-all duration-300" style="color: ${data.color}aa">
+                                    arrow_back_ios
+                                </span>
+                            </div>
                         </div>
-                        <div class="p-4 md:p-6 flex flex-col justify-center flex-grow">
-                            <h3 class="text-xl md:text-2xl font-bold text-slate-800 mb-1 group-hover:text-[${data.color}] transition-colors" style="color: ${data.color}">${p.name}</h3>
-                            <p class="text-slate-500 text-xs md:text-sm line-clamp-2 leading-relaxed">${p.desc}</p>
-                        </div>
-                        <div class="flex items-center px-4">
-                            <span class="material-symbols-outlined text-slate-300 group-hover:translate-x-[-4px] transition-all" style="color: ${data.color}88">chevron_left</span>
-                        </div>
-                    </div>
+                    </a>
                 `;
                 grid.innerHTML += card;
             });
