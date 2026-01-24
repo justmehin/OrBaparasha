@@ -44,7 +44,7 @@
 </head>
 <body class="font-sans m-0 p-0 antialiased text-slate-800">
 
-    <div class="fixed inset-0 z-[-10] flex flex-col">
+    <div id="bg-image-container" class="fixed inset-0 z-[-10] flex flex-col">
         <div id="hero-image" class="h-[35vh] w-full bg-cover bg-center transition-all duration-1000"></div>
         <div class="flex-grow"></div>
     </div>
@@ -56,7 +56,7 @@
     <main class="max-w-4xl mx-auto px-6 relative z-10">
         
         <div class="pt-8">
-            <a href="index.html" id="back-link" class="inline-flex items-center gap-2 font-bold text-sm bg-white/80 backdrop-blur-md px-5 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all active:scale-95">
+            <a href="index.html" id="back-link" class="inline-flex items-center gap-2 font-bold text-sm bg-white/80 backdrop-blur-md px-5 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all active:scale-95 no-underline">
                 <span class="material-symbols-outlined text-lg">arrow_forward</span>
                 חזרה לדף הבית
             </a>
@@ -136,7 +136,7 @@
                     { id: 'metzora', name: 'מצורע', desc: 'תהליך הטהרה והחיבור לקהילה.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
                     { id: 'acharei-mot', name: 'אחרי מות', desc: 'עבודת יום הכיפורים הקדושה.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
                     { id: 'kedoshim', name: 'קדושים', desc: 'ציווי הקדושה ומצוות ואהבת לרעך.', img: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400' },
-                    { id: 'emor', desc: 'מועדי ישראל ודיני הכהונה.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' },
+                    { id: 'emor', name: 'אמור', desc: 'מועדי ישראל ודיני הכהונה.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' },
                     { id: 'behar', name: 'בהר', desc: 'שנת השמיטה ושנת היובל.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
                     { id: 'bechukotai', name: 'בחקותי', desc: 'הבטחות לברכה ואזהרות הברית.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' }
                 ]
@@ -194,15 +194,17 @@
             document.getElementById('icon-box').style.backgroundColor = data.color;
             document.getElementById('book-icon').textContent = data.icon;
             document.getElementById('back-link').style.color = data.color;
-            document.getElementById('fade-overlay').style.background = `linear-gradient(to bottom, rgba(255,255,255,0) 0%, ${data.color}11 25%, white 35%, transparent 100%)`;
+            
+            // עדכון צבע ה-Fade שיתאים לספר
+            document.getElementById('fade-overlay').style.background = `linear-gradient(to bottom, rgba(255,255,255,0) 0%, ${data.color}08 25%, white 35%, transparent 100%)`;
 
             const grid = document.getElementById('parasha-grid');
             data.parashot.forEach((p) => {
                 const card = `
-                    <a href="article.html?parasha=${p.id}" class="group relative p-[1.5px] rounded-3xl transition-all duration-300 hover:-translate-y-1.5 no-underline">
-                        <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-slate-200 via-slate-50 to-slate-200 group-hover:from-[${data.color}] group-hover:to-goldMain transition-all duration-500 shadow-sm group-hover:shadow-xl"></div>
+                    <a href="article.html?parasha=${p.id}" class="group relative p-[3px] rounded-[2rem] transition-all duration-300 hover:-translate-y-1.5 no-underline">
+                        <div class="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-[${data.color}]/40 via-slate-200 to-[${data.color}]/40 group-hover:from-[${data.color}] group-hover:via-goldMain group-hover:to-[${data.color}] transition-all duration-500 shadow-sm group-hover:shadow-xl" style="background-image: linear-gradient(to bottom right, ${data.color}66, #e2e8f0, ${data.color}66)"></div>
                         
-                        <div class="relative bg-white/95 backdrop-blur-md rounded-[calc(1.5rem-1.5px)] overflow-hidden flex h-32 md:h-44 items-stretch">
+                        <div class="relative bg-white/95 backdrop-blur-md rounded-[calc(2rem-3px)] overflow-hidden flex h-32 md:h-44 items-stretch">
                             
                             <div class="w-32 md:w-64 h-full overflow-hidden flex-shrink-0">
                                 <img src="${p.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt="${p.name}">
