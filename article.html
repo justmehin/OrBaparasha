@@ -3,153 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">אור בפרשה</title>
+    <title id="page-title">טוען מאמר...</title>
     
-    <script src="data.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&family=Noto+Serif+Hebrew:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@400;700;900&family=Varela+Round&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { 
-                        brandGreen: '#05976a', 
-                        midnight: '#1a2e35', 
-                        cream: '#fcfaf7' 
-                    },
-                    fontFamily: { 
-                        serif: ['"Noto Serif Hebrew"', 'serif'], 
-                        soft: ['"Varela Round"', 'sans-serif'] 
+                    colors: { beigeTheme: '#f8f1e7' },
+                    fontFamily: {
+                        sans: ['Assistant', 'sans-serif'],
+                        serif: ['Noto Serif Hebrew', 'serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #f2f0eb; margin: 0; padding: 0; }
-        .article-card { background-color: #fcfaf7; box-shadow: 0 40px 80px -20px rgba(5, 151, 106, 0.12); border-radius: 2.5rem; overflow: hidden; }
-        
-        /* גרדייאנט ירוק בראש המאמר */
-        .hero-gradient {
-            background: linear-gradient(135deg, #047857 0%, #05976a 50%, #1a2e35 100%);
-            position: relative;
+        body { background-color: #f8f1e7; scroll-behavior: smooth; }
+        .article-content p { margin-bottom: 1.8rem; line-height: 1.9; font-size: 1.2rem; color: #334155; }
+        .quote-box {
+            border-right: 4px solid var(--theme-color);
+            padding: 1.8rem;
+            margin: 3rem 0;
+            background: rgba(255,255,255,0.7);
+            border-radius: 8px 0 0 8px;
+            font-style: italic;
+            font-size: 1.3rem;
+            font-family: 'Noto Serif Hebrew', serif;
         }
-
-        .pattern-overlay {
-            position: absolute;
-            inset: 0;
-            opacity: 0.08;
-            background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0);
-            background-size: 32px 32px;
+        .center-block { text-align: center; margin: 4rem 0; font-weight: 700; font-family: 'Noto Serif Hebrew', serif; }
+        .hero-gradient { background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(248, 241, 231, 1)); }
+        #back-nav { transition: opacity 0.4s ease, transform 0.4s ease; }
+        .nav-hidden { opacity: 0; transform: translateY(-20px); pointer-events: none; }
+        .dropcap::first-letter {
+            font-family: 'Noto Serif Hebrew', serif;
+            float: right;
+            font-size: 4.5rem;
+            line-height: 0.7;
+            padding-left: 12px;
+            color: var(--theme-color);
+            font-weight: bold;
         }
-
-        .minimal-quote { 
-            border-right: 4px solid #05976a; 
-            padding: 1.5rem 2rem; 
-            margin: 2.5rem 0; 
-            font-family: 'Varela Round', sans-serif; 
-            color: #047857; 
-            line-height: 1.8; 
-            background: rgba(5, 151, 106, 0.05); 
-        }
-
-        .back-minimal { 
-            position: fixed; top: 1.5rem; right: 1.5rem; 
-            display: flex; align-items: center; gap: 0.5rem; 
-            color: #05976a; background: white; padding: 10px 20px; 
-            border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
-            z-index: 1000; font-weight: bold; transition: all 0.2s;
-        }
-        .back-minimal:hover { transform: scale(1.05); }
     </style>
 </head>
-<body class="font-soft antialiased text-slate-700">
+<body class="antialiased">
 
-    <button onclick="history.back()" class="back-minimal">
-        <span class="material-symbols-outlined">arrow_forward</span>
-        חזרה
-    </button>
+    <nav id="back-nav" class="fixed top-0 w-full z-50 p-6 flex justify-between items-center">
+        <a href="javascript:history.back()" class="inline-flex items-center gap-2 font-bold text-sm bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-full shadow-lg hover:bg-white transition-all no-underline border border-black/10 text-slate-700">
+            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            חזרה לפרשיות
+        </a>
+    </nav>
 
-    <main class="max-w-4xl mx-auto px-4 py-12 md:py-20">
-        <article class="article-card mt-8">
-            
-            <header class="hero-gradient pt-20 pb-16 px-8 md:px-24 text-center">
-                <div class="pattern-overlay"></div>
-                <div class="relative z-10">
-                    <span id="parasha-category" class="text-[11px] font-bold tracking-[0.5em] text-white/90 bg-white/10 px-4 py-1 rounded-full uppercase mb-6 inline-block"></span>
-                    <h1 id="article-title" class="font-serif text-3xl md:text-5xl font-black text-white leading-tight mb-4"></h1>
-                    <p id="article-subtitle" class="font-soft text-lg md:text-xl text-cream/80 font-light max-w-2xl mx-auto italic"></p>
-                </div>
-            </header>
+    <header class="relative w-full h-[65vh] flex items-end overflow-hidden">
+        <img id="article-hero-img" src="" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 hero-gradient"></div>
+        
+        <div class="relative max-w-4xl mx-auto w-full px-6 pb-16 text-center">
+            <div id="book-tag" class="inline-block px-4 py-1 rounded-full text-white text-xs font-bold mb-6 shadow-md uppercase tracking-widest"></div>
+            <h1 id="article-title" class="text-5xl md:text-7xl font-serif font-bold mb-6 tracking-tight text-slate-900 leading-tight"></h1>
+            <p id="article-subtitle" class="text-xl md:text-2xl font-light text-slate-600 max-w-2xl mx-auto leading-relaxed"></p>
+        </div>
+    </header>
 
-            <div id="article-content" class="px-8 md:px-24 py-12 text-lg md:text-xl leading-[1.9] text-midnight/90 text-right">
-                </div>
+    <main class="max-w-3xl mx-auto px-6 pb-24 relative">
+        <article id="article-text" class="article-content">
+            </article>
 
-            <footer class="px-8 md:px-24 pb-16">
-                <div class="flex items-center gap-4">
-                    <div id="author-avatar" class="w-12 h-12 rounded-full bg-brandGreen text-cream flex items-center justify-center font-bold text-lg shrink-0 shadow-lg"></div>
-                    <div class="h-px bg-brandGreen/10 flex-grow"></div>
-                    <div class="text-brandGreen text-xs font-bold tracking-widest uppercase">
-                        <span id="author-name"></span> • <span id="publish-date"></span>
-                    </div>
-                </div>
-            </footer>
-        </article>
+        <div class="mt-20 flex flex-col md:flex-row items-center gap-8 bg-white/40 p-10 rounded-[2rem] border border-white shadow-sm backdrop-blur-sm">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200" class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg">
+            <div class="text-center md:text-right">
+                <h4 id="writer-name" class="text-sm font-bold text-slate-400 mb-1 font-sans"></h4>
+                <h3 class="text-2xl font-bold text-slate-900 font-serif">אור בפרשה</h3>
+            </div>
+        </div>
     </main>
 
+    <footer class="py-16 text-center text-slate-400 text-xs tracking-widest border-t border-black/5">
+        &copy; תשפ"ו • אור בפרשה
+    </footer>
+
     <script>
-        // 1. קבלת ה-ID של הפרשה מכתובת ה-URL
-        const params = new URLSearchParams(window.location.search);
-        const parashaId = params.get('parasha') || 'bereshit';
-        
-        // 2. בדיקה אם הנתונים קיימים ב-data.js
-        if (typeof parashotData !== 'undefined' && parashotData[parashaId]) {
-            const data = parashotData[parashaId];
+        const booksConfig = {
+            'bereshit': { name: 'ספר בראשית', color: '#10b981' },
+            'shmot': { name: 'ספר שמות', color: '#f97316' },
+            'vaikra': { name: 'ספר ויקרא', color: '#a855f7' },
+            'bamidbar': { name: 'ספר במדבר', color: '#d97706' },
+            'devarim': { name: 'ספר דברים', color: '#0284c7' }
+        };
 
-            // 3. עדכון כותרות
-            document.getElementById('page-title').innerText = "אור בפרשה | " + (data.title || "");
-            document.getElementById('article-title').innerText = data.title || "";
-            document.getElementById('article-subtitle').innerText = data.subtitle || "";
-            document.getElementById('parasha-category').innerText = data.category || "פרשת השבוע";
-            document.getElementById('author-name').innerText = data.author || "מערכת אור בפרשה";
-            document.getElementById('publish-date').innerText = data.date || "";
-
-            // 4. יצירת האוואטר
-            const author = data.author || "א";
-            document.getElementById('author-avatar').innerText = author.charAt(0);
-
-            // 5. בניית תוכן המאמר באופן דינמי
-            const contentDiv = document.getElementById('article-content');
-            contentDiv.innerHTML = ''; 
-
-            if (data.content && Array.isArray(data.content)) {
-                data.content.forEach(item => {
-                    let el;
-                    if (item.type === 'h3') {
-                        el = document.createElement('h3');
-                        el.className = "font-serif text-2xl font-bold text-midnight mt-10 mb-4";
-                    } else if (item.type === 'quote') {
-                        el = document.createElement('blockquote');
-                        el.className = "minimal-quote";
-                    } else {
-                        el = document.createElement('p');
-                        el.className = "mb-6";
-                    }
-                    el.innerText = item.text;
-                    contentDiv.appendChild(el);
-                });
-            }
-        } else {
-            // טיפול במקרה של שגיאה
-            document.getElementById('article-content').innerHTML = `
-                <div class="text-center py-10">
-                    <h2 class="text-2xl font-bold text-brandGreen">המאמר לא נמצא</h2>
-                    <p class="mt-4">וודא שקובץ data.js מעודכן ושם הפרשה בקישור נכון.</p>
-                </div>
-            `;
+        function getBookByParasha(id) {
+            if (['bereshit','noach','lech-lecha','vayeira','chayei-sarah','toledot','vayetze','vayishlach','vayeishev','mikeitz','vayigash','vayechi'].includes(id)) return 'bereshit';
+            if (['shmot','vaera','bo','beshalach','yitro','mishpatim','terumah','tetzaveh','ki-tisa','vayakhel','pekudei'].includes(id)) return 'shmot';
+            if (['vaikra','tzav','shemini','tazria','metzora','acharei-mot','kedoshim','emor','behar','bechukotai'].includes(id)) return 'vaikra';
+            if (['bamidbar','naso','behaalotcha','shelach','korach','chukat','balak','pinchas','matot','masei'].includes(id)) return 'bamidbar';
+            return 'devarim';
         }
+
+        // לוגיקת העלמת כפתור
+        window.addEventListener('scroll', () => {
+            const backNav = document.getElementById('back-nav');
+            if (window.scrollY > 100) backNav.classList.add('nav-hidden');
+            else backNav.classList.remove('nav-hidden');
+        });
+
+        async function loadArticle() {
+            const params = new URLSearchParams(window.location.search);
+            const parashaId = params.get('parasha');
+            if (!parashaId) return;
+
+            const bookId = getBookByParasha(parashaId);
+            const config = booksConfig[bookId];
+            document.documentElement.style.setProperty('--theme-color', config.color);
+            document.getElementById('book-tag').textContent = config.name;
+            document.getElementById('book-tag').style.backgroundColor = config.color;
+
+            try {
+                const response = await fetch(`parashot/${parashaId}.txt`);
+                const text = await response.text();
+                const lines = text.split('\n');
+                
+                let isHeaderMode = true;
+                let contentHTML = '';
+                let firstPara = true;
+
+                lines.forEach(line => {
+                    const cleanLine = line.trim();
+                    if (isHeaderMode) {
+                        if (cleanLine === '---') isHeaderMode = false;
+                        else {
+                            if (cleanLine.startsWith('title:')) {
+                                const t = cleanLine.replace('title:', '').trim();
+                                document.getElementById('article-title').textContent = t;
+                                document.getElementById('page-title').textContent = t + " | אור בפרשה";
+                            }
+                            if (cleanLine.startsWith('subtitle:')) document.getElementById('article-subtitle').textContent = cleanLine.replace('subtitle:', '').trim();
+                            if (cleanLine.startsWith('image:')) document.getElementById('article-hero-img').src = cleanLine.replace('image:', '').trim();
+                            if (cleanLine.startsWith('writer:')) document.getElementById('writer-name').textContent = cleanLine.replace('writer:', '').trim();
+                        }
+                    } else if (cleanLine) {
+                        if (cleanLine.startsWith('H3:')) {
+                            contentHTML += `<h3 class="text-3xl font-bold mt-12 mb-6 font-serif" style="color: ${config.color}">${cleanLine.replace('H3:', '').trim()}</h3>`;
+                        } else if (cleanLine.startsWith('quote:')) {
+                            contentHTML += `<div class="quote-box">${cleanLine.replace('quote:', '').trim()}</div>`;
+                        } else if (cleanLine.startsWith('center-text:')) {
+                            contentHTML += `<div class="center-block text-3xl" style="color: ${config.color}">${cleanLine.replace('center-text:', '').trim()}</div>`;
+                        } else {
+                            // הוספת dropcap רק לפסקה הראשונה
+                            const pClass = firstPara ? 'class="dropcap"' : '';
+                            contentHTML += `<p ${pClass}>${cleanLine}</p>`;
+                            firstPara = false;
+                        }
+                    }
+                });
+                document.getElementById('article-text').innerHTML = contentHTML;
+            } catch (e) {
+                console.error("Error loading article:", e);
+            }
+        }
+        loadArticle();
     </script>
 </body>
 </html>
