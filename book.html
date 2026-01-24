@@ -36,14 +36,14 @@
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
-        /* צללית ציפה משמעותית */
+        /* צללית ציפה */
         .floating-card {
-            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.1), 0 5px 15px -5px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 4px 12px -4px rgba(0, 0, 0, 0.03);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .floating-card:hover {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12);
+            transform: translateY(-4px);
         }
     </style>
 </head>
@@ -74,7 +74,7 @@
         
         <div class="bg-beigeTheme pb-20 px-6">
             <main class="max-w-4xl mx-auto">
-                <div id="parasha-grid" class="flex flex-col gap-8">
+                <div id="parasha-grid" class="flex flex-col gap-6">
                     </div>
             </main>
         </div>
@@ -86,7 +86,7 @@
 
     <script>
         const booksData = {
-            'bereshit': { name: 'ספר בראשית', desc: 'יסודות האמונה ובניית המשפחה היהודית הראשונה.', color: '#10b981', icon: 'public', hero: 'https://images.unsplash.com/photo-1501290830384-93ad47898391?q=80&w=1600', parashot: [
+            'bereshit': { name: 'ספר בראשית', desc: 'יסודות האמונה ובניית המשפחה היהודית הראשונה.', color: '#10b981', lightColor: '#6ee7b7', icon: 'public', hero: 'https://images.unsplash.com/photo-1501290830384-93ad47898391?q=80&w=1600', parashot: [
                 { id: 'bereshit', name: 'בראשית', desc: 'בריאת העולם, חטא אדם וחוה וסיפור קין והבל.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
                 { id: 'noach', name: 'נח', desc: 'תיבת נח, המבול וההבטחה לקיום העולם מחדש.', img: 'https://images.unsplash.com/photo-1533713619779-3c7333550066?w=400' },
                 { id: 'lech-lecha', name: 'לך לך', desc: 'מסעו של אברהם אבינו אל הארץ המובטחת.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
@@ -100,7 +100,7 @@
                 { id: 'vayigash', name: 'ויגש', desc: 'חשיפת יוסף בפני אחיו וירידת יעקב למצרים.', img: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400' },
                 { id: 'vayechi', name: 'ויחי', desc: 'ברכות יעקב לבניו לפני מותו בסוף תקופת האבות.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' }
             ]},
-            'shmot': { name: 'ספר שמות', desc: 'מיציאה מעבדות לחירות, מעמד הר סיני ובניית המשכן.', color: '#f97316', icon: 'local_fire_department', hero: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?q=80&w=1600', parashot: [
+            'shmot': { name: 'ספר שמות', desc: 'מיציאה מעבדות לחירות, מעמד הר סיני ובניית המשכן.', color: '#f97316', lightColor: '#fdba74', icon: 'local_fire_department', hero: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?q=80&w=1600', parashot: [
                 { id: 'shmot', name: 'שמות', desc: 'שעבוד מצרים, לידת משה והסנה הבוער.', img: 'https://images.unsplash.com/photo-1543722530-d2c3201371e7?w=400' },
                 { id: 'vaera', name: 'וארא', desc: 'שבע המכות הראשונות וחיזוק לב פרעה.', img: 'https://images.unsplash.com/photo-1510002165351-784860178385?w=400' },
                 { id: 'bo', name: 'בא', desc: 'שלוש המכות האחרונות ויציאת מצרים.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
@@ -113,7 +113,7 @@
                 { id: 'vayakhel', name: 'ויקהל', desc: 'התכנסות העם לבניית המשכן בפועל.', img: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=400' },
                 { id: 'pekudei', name: 'פקודי', desc: 'סיכום המלאכה והשראת השכינה.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' }
             ]},
-            'vaikra': { name: 'ספר ויקרא', desc: 'עבודת המקדש, הקדושה והחובות המוסריות.', color: '#a855f7', icon: 'temple_hindu', hero: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=1600', parashot: [
+            'vaikra': { name: 'ספר ויקרא', desc: 'עבודת המקדש, הקדושה והחובות המוסריות.', color: '#a855f7', lightColor: '#d8b4fe', icon: 'temple_hindu', hero: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=1600', parashot: [
                 { id: 'vaikra', name: 'ויקרא', desc: 'דיני הקרבנות השונים במשכן.', img: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?w=400' },
                 { id: 'tzav', name: 'צו', desc: 'הוראות לכהנים על עבודת המזבח.', img: 'https://images.unsplash.com/photo-1533713619779-3c7333550066?w=400' },
                 { id: 'shemini', name: 'שמיני', desc: 'חנוכת המשכן ומאכלות אסורים.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
@@ -125,7 +125,7 @@
                 { id: 'behar', name: 'בהר', desc: 'שנת השמיטה ושנת היובל.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
                 { id: 'bechukotai', name: 'בחקותי', desc: 'הבטחות לברכה ואזהרות הברית.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' }
             ]},
-            'bamidbar': { name: 'ספר במדבר', desc: 'מסע בני ישראל במדבר סיני אל הארץ המובטחת.', color: '#d97706', icon: 'landscape', hero: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=1600', parashot: [
+            'bamidbar': { name: 'ספר במדבר', desc: 'מסע בני ישראל במדבר סיני אל הארץ המובטחת.', color: '#d97706', lightColor: '#fbbf24', icon: 'landscape', hero: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=1600', parashot: [
                 { id: 'bamidbar', name: 'במדבר', desc: 'מפקד בני ישראל וסידור המחנות.', img: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=400' },
                 { id: 'naso', name: 'נשא', desc: 'מצוות נזיר וברכת הכהנים.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
                 { id: 'behaalotcha', name: 'בהעלותך', desc: 'העלאת המנורה והנהגת הענן.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
@@ -137,7 +137,7 @@
                 { id: 'matot', name: 'מטות', desc: 'דיני נדרים והמלחמה במדין.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' },
                 { id: 'masei', name: 'מסעי', desc: 'סיכום מסעות ישראל וגבולות הארץ.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' }
             ]},
-            'devarim': { name: 'ספר דברים', desc: 'נאום הפרידה של משה רבנו וסיכום המצוות.', color: '#0284c7', icon: 'record_voice_over', hero: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?q=80&w=1600', parashot: [
+            'devarim': { name: 'ספר דברים', desc: 'נאום הפרידה של משה רבנו וסיכום המצוות.', color: '#0284c7', lightColor: '#7dd3fc', icon: 'record_voice_over', hero: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?q=80&w=1600', parashot: [
                 { id: 'devarim', name: 'דברים', desc: 'משה מתחיל את נאומו בסיכום המסע.', img: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?w=400' },
                 { id: 'vaetchanan', name: 'ואתחנן', desc: 'תפילת משה וקריאת שמע.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
                 { id: 'eikev', name: 'עקב', desc: 'ברכת המזון והבטחת השפע.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
@@ -168,17 +168,17 @@
             const grid = document.getElementById('parasha-grid');
             data.parashot.forEach((p) => {
                 grid.innerHTML += `
-                    <a href="article.html?parasha=${p.id}" class="group relative p-[3px] rounded-3xl no-underline floating-card">
-                        <div class="absolute inset-0 rounded-3xl opacity-100" style="background-color: ${data.color}"></div>
+                    <a href="article.html?parasha=${p.id}" class="group relative p-[2px] rounded-3xl no-underline floating-card overflow-hidden">
+                        <div class="absolute inset-0 rounded-3xl" style="background: linear-gradient(135deg, ${data.color}, ${data.lightColor})"></div>
                         
-                        <div class="relative bg-gradient-to-b from-white from-85% to-[#f8f1e7] rounded-[calc(1.5rem-3px)] overflow-hidden flex h-32 md:h-44 items-stretch border border-white/50">
+                        <div class="relative bg-white rounded-[calc(1.5rem-2px)] overflow-hidden flex h-32 md:h-40 items-stretch">
                             
-                            <div class="w-32 md:w-64 h-full overflow-hidden flex-shrink-0">
+                            <div class="w-28 md:w-56 h-full overflow-hidden flex-shrink-0">
                                 <img src="${p.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                             </div>
                             
                             <div class="p-4 md:p-8 flex flex-col justify-center flex-grow">
-                                <h3 class="text-xl md:text-3xl font-bold mb-1" style="color: ${data.color}">
+                                <h3 class="text-xl md:text-2xl font-bold mb-1" style="color: ${data.color}">
                                     ${p.name}
                                 </h3>
                                 <p class="text-slate-500 text-xs md:text-base line-clamp-2 leading-relaxed font-light">
@@ -187,7 +187,7 @@
                             </div>
 
                             <div class="flex items-center px-4 md:px-8">
-                                <span class="material-symbols-outlined opacity-30 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all" style="color: ${data.color}">
+                                <span class="material-symbols-outlined opacity-20 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all" style="color: ${data.color}">
                                     arrow_back_ios
                                 </span>
                             </div>
@@ -197,18 +197,15 @@
             });
         }
 
-        // לוגיקת גלילה: טשטוש והתפוגגות הכותרת
         window.addEventListener('scroll', () => {
             const scroll = window.scrollY;
             const heroContent = document.getElementById('hero-content');
             const backBtn = document.getElementById('back-link');
             const heroBg = document.getElementById('hero-bg');
             
-            // הגדרות היעלמות
             const opacityValue = Math.max(0, 1 - scroll / 300);
             const blurValue = Math.min(20, scroll / 15);
 
-            // מחיל את האפקט על הכותרת וגם על כפתור החזרה
             heroContent.style.opacity = opacityValue;
             heroContent.style.filter = `blur(${blurValue}px)`;
             
