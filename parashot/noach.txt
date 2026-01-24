@@ -1,0 +1,6 @@
+title: נוחילההה
+subtitle: עדיין איןן על רבינוו
+image: images/image_desktop.png
+writer: הרב נריהה
+date: תאריך...
+profile picture: https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400
