@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>אור בפרשה - רשימת תוכן מלאה</title>
+    <title>אור בפרשה</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&family=Noto+Serif+Hebrew:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -48,9 +48,10 @@
                  alt="אור בפרשה רקע מובייל">
         </div>
 
-        <div class="w-full hidden md:flex justify-center">
+        <div class="hidden md:block w-screen overflow-hidden">
             <img src="images/index_image_desktop.png" 
-                 class="w-full h-auto block" 
+                 class="w-full h-auto object-cover" 
+                 style="min-width: 100vw;"
                  alt="אור בפרשה רקע דסקטופ">
         </div>
     </div>
@@ -65,7 +66,7 @@
     </div>
 
     <main class="max-w-3xl mx-auto px-6 relative z-10">
-        <header class="text-center pt-[35vh] md:pt-[45vh] pb-8">
+        <header class="text-center pt-[35vh] md:pt-[40vh] pb-8">
             <h1 class="text-5xl md:text-6xl font-serif font-bold text-skyDark mb-3"></h1>
         </header>
 
@@ -95,61 +96,8 @@
                 </div>
                 <span class="material-symbols-outlined text-slate-300 group-hover:text-emerald-500 pl-2 transition-colors">chevron_left</span>
             </a>
-
-            <a href="shmot.html" class="bg-white/90 backdrop-blur-sm rounded-3xl p-4 pr-5 shadow-lg border border-slate-50 hover:border-orange-100 hover:shadow-2xl hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
-                <div class="w-14 h-14 bg-orange-50 rounded-2xl flex-shrink-0 flex items-center justify-center text-orange-500 group-hover:bg-orange-500 group-hover:text-white transition-colors">
-                    <span class="material-symbols-outlined text-3xl">local_fire_department</span>
-                </div>
-                <div class="flex-grow">
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-orange-700 transition-colors">שמות</h3>
-                    <p class="text-slate-500 text-sm leading-snug">לכל מאמרי ספר שמות</p>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-orange-500 pl-2 transition-colors">chevron_left</span>
-            </a>
-
-            <a href="vaikra.html" class="bg-white/90 backdrop-blur-sm rounded-3xl p-4 pr-5 shadow-lg border border-slate-50 hover:border-purple-100 hover:shadow-2xl hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
-                <div class="w-14 h-14 bg-purple-50 rounded-2xl flex-shrink-0 flex items-center justify-center text-purple-500 group-hover:bg-purple-500 group-hover:text-white transition-colors">
-                    <span class="material-symbols-outlined text-3xl">temple_hindu</span>
-                </div>
-                <div class="flex-grow">
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-purple-700 transition-colors">ויקרא</h3>
-                    <p class="text-slate-500 text-sm leading-snug">לכל מאמרי ספר ויקרא</p>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-purple-500 pl-2 transition-colors">chevron_left</span>
-            </a>
-
-            <a href="bamidbar.html" class="bg-white/90 backdrop-blur-sm rounded-3xl p-4 pr-5 shadow-lg border border-slate-50 hover:border-amber-100 hover:shadow-2xl hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
-                <div class="w-14 h-14 bg-amber-50 rounded-2xl flex-shrink-0 flex items-center justify-center text-amber-600 group-hover:bg-amber-600 group-hover:text-white transition-colors">
-                    <span class="material-symbols-outlined text-3xl">landscape</span>
-                </div>
-                <div class="flex-grow">
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-amber-800 transition-colors">במדבר</h3>
-                    <p class="text-slate-500 text-sm leading-snug">לכל מאמרי ספר במדבר</p>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-amber-600 pl-2 transition-colors">chevron_left</span>
-            </a>
-
-            <a href="devarim.html" class="bg-white/90 backdrop-blur-sm rounded-3xl p-4 pr-5 shadow-lg border border-slate-50 hover:border-sky-100 hover:shadow-2xl hover:-translate-y-1 transition-all group flex items-center gap-5 no-underline">
-                <div class="w-14 h-14 bg-sky-50 rounded-2xl flex-shrink-0 flex items-center justify-center text-skyMain group-hover:bg-skyMain group-hover:text-white transition-colors">
-                    <span class="material-symbols-outlined text-3xl">record_voice_over</span>
-                </div>
-                <div class="flex-grow">
-                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-skyDark transition-colors">דברים</h3>
-                    <p class="text-slate-500 text-sm leading-snug">לכל מאמרי ספר דברים</p>
-                </div>
-                <span class="material-symbols-outlined text-slate-300 group-hover:text-skyMain pl-2 transition-colors">chevron_left</span>
-            </a>
-        </div>
-
-        <div class="mt-14 mb-24 flex justify-center">
-            <a href="all.html" class="group relative inline-flex items-center justify-center px-16 py-5 font-bold text-skyDark border-2 border-skyDark bg-transparent rounded-[2rem] shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all active:scale-95 no-underline">
-                <span class="relative flex items-center gap-3 text-xl">
-                    <span class="material-symbols-outlined text-2xl">library_books</span>
-                    לכל המאמרים
-                </span>
-            </a>
-        </div>
-    </main>
+            </div>
+        </main>
 
     <footer class="py-12 text-center">
         <p class="text-slate-400 text-xs tracking-widest">&copy; תשפ"ו • אור בפרשה </p>
