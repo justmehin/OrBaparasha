@@ -59,7 +59,7 @@
         <div class="bg-beigeTheme pb-20 px-6">
             <main class="max-w-4xl mx-auto">
                 <div id="parasha-grid" class="flex flex-col gap-6">
-                </div>
+                    </div>
             </main>
         </div>
 
@@ -139,63 +139,64 @@
         async function initPage() {
             const params = new URLSearchParams(window.location.search);
             const bookId = params.get('book') || 'bereshit';
-            const data = booksData[bookId];
+            const data = booksData[bookId] || booksData['bereshit'];
 
-            if (data) {
-                // Set Hero Content
-                document.getElementById('page-title').textContent = data.name;
-                document.getElementById('main-title').textContent = data.name;
-                document.getElementById('main-description').textContent = data.desc;
-                document.getElementById('hero-bg').style.backgroundImage = `url('${data.hero}')`;
-                document.getElementById('icon-container').style.backgroundColor = data.color;
-                document.getElementById('book-icon').textContent = data.icon;
-                document.getElementById('back-link').style.color = data.color;
+            // הגדרת תוכן ה-Hero
+            document.getElementById('page-title').textContent = data.name;
+            document.getElementById('main-title').textContent = data.name;
+            document.getElementById('main-description').textContent = data.desc;
+            document.getElementById('hero-bg').style.backgroundImage = `url('${data.hero}')`;
+            document.getElementById('icon-container').style.backgroundColor = data.color;
+            document.getElementById('book-icon').textContent = data.icon;
+            document.getElementById('back-link').style.color = data.color;
 
-                const grid = document.getElementById('parasha-grid');
-                
-                for (const p of data.parashot) {
-                    let displayTitle = p.name;
-                    let displayDesc = p.desc;
-                    let displayImg = p.img;
+            const grid = document.getElementById('parasha-grid');
+            grid.innerHTML = ''; // ניקוי
 
-                    try {
-                        const response = await fetch(`parashot/${p.id}.txt`);
-                        if (response.ok) {
-                            const text = await response.text();
+            // לולאה שיוצרת את הקישורים מיד
+            data.parashot.forEach(p => {
+                const card = document.createElement('div');
+                card.innerHTML = `
+                    <a href="article.html?parasha=${p.id}&book=${bookId}" 
+                       class="group relative p-[1px] rounded-3xl no-underline floating-card overflow-hidden border border-black/20 block bg-white">
+                        <div class="absolute inset-0 rounded-3xl" style="background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0), rgba(255,255,255,0.4))"></div>
+                        <div class="relative bg-white rounded-[calc(1.5rem-1px)] overflow-hidden flex h-32 md:h-40 items-stretch">
+                            <div class="w-28 md:w-56 h-full overflow-hidden flex-shrink-0 border-l border-black/10">
+                                <img src="${p.img}" id="img-${p.id}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                            </div>
+                            <div class="p-4 md:p-8 flex flex-col justify-center flex-grow">
+                                <h3 class="text-xl md:text-2xl font-bold mb-1" id="title-${p.id}" style="color: ${data.color}">
+                                    ${p.name}
+                                </h3>
+                                <p class="text-slate-500 text-xs md:text-base line-clamp-2 leading-relaxed font-light" id="desc-${p.id}">
+                                    ${p.desc}
+                                </p>
+                            </div>
+                            <div class="flex items-center px-4 md:px-8">
+                                <span class="material-symbols-outlined opacity-20 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all" style="color: ${data.color}">
+                                    arrow_back_ios
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                `;
+                grid.appendChild(card);
+
+                // ניסיון לעדכן מידע מקובץ טקסט ברקע (בלי לחסום את הקישור)
+                fetch(`parashot/${p.id}.txt`)
+                    .then(response => response.ok ? response.text() : null)
+                    .then(text => {
+                        if (text) {
                             const lines = text.split('\n');
                             lines.forEach(line => {
-                                if (line.startsWith('title:')) displayTitle = line.replace('title:', '').trim();
-                                if (line.startsWith('subtitle:')) displayDesc = line.replace('subtitle:', '').trim();
-                                if (line.startsWith('image:')) displayImg = line.replace('image:', '').trim();
+                                if (line.startsWith('title:')) document.getElementById(`title-${p.id}`).textContent = line.replace('title:', '').trim();
+                                if (line.startsWith('subtitle:')) document.getElementById(`desc-${p.id}`).textContent = line.replace('subtitle:', '').trim();
+                                if (line.startsWith('image:')) document.getElementById(`img-${p.id}`).src = line.replace('image:', '').trim();
                             });
                         }
-                    } catch (e) {}
-
-                    grid.innerHTML += `
-                        <a href="article.html?parasha=${p.id}" class="group relative p-[1px] rounded-3xl no-underline floating-card overflow-hidden border border-black/20">
-                            <div class="absolute inset-0 rounded-3xl" style="background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0), rgba(255,255,255,0.4))"></div>
-                            <div class="relative bg-white rounded-[calc(1.5rem-1px)] overflow-hidden flex h-32 md:h-40 items-stretch">
-                                <div class="w-28 md:w-56 h-full overflow-hidden flex-shrink-0 border-l border-black/10">
-                                    <img src="${displayImg}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                                </div>
-                                <div class="p-4 md:p-8 flex flex-col justify-center flex-grow">
-                                    <h3 class="text-xl md:text-2xl font-bold mb-1" style="color: ${data.color}">
-                                        ${displayTitle}
-                                    </h3>
-                                    <p class="text-slate-500 text-xs md:text-base line-clamp-2 leading-relaxed font-light">
-                                        ${displayDesc}
-                                    </p>
-                                </div>
-                                <div class="flex items-center px-4 md:px-8">
-                                    <span class="material-symbols-outlined opacity-20 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all" style="color: ${data.color}">
-                                        arrow_back_ios
-                                    </span>
-                                </div>
-                            </div>
-                        </a>
-                    `;
-                }
-            }
+                    })
+                    .catch(() => {}); // מתעלם משגיאות
+            });
         }
 
         window.addEventListener('scroll', () => {
