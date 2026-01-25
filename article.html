@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title">אור בפרשה</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Noto+Serif+Hebrew:wght@400;700&family=Heebo:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Noto+Serif+Hebrew:wght@600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -13,112 +13,130 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { beigeTheme: '#f8f1e7' },
+                    colors: { 
+                        beigeTheme: '#fdfbf7',
+                        cardWhite: 'rgba(255, 255, 255, 0.95)'
+                    },
                     fontFamily: {
-                        sans: ['Varela Round', 'sans-serif'],
+                        sans: ['Assistant', 'sans-serif'],
                         serif: ['Noto Serif Hebrew', 'serif'],
-                        heebo: ['Heebo', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #f8f1e7; }
+        body { 
+            background-color: #f8f1e7;
+            background-image: url("https://www.transparenttextures.com/patterns/p6.png"); /* טקסטורה עדינה */
+        }
         :root { --theme-color: #10b981; }
 
-        /* פסקאות רגילות: יישור לשני הצדדים ופונט Varela Round */
+        /* כרטיס המאמר הצף */
+        .article-card {
+            background: var(--cardWhite);
+            border-radius: 2rem 2rem 0 0;
+            box-shadow: 0 -20px 50px rgba(0,0,0,0.1);
+            margin-top: -10vh;
+            position: relative;
+            z-index: 10;
+        }
+
         .article-content p { 
-            margin-bottom: 1.5rem; 
-            line-height: 1.8; 
-            font-size: 1.15rem; 
-            font-family: 'Varela Round', sans-serif; 
+            margin-bottom: 1.8rem; 
+            line-height: 1.9; 
+            font-size: 1.2rem; 
             text-align: justify;
+            color: #334155;
         }
         
-        /* קופסת ציטוט: היצמדות לימין */
         .quote-box {
-            border-right: 4px solid var(--theme-color);
-            padding: 1.5rem;
-            margin: 2.5rem 0;
-            background: rgba(255,255,255,0.6);
-            border-radius: 0 12px 12px 0;
-            font-style: italic;
-            font-size: 1.25rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            border-right: 5px solid var(--theme-color);
+            padding: 2rem;
+            margin: 3rem 0;
+            background: #f1f5f9;
+            border-radius: 0 1rem 1rem 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1e293b;
             text-align: right;
-            font-family: 'Varela Round', sans-serif;
+            line-height: 1.6;
         }
 
         .center-block {
             text-align: center;
-            margin: 3.5rem 0;
-            font-weight: bold;
+            margin: 4rem 0;
+            font-weight: 800;
             font-family: 'Noto Serif Hebrew', serif;
+            letter-spacing: -0.02em;
         }
 
         .hero-gradient {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(248, 241, 231, 1));
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
         }
 
         .dropcap::first-letter {
             font-family: 'Noto Serif Hebrew', serif;
             float: right;
-            font-size: 4rem;
-            line-height: 0.8;
-            padding-left: 10px;
+            font-size: 4.5rem;
+            line-height: 0.7;
+            padding: 0.5rem 0 0.5rem 1rem;
             color: var(--theme-color);
-            font-weight: bold;
+            font-weight: 800;
         }
 
-        /* אנימציה להיעלמות הלחצן */
         #back-link-container {
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .nav-hidden {
             opacity: 0;
-            transform: translateY(-20px);
+            transform: translateY(-30px);
             pointer-events: none;
         }
     </style>
 </head>
-<body class="font-sans antialiased text-slate-800">
+<body class="font-sans antialiased text-slate-900">
 
     <nav id="back-link-container" class="fixed top-0 w-full z-50 p-6 flex justify-between items-center pointer-events-none">
-        <a href="#" id="back-link" class="pointer-events-auto inline-flex items-center gap-2 font-bold text-sm bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-full shadow-lg hover:bg-white transition-all no-underline border border-black/10 text-slate-700">
+        <a href="#" id="back-link" class="pointer-events-auto inline-flex items-center gap-2 font-bold text-sm bg-white/90 backdrop-blur-xl px-6 py-3 rounded-full shadow-2xl hover:scale-105 transition-all no-underline border border-white/20 text-slate-800">
             <span class="material-symbols-outlined text-lg">arrow_forward</span>
             חזרה לפרשיות
         </a>
     </nav>
 
-    <header class="relative w-full h-[65vh] flex items-end overflow-hidden">
-        <img id="article-hero-img" src="" class="absolute inset-0 w-full h-full object-cover">
+    <header class="relative w-full h-[70vh] flex items-center justify-center overflow-hidden">
+        <img id="article-hero-img" src="" class="absolute inset-0 w-full h-full object-cover scale-105">
         <div class="absolute inset-0 hero-gradient"></div>
         
-        <div class="relative max-w-4xl mx-auto w-full px-6 pb-16 text-center">
-            <div id="book-tag" class="inline-block px-4 py-1 rounded-full text-white text-xs font-bold mb-6 shadow-md uppercase tracking-widest"></div>
-            <h1 id="article-title" class="text-5xl md:text-7xl font-serif font-bold mb-6 tracking-tight text-slate-900"></h1>
-            <p id="article-subtitle" class="text-xl md:text-2xl font-light text-slate-600 max-w-2xl mx-auto leading-relaxed"></p>
+        <div class="relative max-w-5xl mx-auto w-full px-6 text-center text-white">
+            <div id="book-tag" class="inline-block px-6 py-1.5 rounded-full text-white text-xs font-black mb-8 shadow-xl uppercase tracking-[0.3em] backdrop-blur-md border border-white/20"></div>
+            <h1 id="article-title" class="text-6xl md:text-8xl font-serif font-extrabold mb-8 tracking-tighter leading-tight drop-shadow-2xl"></h1>
+            <p id="article-subtitle" class="text-xl md:text-3xl font-light text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-lg italic"></p>
         </div>
     </header>
 
-    <main class="max-w-3xl mx-auto px-6 pb-24 relative">
-        <article id="main-article-content" class="article-content text-lg text-slate-700 leading-relaxed">
+    <main class="article-card max-w-4xl mx-auto px-8 md:px-20 pt-20 pb-24">
+        <article id="main-article-content" class="article-content">
             </article>
 
-        <div id="writer-block" class="mt-20 flex flex-col md:flex-row items-center gap-8 bg-white/40 p-10 rounded-[2rem] border border-white shadow-sm backdrop-blur-sm">
-            <img id="writer-img" src="" class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg">
+        <hr class="my-20 border-slate-100">
+
+        <div id="writer-block" class="flex flex-col md:flex-row items-center gap-10 bg-slate-50 p-12 rounded-[2.5rem] border border-slate-100 transition-hover hover:shadow-md">
+            <div class="relative">
+                <img id="writer-img" src="" class="w-32 h-32 rounded-3xl object-cover shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
+                <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white"></div>
+            </div>
             <div class="text-center md:text-right">
-                <h4 class="text-xs uppercase tracking-[0.2em] text-slate-400 mb-2 font-bold">נכתב על ידי</h4>
-                <h3 id="writer-name" class="text-2xl font-bold text-slate-900 mb-2">אור בפרשה</h3>
-                <p id="writer-desc" class="text-slate-500 leading-relaxed max-w-md">
-                    צוות "אור בפרשה" פועל להנגשת פניני התורה והגות המחשבה היהודית בצורה מודרנית ונקייה.
+                <span class="text-[0.6rem] uppercase tracking-[0.4em] text-slate-400 font-black block mb-2">מחבר המאמר</span>
+                <h3 id="writer-name" class="text-3xl font-bold text-slate-900 mb-4"></h3>
+                <p id="writer-desc" class="text-slate-500 leading-relaxed max-w-md text-sm">
+                    צוות "אור בפרשה" פועל להנגשת פניני התורה והגות המחשבה היהודית בצורה מודרנית, נקייה ומעוררת השראה.
                 </p>
             </div>
         </div>
     </main>
 
-    <footer class="py-16 text-center text-slate-400 text-xs tracking-widest border-t border-black/5">
+    <footer class="py-20 text-center text-slate-400 text-xs font-bold tracking-[0.2em]">
         תשפ"ו • אור בפרשה
     </footer>
 
@@ -131,10 +149,9 @@
             'devarim': { name: 'ספר דברים', color: '#0284c7', hero: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?q=80&w=1600' }
         };
 
-        // פונקציה לשליטה על נראות כפתור החזרה בגלילה
         window.addEventListener('scroll', () => {
             const backLink = document.getElementById('back-link-container');
-            if (window.scrollY > 50) {
+            if (window.scrollY > 150) {
                 backLink.classList.add('nav-hidden');
             } else {
                 backLink.classList.remove('nav-hidden');
@@ -159,11 +176,7 @@
                 const text = await response.text();
                 const lines = text.split('\n');
 
-                let title = "";
-                let subtitle = "";
-                let bodyHtml = "";
-                let hasReachedContent = false;
-                let isFirstParagraph = true;
+                let title = "", subtitle = "", bodyHtml = "", hasReachedContent = false, isFirstParagraph = true;
 
                 for (let line of lines) {
                     let l = line.trim();
@@ -182,11 +195,11 @@
                         else if (l.startsWith('profile picture:')) document.getElementById('writer-img').src = l.replace('profile picture:', '').trim();
                     } else {
                         if (l.startsWith('H3:') || l.startsWith('h3:')) {
-                            bodyHtml += `<h3 class="text-3xl font-bold mt-12 mb-6 font-serif" style="color: var(--theme-color); text-align: center;">${l.substring(3).trim()}</h3>`;
+                            bodyHtml += `<h3 class="text-4xl font-black mt-16 mb-8 font-serif text-slate-900" style="border-right: 8px solid var(--theme-color); padding-right: 1rem;">${l.substring(3).trim()}</h3>`;
                         } else if (l.startsWith('quote:')) {
                             bodyHtml += `<div class="quote-box">${l.replace('quote:', '').trim()}</div>`;
                         } else if (l.startsWith('center-text:')) {
-                            bodyHtml += `<div class="center-block text-3xl md:text-4xl" style="color: var(--theme-color)">${l.replace('center-text:', '').trim()}</div>`;
+                            bodyHtml += `<div class="center-block text-4xl md:text-5xl" style="color: var(--theme-color)">${l.replace('center-text:', '').trim()}</div>`;
                         } else {
                             const className = isFirstParagraph ? 'dropcap' : '';
                             bodyHtml += `<p class="${className}">${l}</p>`;
@@ -203,11 +216,6 @@
                 if (!document.getElementById('article-hero-img').getAttribute('src')) {
                     document.getElementById('article-hero-img').src = data.hero;
                 }
-                
-                if (!document.getElementById('writer-img').getAttribute('src')) {
-                    document.getElementById('writer-img').src = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200";
-                }
-
             } catch (e) {
                 document.getElementById('main-article-content').innerHTML = "שגיאה בטעינת המאמר.";
             }
