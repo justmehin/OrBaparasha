@@ -3,7 +3,7 @@ subtitle: איך ההורים מגיבים כשהבן סוטה מן הדרך?
 image: https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400
 writer: הרב נריה
 date: תאריך...
-profile picture: https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400
+profile picture: images/harav_neria.jpg
 ---
 תחילת הפרשה "ואלה תולדות יצחק", מביא המדרש שעיקר המעשים של האדם בעולם זה המשפחה שלו. ולכן ביחס לכותרת "ואלה תולדות יצחק" מציינים שזה יעקב ועשו. 
 
