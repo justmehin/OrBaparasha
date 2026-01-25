@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-title">אור בפרשה</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&family=Noto+Serif+Hebrew:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&family=Noto+Serif+Hebrew:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,52 +23,85 @@
         }
     </script>
     <style>
-        body { background-color: #f8f1e7; margin: 0; overflow-x: hidden; }
-        .article-body-text { line-height: 2; font-size: 1.25rem; }
-        .article-body-text p { margin-bottom: 2rem; }
+        body { background-color: #f8f1e7; }
+        :root { --theme-color: #10b981; } /* ברירת מחדל בראשית */
+
+        .article-content p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.125rem; }
+        
+        .quote-box {
+            border-right: 4px solid var(--theme-color);
+            padding: 1.5rem;
+            margin: 2.5rem 0;
+            background: rgba(255,255,255,0.6);
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .center-block {
+            text-align: center;
+            margin: 3.5rem 0;
+            font-weight: bold;
+            font-family: 'Noto Serif Hebrew', serif;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(248, 241, 231, 1));
+        }
+
+        .dropcap::first-letter {
+            font-family: 'Noto Serif Hebrew', serif;
+            float: right;
+            font-size: 4rem;
+            line-height: 0.8;
+            padding-left: 10px;
+            color: var(--theme-color);
+            font-weight: bold;
+        }
     </style>
 </head>
 <body class="font-sans antialiased text-slate-800">
 
-    <div id="hero-section" class="fixed top-0 left-0 w-full h-[55vh] z-0 overflow-hidden">
-        <div id="hero-bg" class="absolute inset-0 bg-cover bg-center transition-transform duration-700"></div>
-        <div id="hero-overlay" class="absolute inset-0 bg-black/40"></div>
-        
-        <div class="absolute top-8 right-8 z-20">
-            <a href="#" id="back-link" class="inline-flex items-center gap-2 font-bold text-sm bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-full shadow-lg hover:bg-white transition-all no-underline border border-black/20">
-                <span class="material-symbols-outlined text-lg">arrow_forward</span>
-                חזרה לפרשות
-            </a>
-        </div>
+    <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center pointer-events-none">
+        <a href="#" id="back-link" class="pointer-events-auto inline-flex items-center gap-2 font-bold text-sm bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-full shadow-lg hover:bg-white transition-all no-underline border border-black/10 text-slate-700">
+            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            חזרה לפרשיות
+        </a>
+    </nav>
 
-        <div id="hero-content" class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6 pt-10">
-            <div id="icon-container" class="w-16 h-16 rounded-full mb-6 shadow-xl border-2 border-white/50 flex items-center justify-center backdrop-blur-sm">
-                <span id="book-icon" class="material-symbols-outlined text-3xl">menu_book</span>
+    <header class="relative w-full h-[65vh] flex items-end overflow-hidden">
+        <img id="article-hero-img" src="" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 hero-gradient"></div>
+        
+        <div class="relative max-w-4xl mx-auto w-full px-6 pb-16 text-center">
+            <div id="book-tag" class="inline-block px-4 py-1 rounded-full text-white text-xs font-bold mb-6 shadow-md uppercase tracking-widest">
+                טוען...
             </div>
-            <h1 id="main-title" class="text-5xl md:text-7xl font-serif font-bold drop-shadow-lg mb-4"></h1>
-            <p id="main-subtitle" class="text-xl md:text-2xl font-light max-w-2xl opacity-90 leading-relaxed"></p>
+            <h1 id="article-title" class="text-5xl md:text-7xl font-serif font-bold mb-6 tracking-tight text-slate-900"></h1>
+            <p id="article-subtitle" class="text-xl md:text-2xl font-light text-slate-600 max-w-2xl mx-auto leading-relaxed"></p>
         </div>
-    </div>
+    </header>
 
-    <div class="relative z-10 mt-[50vh]">
-        <div class="h-20 bg-gradient-to-t from-beigeTheme to-transparent"></div>
-        
-        <div class="bg-beigeTheme pb-20 px-6">
-            <main class="max-w-3xl mx-auto bg-white rounded-3xl shadow-2xl shadow-black/5 -mt-10 p-8 md:p-16 border border-black/5">
-                <div id="article-body" class="article-body-text text-slate-700 font-normal">
-                    <div class="space-y-4 animate-pulse">
-                        <div class="h-4 bg-slate-100 rounded w-full"></div>
-                        <div class="h-4 bg-slate-100 rounded w-5/6"></div>
-                        <div class="h-4 bg-slate-100 rounded w-4/6"></div>
-                    </div>
-                </div>
-            </main>
+    <main class="max-w-3xl mx-auto px-6 pb-24 relative">
+        <article id="main-article-content" class="article-content text-lg text-slate-700 leading-relaxed">
+            </article>
+
+        <div id="writer-block" class="mt-20 flex flex-col md:flex-row items-center gap-8 bg-white/40 p-10 rounded-[2rem] border border-white shadow-sm backdrop-blur-sm">
+            <img id="writer-img" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200" class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg">
+            <div class="text-center md:text-right">
+                <h4 class="text-xs uppercase tracking-[0.2em] text-slate-400 mb-2 font-bold">נכתב על ידי</h4>
+                <h3 id="writer-name" class="text-2xl font-bold text-slate-900 mb-2">אור בפרשה</h3>
+                <p id="writer-desc" class="text-slate-500 leading-relaxed max-w-md">
+                    צוות "אור בפרשה" פועל להנגשת פניני התורה והגות המחשבה היהודית בצורה מודרנית ונקייה.
+                </p>
+            </div>
         </div>
+    </main>
 
-        <footer class="py-12 text-center text-slate-400 text-xs tracking-widest bg-beigeTheme">
-            &copy; 2026 • אור בפרשה
-        </footer>
-    </div>
+    <footer class="py-16 text-center text-slate-400 text-xs tracking-widest border-t border-black/5">
+        &copy; 2026 • אור בפרשה • כל הזכויות שמורות
+    </footer>
 
     <script>
         const booksData = {
@@ -87,11 +120,11 @@
 
             if (!parashaId) return;
 
-            // עדכון ראשוני של העיצוב לפי הספר
+            // עדכון צבע ערכת נושא
+            document.documentElement.style.setProperty('--theme-color', data.color);
+            document.getElementById('book-tag').textContent = data.name;
+            document.getElementById('book-tag').style.backgroundColor = data.color;
             document.getElementById('back-link').href = `book.html?book=${bookId}`;
-            document.getElementById('back-link').style.color = data.color;
-            document.getElementById('icon-container').style.backgroundColor = data.color;
-            document.getElementById('hero-bg').style.backgroundImage = `url('${data.hero}')`;
 
             try {
                 const response = await fetch(`parashot/${parashaId}.txt`);
@@ -101,42 +134,50 @@
                 let title = parashaId;
                 let subtitle = "";
                 let bodyHtml = "";
-                let customImg = "";
+                let isFirstParagraph = true;
 
                 lines.forEach(line => {
-                    if (line.startsWith('title:')) title = line.replace('title:', '').trim();
-                    else if (line.startsWith('subtitle:')) subtitle = line.replace('subtitle:', '').trim();
-                    else if (line.startsWith('image:')) customImg = line.replace('image:', '').trim();
-                    else if (line.trim() !== "") bodyHtml += `<p>${line.trim()}</p>`;
+                    const l = line.trim();
+                    if (!l) return;
+
+                    if (l.startsWith('title:')) {
+                        title = l.replace('title:', '').trim();
+                    } else if (l.startsWith('subtitle:')) {
+                        subtitle = l.replace('subtitle:', '').trim();
+                    } else if (l.startsWith('image:')) {
+                        document.getElementById('article-hero-img').src = l.replace('image:', '').trim();
+                    } else if (l.startsWith('writer:')) {
+                        document.getElementById('writer-name').textContent = l.replace('writer:', '').trim();
+                    } else if (l.startsWith('profile:')) {
+                        document.getElementById('writer-img').src = l.replace('profile:', '').trim();
+                    } else if (l.startsWith('h3:')) {
+                        bodyHtml += `<h3 class="text-3xl font-bold mt-12 mb-6 font-serif" style="color: var(--theme-color)">${l.replace('h3:', '').trim()}</h3>`;
+                    } else if (l.startsWith('quote:')) {
+                        bodyHtml += `<div class="quote-box">${l.replace('quote:', '').trim()}</div>`;
+                    } else if (l.startsWith('center:')) {
+                        bodyHtml += `<div class="center-block text-3xl md:text-4xl" style="color: var(--theme-color)">${l.replace('center:', '').trim()}</div>`;
+                    } else {
+                        // פסקה רגילה - הראשונה מקבלת Dropcap
+                        const className = isFirstParagraph ? 'dropcap' : '';
+                        bodyHtml += `<p class="${className}">${l}</p>`;
+                        isFirstParagraph = false;
+                    }
                 });
 
-                // עדכון ה-Hero עם נתוני הפרשה
-                document.getElementById('main-title').textContent = title;
-                document.getElementById('main-subtitle').textContent = subtitle;
-                document.getElementById('page-title').textContent = title + " | אור בפרשה";
-                if (customImg) document.getElementById('hero-bg').style.backgroundImage = `url('${customImg}')`;
+                document.getElementById('article-title').textContent = title;
+                document.getElementById('article-subtitle').textContent = subtitle;
+                document.getElementById('main-article-content').innerHTML = bodyHtml;
+                document.title = title + " | אור בפרשה";
 
-                // הזרקת התוכן
-                document.getElementById('article-body').innerHTML = bodyHtml;
+                // אם לא הוגדרה תמונה ספציפית, נשתמש בברירת המחדל של הספר
+                if (!document.getElementById('article-hero-img').src || document.getElementById('article-hero-img').src.includes(window.location.host + window.location.pathname)) {
+                    document.getElementById('article-hero-img').src = data.hero;
+                }
 
             } catch (e) {
-                document.getElementById('article-body').innerHTML = "שגיאה בטעינת המאמר.";
+                document.getElementById('main-article-content').innerHTML = "שגיאה בטעינת המאמר.";
             }
         }
-
-        // אפקט הגלילה המקורי
-        window.addEventListener('scroll', () => {
-            const scroll = window.scrollY;
-            const heroContent = document.getElementById('hero-content');
-            const heroBg = document.getElementById('hero-bg');
-            const opacityValue = Math.max(0, 1 - scroll / 400);
-            const blurValue = Math.min(20, scroll / 15);
-            
-            heroContent.style.opacity = opacityValue;
-            heroContent.style.filter = `blur(${blurValue}px)`;
-            heroBg.style.filter = `blur(${blurValue / 2}px)`;
-            heroBg.style.transform = `scale(${1 + scroll / 1200})`;
-        });
 
         initArticle();
     </script>
