@@ -1,7 +1,7 @@
 title: פרשת תולדות
 subtitle: איך ההורים מגיבים כשהבן סוטה מן הדרך?
 image: https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400
-writer: הרב נריה
+writer: הרב נריה בולאק
 date: תאריך...
 profile picture: images/harav_neria.jpg
 ---
