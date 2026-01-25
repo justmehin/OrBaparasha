@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">טוען מאמר...</title>
+    <title id="page-title">אור בפרשה</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&family=Noto+Serif+Hebrew:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&family=Noto+Serif+Hebrew:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,113 +23,122 @@
         }
     </script>
     <style>
-        body { background-color: #f8f1e7; }
-        .article-content { line-height: 1.8; font-size: 1.15rem; }
-        .article-content p { margin-bottom: 1.5rem; }
+        body { background-color: #f8f1e7; margin: 0; overflow-x: hidden; }
+        .article-body-text { line-height: 2; font-size: 1.25rem; }
+        .article-body-text p { margin-bottom: 2rem; }
     </style>
 </head>
 <body class="font-sans antialiased text-slate-800">
 
-    <nav class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-black/5 px-6 py-4">
-        <div class="max-w-4xl mx-auto flex justify-between items-center">
-            <a href="#" id="back-to-book" class="inline-flex items-center gap-2 font-bold text-sm transition-all no-underline">
+    <div id="hero-section" class="fixed top-0 left-0 w-full h-[55vh] z-0 overflow-hidden">
+        <div id="hero-bg" class="absolute inset-0 bg-cover bg-center transition-transform duration-700"></div>
+        <div id="hero-overlay" class="absolute inset-0 bg-black/40"></div>
+        
+        <div class="absolute top-8 right-8 z-20">
+            <a href="#" id="back-link" class="inline-flex items-center gap-2 font-bold text-sm bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-full shadow-lg hover:bg-white transition-all no-underline border border-black/20">
                 <span class="material-symbols-outlined text-lg">arrow_forward</span>
                 חזרה לפרשות
             </a>
-            <span id="nav-book-name" class="font-serif font-bold text-lg opacity-50"></span>
         </div>
-    </nav>
 
-    <header class="pt-32 pb-16 px-6 bg-white border-b border-black/5">
-        <div class="max-w-3xl mx-auto text-center">
-            <h1 id="article-title" class="text-4xl md:text-6xl font-serif font-bold mb-4 leading-tight"></h1>
-            <p id="article-subtitle" class="text-xl text-slate-500 font-light max-w-2xl mx-auto"></p>
-        </div>
-    </header>
-
-    <main class="max-w-3xl mx-auto px-6 py-16">
-        <div id="article-body" class="article-content text-slate-700 font-normal">
-            <div class="flex flex-col gap-4 animate-pulse">
-                <div class="h-4 bg-slate-200 rounded w-3/4"></div>
-                <div class="h-4 bg-slate-200 rounded"></div>
-                <div class="h-4 bg-slate-200 rounded w-5/6"></div>
+        <div id="hero-content" class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6 pt-10">
+            <div id="icon-container" class="w-16 h-16 rounded-full mb-6 shadow-xl border-2 border-white/50 flex items-center justify-center backdrop-blur-sm">
+                <span id="book-icon" class="material-symbols-outlined text-3xl">menu_book</span>
             </div>
+            <h1 id="main-title" class="text-5xl md:text-7xl font-serif font-bold drop-shadow-lg mb-4"></h1>
+            <p id="main-subtitle" class="text-xl md:text-2xl font-light max-w-2xl opacity-90 leading-relaxed"></p>
         </div>
-    </main>
+    </div>
 
-    <footer class="py-20 text-center text-slate-400 text-xs tracking-widest">
-        &copy; 2026 • אור בפרשה
-    </footer>
+    <div class="relative z-10 mt-[50vh]">
+        <div class="h-20 bg-gradient-to-t from-beigeTheme to-transparent"></div>
+        
+        <div class="bg-beigeTheme pb-20 px-6">
+            <main class="max-w-3xl mx-auto bg-white rounded-3xl shadow-2xl shadow-black/5 -mt-10 p-8 md:p-16 border border-black/5">
+                <div id="article-body" class="article-body-text text-slate-700 font-normal">
+                    <div class="space-y-4 animate-pulse">
+                        <div class="h-4 bg-slate-100 rounded w-full"></div>
+                        <div class="h-4 bg-slate-100 rounded w-5/6"></div>
+                        <div class="h-4 bg-slate-100 rounded w-4/6"></div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer class="py-12 text-center text-slate-400 text-xs tracking-widest bg-beigeTheme">
+            &copy; 2026 • אור בפרשה
+        </footer>
+    </div>
 
     <script>
         const booksData = {
-            'bereshit': { name: 'ספר בראשית', color: '#10b981' },
-            'shmot': { name: 'ספר שמות', color: '#f97316' },
-            'vaikra': { name: 'ספר ויקרא', color: '#a855f7' },
-            'bamidbar': { name: 'ספר במדבר', color: '#d97706' },
-            'devarim': { name: 'ספר דברים', color: '#0284c7' }
+            'bereshit': { name: 'ספר בראשית', color: '#10b981', hero: 'https://images.unsplash.com/photo-1501290830384-93ad47898391?q=80&w=1600' },
+            'shmot': { name: 'ספר שמות', color: '#f97316', hero: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?q=80&w=1600' },
+            'vaikra': { name: 'ספר ויקרא', color: '#a855f7', hero: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=1600' },
+            'bamidbar': { name: 'ספר במדבר', color: '#d97706', hero: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=1600' },
+            'devarim': { name: 'ספר דברים', color: '#0284c7', hero: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?q=80&w=1600' }
         };
 
-        async function loadArticle() {
+        async function initArticle() {
             const params = new URLSearchParams(window.location.search);
             const parashaId = params.get('parasha');
             const bookId = params.get('book') || 'bereshit';
-            const bookInfo = booksData[bookId];
+            const data = booksData[bookId];
 
-            if (!parashaId) {
-                window.location.href = 'index.html';
-                return;
-            }
+            if (!parashaId) return;
 
-            // 1. הגדרת עיצוב לפי הספר
-            document.getElementById('back-to-book').style.color = bookInfo.color;
-            document.getElementById('back-to-book').href = `book.html?book=${bookId}`;
-            document.getElementById('nav-book-name').textContent = bookInfo.name;
-            document.getElementById('article-title').style.color = bookInfo.color;
+            // עדכון ראשוני של העיצוב לפי הספר
+            document.getElementById('back-link').href = `book.html?book=${bookId}`;
+            document.getElementById('back-link').style.color = data.color;
+            document.getElementById('icon-container').style.backgroundColor = data.color;
+            document.getElementById('hero-bg').style.backgroundImage = `url('${data.hero}')`;
 
-            // 2. טעינת תוכן הקובץ
             try {
                 const response = await fetch(`parashot/${parashaId}.txt`);
-                if (!response.ok) throw new Error('File not found');
-                
-                const fullText = await response.text();
-                const lines = fullText.split('\n');
-                
-                let cleanContent = "";
+                const text = await response.text();
+                const lines = text.split('\n');
+
                 let title = parashaId;
                 let subtitle = "";
+                let bodyHtml = "";
+                let customImg = "";
 
-                // פירוק הקובץ לשורות (כותרת, תת כותרת ותוכן)
                 lines.forEach(line => {
-                    if (line.startsWith('title:')) {
-                        title = line.replace('title:', '').trim();
-                    } else if (line.startsWith('subtitle:')) {
-                        subtitle = line.replace('subtitle:', '').trim();
-                    } else if (line.startsWith('image:')) {
-                        // מתעלמים מהתמונה כאן אם רוצים
-                    } else if (line.trim() !== "") {
-                        cleanContent += `<p>${line.trim()}</p>`;
-                    }
+                    if (line.startsWith('title:')) title = line.replace('title:', '').trim();
+                    else if (line.startsWith('subtitle:')) subtitle = line.replace('subtitle:', '').trim();
+                    else if (line.startsWith('image:')) customImg = line.replace('image:', '').trim();
+                    else if (line.trim() !== "") bodyHtml += `<p>${line.trim()}</p>`;
                 });
 
-                // 3. הזרקה לדף
-                document.title = `${title} | אור בפרשה`;
-                document.getElementById('article-title').textContent = title;
-                document.getElementById('article-subtitle').textContent = subtitle;
-                document.getElementById('article-body').innerHTML = cleanContent;
+                // עדכון ה-Hero עם נתוני הפרשה
+                document.getElementById('main-title').textContent = title;
+                document.getElementById('main-subtitle').textContent = subtitle;
+                document.getElementById('page-title').textContent = title + " | אור בפרשה";
+                if (customImg) document.getElementById('hero-bg').style.backgroundImage = `url('${customImg}')`;
 
-            } catch (error) {
-                document.getElementById('article-body').innerHTML = `
-                    <div class="text-center py-20">
-                        <span class="material-symbols-outlined text-6xl text-slate-300 mb-4">description</span>
-                        <p class="text-slate-500">מצטערים, לא נמצא תוכן עבור פרשה זו.</p>
-                        <a href="book.html?book=${bookId}" class="text-blue-500 underline mt-4 block">חזרה לרשימה</a>
-                    </div>
-                `;
+                // הזרקת התוכן
+                document.getElementById('article-body').innerHTML = bodyHtml;
+
+            } catch (e) {
+                document.getElementById('article-body').innerHTML = "שגיאה בטעינת המאמר.";
             }
         }
 
-        loadArticle();
+        // אפקט הגלילה המקורי
+        window.addEventListener('scroll', () => {
+            const scroll = window.scrollY;
+            const heroContent = document.getElementById('hero-content');
+            const heroBg = document.getElementById('hero-bg');
+            const opacityValue = Math.max(0, 1 - scroll / 400);
+            const blurValue = Math.min(20, scroll / 15);
+            
+            heroContent.style.opacity = opacityValue;
+            heroContent.style.filter = `blur(${blurValue}px)`;
+            heroBg.style.filter = `blur(${blurValue / 2}px)`;
+            heroBg.style.transform = `scale(${1 + scroll / 1200})`;
+        });
+
+        initArticle();
     </script>
 </body>
 </html>
