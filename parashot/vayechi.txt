@@ -1,7 +1,7 @@
 title: פרשת ויחי
 subtitle: הכישלון מגלה את הכישרון 
 image: https://miro.medium.com/v2/resize:fit:1100/format:webp/1*cLXDOGW7gf9O8eHVPS5SEg.jpeg
-writer: הרב נריה
+writer: הרב נריה בולאק
 date:
  profile picture: images/harav_neria.jpg
 ---
