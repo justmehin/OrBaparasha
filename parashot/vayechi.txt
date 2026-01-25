@@ -1,6 +1,6 @@
 title: פרשת ויחי
 subtitle: הכישלון מגלה את הכישרון 
-image: https://sivanrahavmeir.com/wp-content/uploads/2023/01/FB_IMG_1578811717796.jpg-360x259.webp
+image: https://miro.medium.com/v2/resize:fit:1100/format:webp/1*cLXDOGW7gf9O8eHVPS5SEg.jpeg
 writer: הרב נריה
 date:
  profile picture: images/harav_neria.jpg
