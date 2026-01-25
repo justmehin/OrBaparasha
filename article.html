@@ -17,16 +17,31 @@
                     fontFamily: {
                         sans: ['Heebo', 'sans-serif'],
                         serif: ['Noto Serif Hebrew', 'serif'],
+                        keter: ['KeterYG', 'serif'],
                     }
                 }
             }
         }
     </script>
     <style>
+        /* טעינת הפונט המקומי */
+        @font-face {
+            font-family: 'KeterYG';
+            src: url('KeterYG-Medium.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         body { background-color: #f8f1e7; }
         :root { --theme-color: #10b981; }
 
-        .article-content p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.125rem; }
+        /* החלת הפונט על גוף המאמר בלבד */
+        .article-content p { 
+            margin-bottom: 1.5rem; 
+            line-height: 1.8; 
+            font-size: 1.25rem; 
+            font-family: 'KeterYG', serif; 
+        }
         
         .quote-box {
             border-right: 4px solid var(--theme-color);
@@ -59,11 +74,21 @@
             color: var(--theme-color);
             font-weight: bold;
         }
+
+        /* אנימציה להיעלמות הלחצן */
+        #back-link-container {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .nav-hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="font-sans antialiased text-slate-800">
 
-    <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center pointer-events-none">
+    <nav id="back-link-container" class="fixed top-0 w-full z-50 p-6 flex justify-between items-center pointer-events-none">
         <a href="#" id="back-link" class="pointer-events-auto inline-flex items-center gap-2 font-bold text-sm bg-white/90 backdrop-blur-md px-5 py-2.5 rounded-full shadow-lg hover:bg-white transition-all no-underline border border-black/10 text-slate-700">
             <span class="material-symbols-outlined text-lg">arrow_forward</span>
             חזרה לפרשיות
@@ -98,7 +123,7 @@
     </main>
 
     <footer class="py-16 text-center text-slate-400 text-xs tracking-widest border-t border-black/5">
-        &copy; 2026 • אור בפרשה • כל הזכויות שמורות
+        תשפ"ו • אור בפרשה
     </footer>
 
     <script>
@@ -109,6 +134,16 @@
             'bamidbar': { name: 'ספר במדבר', color: '#d97706', hero: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=1600' },
             'devarim': { name: 'ספר דברים', color: '#0284c7', hero: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?q=80&w=1600' }
         };
+
+        // פונקציה לשליטה על נראות כפתור החזרה בגלילה
+        window.addEventListener('scroll', () => {
+            const backLink = document.getElementById('back-link-container');
+            if (window.scrollY > 50) {
+                backLink.classList.add('nav-hidden');
+            } else {
+                backLink.classList.remove('nav-hidden');
+            }
+        });
 
         async function initArticle() {
             const params = new URLSearchParams(window.location.search);
@@ -138,22 +173,18 @@
                     let l = line.trim();
                     if (!l && hasReachedContent) continue; 
 
-                    // זיהוי המפריד
                     if (l === '---') {
                         hasReachedContent = true;
                         continue;
                     }
 
                     if (!hasReachedContent) {
-                        // קריאת הגדרות (Metadata) בדיוק לפי הפורמט שלך
                         if (l.startsWith('title:')) title = l.replace('title:', '').trim();
                         else if (l.startsWith('subtitle:')) subtitle = l.replace('subtitle:', '').trim();
                         else if (l.startsWith('image:')) document.getElementById('article-hero-img').src = l.replace('image:', '').trim();
                         else if (l.startsWith('writer:')) document.getElementById('writer-name').textContent = l.replace('writer:', '').trim();
                         else if (l.startsWith('profile picture:')) document.getElementById('writer-img').src = l.replace('profile picture:', '').trim();
-                        // ה-date נשמר במערכת אך לא מוצג לפי בקשתך
                     } else {
-                        // עיבוד תוכן המאמר (מתחת ל- ---)
                         if (l.startsWith('H3:') || l.startsWith('h3:')) {
                             bodyHtml += `<h3 class="text-3xl font-bold mt-12 mb-6 font-serif" style="color: var(--theme-color)">${l.substring(3).trim()}</h3>`;
                         } else if (l.startsWith('quote:')) {
@@ -168,18 +199,15 @@
                     }
                 }
 
-                // עדכון אלמנטים בדף
                 document.getElementById('article-title').textContent = title;
                 document.getElementById('article-subtitle').textContent = subtitle;
                 document.getElementById('main-article-content').innerHTML = bodyHtml;
                 document.title = title + " | אור בפרשה";
 
-                // תמונת גיבוי מהספר אם לא הוגדרה תמונה ספציפית
                 if (!document.getElementById('article-hero-img').getAttribute('src')) {
                     document.getElementById('article-hero-img').src = data.hero;
                 }
                 
-                // תמונת גיבוי לכותב
                 if (!document.getElementById('writer-img').getAttribute('src')) {
                     document.getElementById('writer-img').src = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200";
                 }
