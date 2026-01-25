@@ -35,14 +35,16 @@
         body { background-color: #f8f1e7; }
         :root { --theme-color: #10b981; }
 
-        /* החלת הפונט על גוף המאמר בלבד */
+        /* פסקאות רגילות: יישור לשני הצדדים */
         .article-content p { 
             margin-bottom: 1.5rem; 
             line-height: 1.8; 
             font-size: 1.25rem; 
             font-family: 'KeterYG', serif; 
+            text-align: justify;
         }
         
+        /* קופסת ציטוט: יישור למרכז */
         .quote-box {
             border-right: 4px solid var(--theme-color);
             padding: 1.5rem;
@@ -52,6 +54,7 @@
             font-style: italic;
             font-size: 1.25rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            text-align: center;
         }
 
         .center-block {
@@ -108,7 +111,7 @@
 
     <main class="max-w-3xl mx-auto px-6 pb-24 relative">
         <article id="main-article-content" class="article-content text-lg text-slate-700 leading-relaxed">
-            </article>
+        </article>
 
         <div id="writer-block" class="mt-20 flex flex-col md:flex-row items-center gap-8 bg-white/40 p-10 rounded-[2rem] border border-white shadow-sm backdrop-blur-sm">
             <img id="writer-img" src="" class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg">
@@ -186,7 +189,7 @@
                         else if (l.startsWith('profile picture:')) document.getElementById('writer-img').src = l.replace('profile picture:', '').trim();
                     } else {
                         if (l.startsWith('H3:') || l.startsWith('h3:')) {
-                            bodyHtml += `<h3 class="text-3xl font-bold mt-12 mb-6 font-serif" style="color: var(--theme-color)">${l.substring(3).trim()}</h3>`;
+                            bodyHtml += `<h3 class="text-3xl font-bold mt-12 mb-6 font-serif" style="color: var(--theme-color); text-align: center;">${l.substring(3).trim()}</h3>`;
                         } else if (l.startsWith('quote:')) {
                             bodyHtml += `<div class="quote-box">${l.replace('quote:', '').trim()}</div>`;
                         } else if (l.startsWith('center-text:')) {
