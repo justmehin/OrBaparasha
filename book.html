@@ -53,13 +53,11 @@
             justify-content: center;
         }
 
-        /* מיזוג התמונה ללבן */
         .hero-mask {
             mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
             -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
         }
 
-        /* גרדיאנט גיבוי למקרה שאין תמונה */
         .hero-gradient-fallback {
             background: linear-gradient(180deg, var(--book-color-dark) 0%, var(--book-color-light) 100%);
         }
@@ -185,7 +183,6 @@
             document.getElementById('main-title').textContent = data.name;
             document.getElementById('main-description').textContent = data.desc;
             
-            // לוגיקת ה-Hero: אם אין תמונה, נשתמש בגרדיאנט יפה
             const heroBg = document.getElementById('hero-bg');
             const heroSection = document.getElementById('hero-section');
             
@@ -235,6 +232,25 @@
                     </a>
                 `;
                 grid.appendChild(card);
+
+                // החזרת פונקציית הקריאה מקובצי הטקסט (fetch)
+                fetch(`parashot/${p.id}.txt`)
+                    .then(response => response.ok ? response.text() : null)
+                    .then(text => {
+                        if (text) {
+                            const lines = text.split('\n');
+                            lines.forEach(line => {
+                                if (line.startsWith('title:')) document.getElementById(`title-${p.id}`).textContent = line.replace('title:', '').trim();
+                                if (line.startsWith('subtitle:')) document.getElementById(`desc-${p.id}`).textContent = line.replace('subtitle:', '').trim();
+                                if (line.startsWith('image:')) {
+                                    const imgUrl = line.replace('image:', '').trim();
+                                    if(imgUrl) document.getElementById(`img-${p.id}`).src = imgUrl;
+                                    else handleImageError(document.getElementById(`img-${p.id}`), data.color);
+                                }
+                            });
+                        }
+                    })
+                    .catch(() => {});
             });
         }
 
