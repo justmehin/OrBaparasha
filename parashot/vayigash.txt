@@ -1,7 +1,7 @@
 title: פרשת ויגש
 subtitle:  איפה אני טעיתי?
 image:
-writer: הרב נריה
+writer: הרב נריה בולאק
 date:
  profile picture: images/harav_neria.jpg
 ---
