@@ -14,7 +14,7 @@
             theme: {
                 extend: {
                     colors: {
-                        beigeTheme: '#f8f1e7',
+                        beigeTheme: '#f1dcc1',
                     },
                     fontFamily: {
                         sans: ['Heebo', 'sans-serif'],
@@ -25,22 +25,25 @@
         }
     </script>
     <style>
-        body { background-color: #f8f1e7; margin: 0; overflow-x: hidden; }
+        body { 
+            background: linear-gradient(to bottom, white 0%, white 15%, #f1dcc1 60%, #f1dcc1 100%);
+            margin: 0; 
+            overflow-x: hidden; 
+            min-height: 100vh;
+        }
+
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         
         .floating-card { 
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            background-color: white; 
         }
         
         .floating-card:hover { 
             box-shadow: 0 25px 45px -10px rgba(0, 0, 0, 0.12), 0 15px 20px -5px rgba(0, 0, 0, 0.05);
             transform: translateY(-8px);
-        }
-
-        .card-inner-bg {
-            background-color: transparent !important;
         }
 
         .image-fallback {
@@ -49,48 +52,57 @@
             align-items: center;
             justify-content: center;
         }
+
+        /* מיזוג התמונה ללבן */
+        .hero-mask {
+            mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+        }
+
+        /* גרדיאנט גיבוי למקרה שאין תמונה */
+        .hero-gradient-fallback {
+            background: linear-gradient(180deg, var(--book-color-dark) 0%, var(--book-color-light) 100%);
+        }
     </style>
 </head>
 <body class="font-sans antialiased text-slate-800">
 
-    <div id="hero-section" class="fixed top-0 left-0 w-full h-[45vh] z-0 overflow-hidden">
-        <div id="hero-bg" class="absolute inset-0 bg-cover bg-center"></div>
-        <div id="hero-overlay" class="absolute inset-0 bg-black/30"></div>
+    <div id="hero-section" class="fixed top-0 left-0 w-full h-[80vh] z-0 overflow-hidden hero-mask">
+        <div id="hero-bg" class="absolute inset-0 bg-cover bg-center transition-opacity duration-700"></div>
+        <div id="hero-overlay" class="absolute inset-0 bg-black/25"></div>
         
         <div class="absolute top-8 right-8 z-20">
-            <a href="index.html" id="back-link" class="inline-flex items-center gap-2 font-bold text-sm bg-transparent px-5 py-2.5 rounded-full hover:bg-white/10 transition-all no-underline text-black border-none">
-                <span class="material-symbols-outlined text-lg text-black">arrow_forward</span>
+            <a href="index.html" id="back-link" class="inline-flex items-center gap-2 font-bold text-sm bg-white/20 backdrop-blur-md px-5 py-2.5 rounded-full hover:bg-white/40 transition-all no-underline text-white border border-white/30">
+                <span class="material-symbols-outlined text-lg">arrow_forward</span>
                 חזרה
             </a>
         </div>
 
-        <div id="hero-content" class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6 pt-10">
-            <div id="icon-container" class="w-20 h-20 rounded-full mb-4 shadow-xl border-4 border-white/80 flex items-center justify-center">
+        <div id="hero-content" class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
+            <div id="icon-container" class="w-20 h-20 rounded-full mb-6 shadow-2xl border-4 border-white/80 flex items-center justify-center">
                 <span id="book-icon" class="material-symbols-outlined text-4xl"></span>
             </div>
-            <h1 id="main-title" class="text-5xl md:text-6xl font-serif font-bold drop-shadow-lg mb-2"></h1>
-            <p id="main-description" class="text-lg font-light max-w-xl opacity-90 leading-snug"></p>
+            <h1 id="main-title" class="text-5xl md:text-7xl font-serif font-bold drop-shadow-2xl mb-4"></h1>
+            <p id="main-description" class="text-xl md:text-2xl font-light max-w-2xl opacity-95 leading-relaxed drop-shadow-lg"></p>
         </div>
     </div>
 
-    <div class="relative z-10 mt-[40vh]">
-        <div class="h-16 bg-gradient-to-t from-beigeTheme to-transparent"></div>
-        
-        <div class="bg-beigeTheme pb-20 px-6">
+    <div class="relative z-10 mt-[85vh]">
+        <div class="pb-24 px-6">
             <main class="max-w-4xl mx-auto">
                 <div id="parasha-grid" class="flex flex-col gap-8">
                 </div>
             </main>
         </div>
 
-        <footer class="py-12 text-center text-slate-400 text-xs tracking-widest bg-beigeTheme border-t border-black/5">
+        <footer class="py-12 text-center text-slate-500 text-xs tracking-widest border-t border-black/5">
             &copy; 2026 • אור בפרשה
         </footer>
     </div>
 
     <script>
         const booksData = {
-            'bereshit': { name: 'ספר בראשית', desc: 'יסודות האמונה ובניית המשפחה היהודית הראשונה.', color: '#10b981', lightColor: '#6ee7b7', icon: 'public', hero: 'images/bereshit_cover.jpg', parashot: [
+            'bereshit': { name: 'ספר בראשית', desc: 'יסודות האמונה ובניית המשפחה היהודית הראשונה.', color: '#10b981', lightColor: '#065f46', icon: 'public', hero: 'https://images.unsplash.com/photo-1501290830384-93ad47898391?q=80&w=1600', parashot: [
                 { id: 'bereshit', name: 'בראשית', desc: 'בריאת העולם, חטא אדם וחוה וסיפור קין והבל.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
                 { id: 'noach', name: 'נח', desc: 'תיבת נח, המבול וההבטחה לקיום העולם מחדש.', img: 'https://images.unsplash.com/photo-1533713619779-3c7333550066?w=400' },
                 { id: 'lech-lecha', name: 'לך לך', desc: 'מסעו של אברהם אבינו אל הארץ המובטחת.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
@@ -104,7 +116,7 @@
                 { id: 'vayigash', name: 'ויגש', desc: 'חשיפת יוסף בפני אחיו וירידת יעקב למצרים.', img: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400' },
                 { id: 'vayechi', name: 'ויחי', desc: 'ברכות יעקב לבניו לפני מותו בסוף תקופת האבות.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' }
             ]},
-            'shmot': { name: 'ספר שמות', desc: 'מיציאה מעבדות לחירות, מעמד הר סיני ובניית המשכן.', color: '#f97316', lightColor: '#fdba74', icon: 'local_fire_department', hero: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?q=80&w=1600', parashot: [
+            'shmot': { name: 'ספר שמות', desc: 'מיציאה מעבדות לחירות, מעמד הר סיני ובניית המשכן.', color: '#f97316', lightColor: '#9a3412', icon: 'local_fire_department', hero: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?q=80&w=1600', parashot: [
                 { id: 'shmot', name: 'שמות', desc: 'שעבוד מצרים, לידת משה והסנה הבוער.', img: 'https://images.unsplash.com/photo-1543722530-d2c3201371e7?w=400' },
                 { id: 'vaera', name: 'וארא', desc: 'שבע המכות הראשונות וחיזוק לב פרעה.', img: 'https://images.unsplash.com/photo-1510002165351-784860178385?w=400' },
                 { id: 'bo', name: 'בא', desc: 'שלוש המכות האחרונות ויציאת מצרים.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
@@ -117,7 +129,7 @@
                 { id: 'vayakhel', name: 'ויקהל', desc: 'התכנסות העם לבניית המשכן בפועל.', img: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=400' },
                 { id: 'pekudei', name: 'פקודי', desc: 'סיכום המלאכה והשראת השכינה.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' }
             ]},
-            'vaikra': { name: 'ספר ויקרא', desc: 'עבודת המקדש, הקדושה והחובות המוסריות.', color: '#a855f7', lightColor: '#d8b4fe', icon: 'temple_hindu', hero: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=1600', parashot: [
+            'vaikra': { name: 'ספר ויקרא', desc: 'עבודת המקדש, הקדושה והחובות המוסריות.', color: '#a855f7', lightColor: '#6b21a8', icon: 'temple_hindu', hero: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=1600', parashot: [
                 { id: 'vaikra', name: 'ויקרא', desc: 'דיני הקרבנות השונים במשכן.', img: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?w=400' },
                 { id: 'tzav', name: 'צו', desc: 'הוראות לכהנים על עבודת המזבח.', img: 'https://images.unsplash.com/photo-1533713619779-3c7333550066?w=400' },
                 { id: 'shemini', name: 'שמיני', desc: 'חנוכת המשכן ומאכלות אסורים.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
@@ -129,7 +141,7 @@
                 { id: 'behar', name: 'בהר', desc: 'שנת השמיטה ושנת היובל.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
                 { id: 'bechukotai', name: 'בחקותי', desc: 'הבטחות לברכה ואזהרות הברית.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' }
             ]},
-            'bamidbar': { name: 'ספר במדבר', desc: 'מסע בני ישראל במדבר סיני אל הארץ המובטחת.', color: '#d97706', lightColor: '#fbbf24', icon: 'landscape', hero: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=1600', parashot: [
+            'bamidbar': { name: 'ספר במדבר', desc: 'מסע בני ישראל במדבר סיני אל הארץ המובטחת.', color: '#d97706', lightColor: '#92400e', icon: 'landscape', hero: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=1600', parashot: [
                 { id: 'bamidbar', name: 'במדבר', desc: 'מפקד בני ישראל וסידור המחנות.', img: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=400' },
                 { id: 'naso', name: 'נשא', desc: 'מצוות נזיר וברכת הכהנים.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
                 { id: 'behaalotcha', name: 'בהעלותך', desc: 'העלאת המנורה והנהגת הענן.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
@@ -141,7 +153,7 @@
                 { id: 'matot', name: 'מטות', desc: 'דיני נדרים והמלחמה במדין.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' },
                 { id: 'masei', name: 'מסעי', desc: 'סיכום מסעות ישראל וגבולות הארץ.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' }
             ]},
-            'devarim': { name: 'ספר דברים', desc: 'נאום הפרידה של משה רבנו וסיכום המצוות.', color: '#0284c7', lightColor: '#7dd3fc', icon: 'record_voice_over', hero: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?q=80&w=1600', parashot: [
+            'devarim': { name: 'ספר דברים', desc: 'נאום הפרידה של משה רבנו וסיכום המצוות.', color: '#0284c7', lightColor: '#075985', icon: 'record_voice_over', hero: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?q=80&w=1600', parashot: [
                 { id: 'devarim', name: 'דברים', desc: 'משה מתחיל את נאומו בסיכום המסע.', img: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?w=400' },
                 { id: 'vaetchanan', name: 'ואתחנן', desc: 'תפילת משה וקריאת שמע.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
                 { id: 'eikev', name: 'עקב', desc: 'ברכת המזון והבטחת השפע.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
@@ -172,7 +184,20 @@
             document.getElementById('page-title').textContent = data.name;
             document.getElementById('main-title').textContent = data.name;
             document.getElementById('main-description').textContent = data.desc;
-            document.getElementById('hero-bg').style.backgroundImage = `url('${data.hero}')`;
+            
+            // לוגיקת ה-Hero: אם אין תמונה, נשתמש בגרדיאנט יפה
+            const heroBg = document.getElementById('hero-bg');
+            const heroSection = document.getElementById('hero-section');
+            
+            if (data.hero) {
+                heroBg.style.backgroundImage = `url('${data.hero}')`;
+            } else {
+                heroBg.style.opacity = '0';
+                heroSection.style.setProperty('--book-color-dark', data.lightColor);
+                heroSection.style.setProperty('--book-color-light', data.color);
+                heroSection.classList.add('hero-gradient-fallback');
+            }
+
             document.getElementById('icon-container').style.backgroundColor = data.color;
             document.getElementById('book-icon').textContent = data.icon;
 
@@ -181,20 +206,17 @@
 
             data.parashot.forEach(p => {
                 const card = document.createElement('div');
-                const gradientFrame = `linear-gradient(135deg, ${data.color}, ${data.lightColor || data.color})`;
+                const gradientFrame = `linear-gradient(135deg, ${data.color}, ${data.lightColor})`;
 
                 card.innerHTML = `
                     <a href="article.html?parasha=${p.id}&book=${bookId}" 
                        class="group relative p-[1.5px] rounded-3xl no-underline floating-card overflow-hidden block">
-                        
                         <div class="card-inner-bg relative rounded-[calc(1.5rem-1.5px)] overflow-hidden flex h-32 md:h-44 items-stretch p-2">
-                            
                             <div class="w-28 md:w-60 h-full overflow-hidden flex-shrink-0 rounded-2xl shadow-inner border border-black/5 relative bg-slate-50">
                                 <img src="${p.img}" id="img-${p.id}" 
                                      onerror="handleImageError(this, '${data.color}')"
                                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
                             </div>
-                            
                             <div class="p-4 md:p-8 flex flex-col justify-center flex-grow">
                                 <h3 class="text-xl md:text-2xl font-bold mb-2" id="title-${p.id}" style="color: ${data.color}">
                                     ${p.name}
@@ -203,37 +225,16 @@
                                     ${p.desc}
                                 </p>
                             </div>
-                            
                             <div class="flex items-center px-4 md:px-8">
                                 <span class="material-symbols-outlined opacity-20 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all duration-500" style="color: ${data.color}">
                                     arrow_back_ios
                                 </span>
                             </div>
                         </div>
-                        
                         <div class="absolute inset-0 rounded-3xl pointer-events-none" style="border: 1.5px solid transparent; background: ${gradientFrame} border-box; -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); -webkit-mask-composite: destination-out; mask-composite: exclude;"></div>
                     </a>
                 `;
-
                 grid.appendChild(card);
-
-                fetch(`parashot/${p.id}.txt`)
-                    .then(response => response.ok ? response.text() : null)
-                    .then(text => {
-                        if (text) {
-                            const lines = text.split('\n');
-                            lines.forEach(line => {
-                                if (line.startsWith('title:')) document.getElementById(`title-${p.id}`).textContent = line.replace('title:', '').trim();
-                                if (line.startsWith('subtitle:')) document.getElementById(`desc-${p.id}`).textContent = line.replace('subtitle:', '').trim();
-                                if (line.startsWith('image:')) {
-                                    const imgUrl = line.replace('image:', '').trim();
-                                    if(imgUrl) document.getElementById(`img-${p.id}`).src = imgUrl;
-                                    else handleImageError(document.getElementById(`img-${p.id}`), data.color);
-                                }
-                            });
-                        }
-                    })
-                    .catch(() => {});
             });
         }
 
@@ -242,17 +243,18 @@
             const heroContent = document.getElementById('hero-content');
             const backBtn = document.getElementById('back-link');
             const heroBg = document.getElementById('hero-bg');
-            const opacityValue = Math.max(0, 1 - scroll / 300);
-            const blurValue = Math.min(20, scroll / 15);
+            const opacityValue = Math.max(0, 1 - scroll / 450);
+            const blurValue = Math.min(20, scroll / 12);
             
             heroContent.style.opacity = opacityValue;
             heroContent.style.filter = `blur(${blurValue}px)`;
             if(backBtn) {
                 backBtn.style.opacity = opacityValue;
-                backBtn.style.filter = `blur(${blurValue / 2}px)`;
             }
-            heroBg.style.filter = `blur(${blurValue / 2}px)`;
-            heroBg.style.transform = `scale(${1 + scroll / 1000})`;
+            if (heroBg) {
+                heroBg.style.filter = `blur(${blurValue / 2}px)`;
+                heroBg.style.transform = `scale(${1 + scroll / 1200})`;
+            }
         });
 
         initPage();
