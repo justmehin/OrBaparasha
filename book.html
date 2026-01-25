@@ -85,7 +85,7 @@
         </div>
     </div>
 
-    <div class="relative z-10 mt-[65vh] md:mt-[85vh]">
+    <div class="relative z-10 mt-[60vh] md:mt-[85vh]">
         <div class="pb-24 px-6">
             <main class="max-w-4xl mx-auto">
                 <div id="parasha-grid" class="flex flex-col gap-8">
@@ -233,7 +233,6 @@
                 `;
                 grid.appendChild(card);
 
-                // החזרת פונקציית הקריאה מקובצי הטקסט (fetch)
                 fetch(`parashot/${p.id}.txt`)
                     .then(response => response.ok ? response.text() : null)
                     .then(text => {
