@@ -24,7 +24,7 @@
     </script>
     <style>
         body { background-color: #f8f1e7; }
-        :root { --theme-color: #10b981; } /* ברירת מחדל בראשית */
+        :root { --theme-color: #10b981; }
 
         .article-content p { margin-bottom: 1.5rem; line-height: 1.8; font-size: 1.125rem; }
         
@@ -75,9 +75,7 @@
         <div class="absolute inset-0 hero-gradient"></div>
         
         <div class="relative max-w-4xl mx-auto w-full px-6 pb-16 text-center">
-            <div id="book-tag" class="inline-block px-4 py-1 rounded-full text-white text-xs font-bold mb-6 shadow-md uppercase tracking-widest">
-                טוען...
-            </div>
+            <div id="book-tag" class="inline-block px-4 py-1 rounded-full text-white text-xs font-bold mb-6 shadow-md uppercase tracking-widest"></div>
             <h1 id="article-title" class="text-5xl md:text-7xl font-serif font-bold mb-6 tracking-tight text-slate-900"></h1>
             <p id="article-subtitle" class="text-xl md:text-2xl font-light text-slate-600 max-w-2xl mx-auto leading-relaxed"></p>
         </div>
@@ -88,7 +86,7 @@
             </article>
 
         <div id="writer-block" class="mt-20 flex flex-col md:flex-row items-center gap-8 bg-white/40 p-10 rounded-[2rem] border border-white shadow-sm backdrop-blur-sm">
-            <img id="writer-img" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200" class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg">
+            <img id="writer-img" src="" class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg">
             <div class="text-center md:text-right">
                 <h4 class="text-xs uppercase tracking-[0.2em] text-slate-400 mb-2 font-bold">נכתב על ידי</h4>
                 <h3 id="writer-name" class="text-2xl font-bold text-slate-900 mb-2">אור בפרשה</h3>
@@ -120,7 +118,6 @@
 
             if (!parashaId) return;
 
-            // עדכון צבע ערכת נושא
             document.documentElement.style.setProperty('--theme-color', data.color);
             document.getElementById('book-tag').textContent = data.name;
             document.getElementById('book-tag').style.backgroundColor = data.color;
@@ -131,47 +128,60 @@
                 const text = await response.text();
                 const lines = text.split('\n');
 
-                let title = parashaId;
+                let title = "";
                 let subtitle = "";
                 let bodyHtml = "";
+                let hasReachedContent = false;
                 let isFirstParagraph = true;
 
-                lines.forEach(line => {
-                    const l = line.trim();
-                    if (!l) return;
+                for (let line of lines) {
+                    let l = line.trim();
+                    if (!l && hasReachedContent) continue; 
 
-                    if (l.startsWith('title:')) {
-                        title = l.replace('title:', '').trim();
-                    } else if (l.startsWith('subtitle:')) {
-                        subtitle = l.replace('subtitle:', '').trim();
-                    } else if (l.startsWith('image:')) {
-                        document.getElementById('article-hero-img').src = l.replace('image:', '').trim();
-                    } else if (l.startsWith('writer:')) {
-                        document.getElementById('writer-name').textContent = l.replace('writer:', '').trim();
-                    } else if (l.startsWith('profile:')) {
-                        document.getElementById('writer-img').src = l.replace('profile:', '').trim();
-                    } else if (l.startsWith('h3:')) {
-                        bodyHtml += `<h3 class="text-3xl font-bold mt-12 mb-6 font-serif" style="color: var(--theme-color)">${l.replace('h3:', '').trim()}</h3>`;
-                    } else if (l.startsWith('quote:')) {
-                        bodyHtml += `<div class="quote-box">${l.replace('quote:', '').trim()}</div>`;
-                    } else if (l.startsWith('center:')) {
-                        bodyHtml += `<div class="center-block text-3xl md:text-4xl" style="color: var(--theme-color)">${l.replace('center:', '').trim()}</div>`;
-                    } else {
-                        // פסקה רגילה - הראשונה מקבלת Dropcap
-                        const className = isFirstParagraph ? 'dropcap' : '';
-                        bodyHtml += `<p class="${className}">${l}</p>`;
-                        isFirstParagraph = false;
+                    // זיהוי המפריד
+                    if (l === '---') {
+                        hasReachedContent = true;
+                        continue;
                     }
-                });
 
+                    if (!hasReachedContent) {
+                        // קריאת הגדרות (Metadata) בדיוק לפי הפורמט שלך
+                        if (l.startsWith('title:')) title = l.replace('title:', '').trim();
+                        else if (l.startsWith('subtitle:')) subtitle = l.replace('subtitle:', '').trim();
+                        else if (l.startsWith('image:')) document.getElementById('article-hero-img').src = l.replace('image:', '').trim();
+                        else if (l.startsWith('writer:')) document.getElementById('writer-name').textContent = l.replace('writer:', '').trim();
+                        else if (l.startsWith('profile picture:')) document.getElementById('writer-img').src = l.replace('profile picture:', '').trim();
+                        // ה-date נשמר במערכת אך לא מוצג לפי בקשתך
+                    } else {
+                        // עיבוד תוכן המאמר (מתחת ל- ---)
+                        if (l.startsWith('H3:') || l.startsWith('h3:')) {
+                            bodyHtml += `<h3 class="text-3xl font-bold mt-12 mb-6 font-serif" style="color: var(--theme-color)">${l.substring(3).trim()}</h3>`;
+                        } else if (l.startsWith('quote:')) {
+                            bodyHtml += `<div class="quote-box">${l.replace('quote:', '').trim()}</div>`;
+                        } else if (l.startsWith('center-text:')) {
+                            bodyHtml += `<div class="center-block text-3xl md:text-4xl" style="color: var(--theme-color)">${l.replace('center-text:', '').trim()}</div>`;
+                        } else {
+                            const className = isFirstParagraph ? 'dropcap' : '';
+                            bodyHtml += `<p class="${className}">${l}</p>`;
+                            isFirstParagraph = false;
+                        }
+                    }
+                }
+
+                // עדכון אלמנטים בדף
                 document.getElementById('article-title').textContent = title;
                 document.getElementById('article-subtitle').textContent = subtitle;
                 document.getElementById('main-article-content').innerHTML = bodyHtml;
                 document.title = title + " | אור בפרשה";
 
-                // אם לא הוגדרה תמונה ספציפית, נשתמש בברירת המחדל של הספר
-                if (!document.getElementById('article-hero-img').src || document.getElementById('article-hero-img').src.includes(window.location.host + window.location.pathname)) {
+                // תמונת גיבוי מהספר אם לא הוגדרה תמונה ספציפית
+                if (!document.getElementById('article-hero-img').getAttribute('src')) {
                     document.getElementById('article-hero-img').src = data.hero;
+                }
+                
+                // תמונת גיבוי לכותב
+                if (!document.getElementById('writer-img').getAttribute('src')) {
+                    document.getElementById('writer-img').src = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200";
                 }
 
             } catch (e) {
