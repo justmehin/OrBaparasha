@@ -42,7 +42,7 @@
             z-index: 10;
         }
 
-        /* גוף המאמר - שינוי לפונט Noto Serif Hebrew */
+        /* גוף המאמר */
         .article-content p { 
             margin-bottom: 2rem; 
             line-height: 1.9; 
@@ -69,12 +69,16 @@
             line-height: 1.6;
         }
 
+        /* עיצוב שדה center-text - סגנון דרוגלין חגיגי */
         .center-block {
             text-align: center;
-            margin: 4rem 0;
+            margin: 5rem 0;
             font-weight: 900;
             font-family: 'Noto Serif Hebrew', serif;
             color: var(--theme-color);
+            letter-spacing: 0.05em;
+            position: relative;
+            display: block;
         }
 
         /* הגדרות כותרת ותמונה */
@@ -247,7 +251,8 @@
                         } else if (l.startsWith('quote:')) {
                             bodyHtml += `<div class="quote-box">${l.replace('quote:', '').trim()}</div>`;
                         } else if (l.startsWith('center-text:')) {
-                            bodyHtml += `<div class="center-block text-4xl md:text-5xl">${l.replace('center-text:', '').trim()}</div>`;
+                            // שימוש ב-Noto Serif Hebrew במשקל כבד מאוד עבור אפקט "דרוגלין"
+                            bodyHtml += `<div class="center-block text-4xl md:text-6xl font-serif font-black">${l.replace('center-text:', '').trim()}</div>`;
                         } else {
                             const className = isFirstParagraph ? 'dropcap' : '';
                             bodyHtml += `<p class="${className}">${l}</p>`;
