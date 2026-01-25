@@ -1,7 +1,7 @@
 title: פרשת חיי שרה
 subtitle: שרה אמנו
 image:
-writer: הרב נריה
+writer: הרב נריה בולאק
 date:
  profile picture: images/harav_neria.jpg
 ---
