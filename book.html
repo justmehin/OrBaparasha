@@ -12,9 +12,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        beigeTheme: '#f1dcc1',
-                    },
+                    colors: { beigeTheme: '#f1dcc1' },
                     fontFamily: {
                         sans: ['Heebo', 'sans-serif'],
                         serif: ['Noto Serif Hebrew', 'serif'],
@@ -61,6 +59,7 @@
             background: linear-gradient(180deg, var(--book-color-dark) 0%, var(--book-color-light) 100%);
         }
         
+        /* הגבלת 2 שורות ושימוש בפונט הייחודי */
         .custom-subtitle-font {
             font-family: 'OHLiorAtias', sans-serif;
             display: -webkit-box;
@@ -200,18 +199,19 @@
                                 <img src="${article.image}" id="img-${article.id}" onerror="handleImageError(this, '${config.color}')" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
                             </div>
 
-                            <div class="mr-4 md:mr-8 flex flex-col justify-between h-24 md:h-40 flex-grow py-0.5">
-                                <div class="flex flex-col">
-                                    <h3 class="text-lg md:text-2xl font-bold truncate leading-tight mb-0.5" style="color: ${config.color}">
-                                        ${article.title}
-                                    </h3>
-                                    
-                                    <p class="custom-subtitle-font text-base md:text-xl font-medium leading-[1.2]" style="color: ${subtitleColor}">
+                            <div class="mr-4 md:mr-8 flex flex-col h-24 md:h-40 flex-grow py-1">
+                                
+                                <h3 class="text-lg md:text-2xl font-bold truncate leading-tight shrink-0" style="color: ${config.color}">
+                                    ${article.title}
+                                </h3>
+                                
+                                <div class="flex-grow flex flex-col justify-center">
+                                    <p class="custom-subtitle-font text-xl md:text-[2.6rem] leading-[1.1] font-medium" style="color: ${subtitleColor}">
                                         ${article.subtitle}
                                     </p>
                                 </div>
 
-                                <div class="flex items-center">
+                                <div class="shrink-0 flex items-center">
                                     <span class="text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-md border" 
                                           style="color: ${config.color}; border-color: ${config.color}33; background-color: ${config.color}05;">
                                         ${article.date}
