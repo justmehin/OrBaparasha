@@ -1,5 +1,5 @@
 id: lech
-titel: כותרת
+title: כותרת
 subtitle: כותרת המשנה
 image: קישור חי או נתיב פנימי לקובץ תמונה 
 writer: שם כותב המאמר
