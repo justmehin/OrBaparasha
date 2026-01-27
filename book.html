@@ -106,36 +106,11 @@
 
     <script>
         const booksConfig = {
-            'bereshit': { 
-                name: 'ספר בראשית', desc: 'יסודות האמונה ובניית המשפחה היהודית הראשונה.', 
-                color: '#10b981', lightColor: '#065f46', icon: 'public', 
-                hero: 'images/bereshit_cover.jpg', folder: 'bereshit',
-                parashotNames: ['Bereshit', 'Noach', 'Lech Lecha', 'Vayeira', 'Chayei Sarah', 'Toledot', 'Vayetzei', 'Vayishlach', 'Vayeshev', 'Miketz', 'Vayigash', 'Vayechi']
-            },
-            'shmot': { 
-                name: 'ספר שמות', desc: 'מיציאה מעבדות לחירות, מעמד הר סיני ובניית המשכן.', 
-                color: '#f97316', lightColor: '#9a3412', icon: 'local_fire_department', 
-                hero: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?q=80&w=1600', folder: 'shmot',
-                parashotNames: ['Shemot', 'Vaera', 'Bo', 'Beshalach', 'Yitro', 'Mishpatim', 'Terumah', 'Tetzaveh', 'Ki Tisa', 'Vayakhel', 'Pekudei']
-            },
-            'vaikra': { 
-                name: 'ספר ויקרא', desc: 'עבודת המקדש, הקדושה והחובות המוסריות.', 
-                color: '#a855f7', lightColor: '#6b21a8', icon: 'temple_hindu', 
-                hero: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=1600', folder: 'vaikra',
-                parashotNames: ['Vayikra', 'Tzav', 'Shemini', 'Tazria', 'Metzora', 'Acharei Mot', 'Kedoshim', 'Emor', 'Behar', 'Bechukotai']
-            },
-            'bamidbar': { 
-                name: 'ספר במדבר', desc: 'מסע בני ישראל במדבר סיני אל הארץ המובטחת.', 
-                color: '#d97706', lightColor: '#92400e', icon: 'landscape', 
-                hero: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=1600', folder: 'bamidbar',
-                parashotNames: ['Bamidbar', 'Nasso', 'Beha\'alotcha', 'Shelach', 'Korach', 'Chukat', 'Balak', 'Pinchas', 'Matot', 'Masei']
-            },
-            'devarim': { 
-                name: 'ספר דברים', desc: 'נאום הפרידה של משה רבנו וסיכום המצוות.', 
-                color: '#0284c7', lightColor: '#075985', icon: 'record_voice_over', 
-                hero: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?q=80&w=1600', folder: 'devarim',
-                parashotNames: ['Devarim', 'Va\'etchanan', 'Eikev', 'Reeh', 'Shoftim', 'Ki Teitzei', 'Ki Tavo', 'Nitzavim', 'Vayeilech', 'Haazinu', 'VZot HaBerachah']
-            }
+            'bereshit': { name: 'ספר בראשית', desc: 'יסודות האמונה ובניית המשפחה היהודית הראשונה.', color: '#10b981', lightColor: '#065f46', icon: 'public', hero: 'images/bereshit_cover.jpg', folder: 'bereshit', parashotNames: ['Bereshit', 'Noach', 'Lech Lecha', 'Vayeira', 'Chayei Sarah', 'Toledot', 'Vayetzei', 'Vayishlach', 'Vayeshev', 'Miketz', 'Vayigash', 'Vayechi'] },
+            'shmot': { name: 'ספר שמות', desc: 'מיציאה מעבדות לחירות, מעמד הר סיני ובניית המשכן.', color: '#f97316', lightColor: '#9a3412', icon: 'local_fire_department', hero: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?q=80&w=1600', folder: 'shmot', parashotNames: ['Shemot', 'Vaera', 'Bo', 'Beshalach', 'Yitro', 'Mishpatim', 'Terumah', 'Tetzaveh', 'Ki Tisa', 'Vayakhel', 'Pekudei'] },
+            'vaikra': { name: 'ספר ויקרא', desc: 'עבודת המקדש, הקדושה והחובות המוסריות.', color: '#a855f7', lightColor: '#6b21a8', icon: 'temple_hindu', hero: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=1600', folder: 'vaikra', parashotNames: ['Vayikra', 'Tzav', 'Shemini', 'Tazria', 'Metzora', 'Acharei Mot', 'Kedoshim', 'Emor', 'Behar', 'Bechukotai'] },
+            'bamidbar': { name: 'ספר במדבר', desc: 'מסע בני ישראל במדבר סיני אל הארץ המובטחת.', color: '#d97706', lightColor: '#92400e', icon: 'landscape', hero: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=1600', folder: 'bamidbar', parashotNames: ['Bamidbar', 'Nasso', 'Beha\'alotcha', 'Shelach', 'Korach', 'Chukat', 'Balak', 'Pinchas', 'Matot', 'Masei'] },
+            'devarim': { name: 'ספר דברים', desc: 'נאום הפרידה של משה רבנו וסיכום המצוות.', color: '#0284c7', lightColor: '#075985', icon: 'record_voice_over', hero: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?q=80&w=1600', folder: 'devarim', parashotNames: ['Devarim', 'Va\'etchanan', 'Eikev', 'Reeh', 'Shoftim', 'Ki Teitzei', 'Ki Tavo', 'Nitzavim', 'Vayeilech', 'Haazinu', 'VZot HaBerachah'] }
         };
 
         function handleImageError(imgElement, color) {
@@ -223,13 +198,13 @@
                             </div>
                             <div class="p-4 md:p-8 flex flex-col justify-center flex-grow">
                                 <div class="flex justify-between items-start mb-1">
-                                    <h3 class="text-xl md:text-2xl font-bold" style="color: ${config.color}">${article.title}</h3>
+                                    <h3 class="text-lg md:text-xl font-bold" style="color: ${config.color}">${article.title}</h3>
                                     <div class="text-[10px] md:text-xs text-slate-400 font-medium flex flex-col items-end leading-tight text-left">
                                         <span>${article.date}</span>
                                         <span>${article.time}</span>
                                     </div>
                                 </div>
-                                <p class="custom-subtitle-font text-base md:text-2xl line-clamp-2 leading-relaxed" style="color: ${subtitleColor}">
+                                <p class="custom-subtitle-font text-xl md:text-4xl line-clamp-2 leading-tight" style="color: ${subtitleColor}">
                                     ${article.subtitle}
                                 </p>
                             </div>
