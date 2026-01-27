@@ -191,26 +191,24 @@
                 card.innerHTML = `
                     <a href="article.html?parasha=${article.id}&book=${bookId}" 
                        class="group relative p-[1.5px] rounded-3xl no-underline floating-card overflow-hidden block">
-                        <div class="card-inner-bg relative rounded-[calc(1.5rem-1.5px)] overflow-hidden flex min-h-[140px] md:min-h-[180px] items-stretch p-2">
-                            <div class="w-24 md:w-60 min-h-full overflow-hidden flex-shrink-0 rounded-2xl shadow-inner border border-black/5 relative bg-slate-50">
+                        <div class="card-inner-bg relative rounded-[calc(1.5rem-1.5px)] overflow-hidden flex min-h-[130px] md:min-h-[160px] items-stretch p-2">
+                            <div class="w-24 md:w-60 self-stretch overflow-hidden flex-shrink-0 rounded-2xl shadow-inner border border-black/5 relative bg-slate-50">
                                 <img src="${article.image}" id="img-${article.id}" onerror="handleImageError(this, '${config.color}')" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
                             </div>
-                            <div class="p-3 md:p-8 flex flex-col justify-center flex-grow">
-                                <div class="mb-1">
-                                    <h3 class="text-base md:text-xl font-bold" style="color: ${config.color}">${article.title}</h3>
-                                </div>
-                                <p class="custom-subtitle-font text-xl md:text-4xl leading-tight mb-3" style="color: ${subtitleColor}">
+                            <div class="p-3 md:p-6 flex flex-col justify-start gap-1 flex-grow">
+                                <h3 class="text-xs md:text-sm font-bold opacity-70 mb-0" style="color: ${config.color}">${article.title}</h3>
+                                <p class="custom-subtitle-font text-xl md:text-4xl leading-[1.1] mb-1" style="color: ${subtitleColor}">
                                     ${article.subtitle}
                                 </p>
-                                <div class="flex items-center">
-                                    <span class="text-[10px] md:text-xs font-bold tracking-wider px-3 py-1 rounded-full border" 
-                                          style="color: ${config.color}; border-color: ${config.color}44; background-color: ${config.color}08;">
+                                <div class="inline-flex">
+                                    <span class="text-[9px] md:text-xs font-bold px-2 py-0.5 rounded-md border" 
+                                          style="color: ${config.color}; border-color: ${config.color}33; background-color: ${config.color}05;">
                                         ${article.date}
                                     </span>
                                 </div>
                             </div>
-                            <div class="flex items-center px-2 md:px-8">
-                                <span class="material-symbols-outlined opacity-20 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all duration-500" style="color: ${config.color}">arrow_back_ios</span>
+                            <div class="flex items-center px-1 md:px-6">
+                                <span class="material-symbols-outlined text-sm md:text-base opacity-20 group-hover:opacity-100 group-hover:translate-x-[-3px] transition-all duration-500" style="color: ${config.color}">arrow_back_ios</span>
                             </div>
                         </div>
                         <div class="absolute inset-0 rounded-3xl pointer-events-none" style="border: 1.5px solid transparent; background: ${gradientFrame} border-box; -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0); -webkit-mask-composite: destination-out; mask-composite: exclude;"></div>
