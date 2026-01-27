@@ -197,16 +197,18 @@
                                 <img src="${article.image}" id="img-${article.id}" onerror="handleImageError(this, '${config.color}')" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
                             </div>
                             <div class="p-4 md:p-8 flex flex-col justify-center flex-grow">
-                                <div class="flex justify-between items-start mb-1">
+                                <div class="mb-1">
                                     <h3 class="text-lg md:text-xl font-bold" style="color: ${config.color}">${article.title}</h3>
-                                    <div class="text-[10px] md:text-xs text-slate-400 font-medium flex flex-col items-end leading-tight text-left">
-                                        <span>${article.date}</span>
-                                        <span>${article.time}</span>
-                                    </div>
                                 </div>
-                                <p class="custom-subtitle-font text-xl md:text-4xl line-clamp-2 leading-tight" style="color: ${subtitleColor}">
+                                <p class="custom-subtitle-font text-xl md:text-4xl line-clamp-2 leading-tight mb-2" style="color: ${subtitleColor}">
                                     ${article.subtitle}
                                 </p>
+                                <div class="flex items-center">
+                                    <span class="text-[10px] md:text-xs font-bold tracking-wider px-3 py-1 rounded-full border" 
+                                          style="color: ${config.color}; border-color: ${config.color}44; background-color: ${config.color}08;">
+                                        ${article.date}
+                                    </span>
+                                </div>
                             </div>
                             <div class="flex items-center px-4 md:px-8">
                                 <span class="material-symbols-outlined opacity-20 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all duration-500" style="color: ${config.color}">arrow_back_ios</span>
