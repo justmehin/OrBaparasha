@@ -63,6 +63,10 @@
         
         .custom-subtitle-font {
             font-family: 'OHLiorAtias', sans-serif;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -196,12 +200,13 @@
                                 <img src="${article.image}" id="img-${article.id}" onerror="handleImageError(this, '${config.color}')" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
                             </div>
 
-                            <div class="mr-4 md:mr-8 flex flex-col justify-between h-24 md:h-40 flex-grow py-1">
-                                <div class="flex flex-col gap-0.5">
-                                    <h3 class="text-lg md:text-2xl font-bold truncate leading-tight" style="color: ${config.color}">
+                            <div class="mr-4 md:mr-8 flex flex-col justify-between h-24 md:h-40 flex-grow py-0.5">
+                                <div class="flex flex-col">
+                                    <h3 class="text-lg md:text-2xl font-bold truncate leading-tight mb-0.5" style="color: ${config.color}">
                                         ${article.title}
                                     </h3>
-                                    <p class="custom-subtitle-font text-xl md:text-3xl truncate opacity-90" style="color: ${subtitleColor}">
+                                    
+                                    <p class="custom-subtitle-font text-base md:text-xl font-medium leading-[1.2]" style="color: ${subtitleColor}">
                                         ${article.subtitle}
                                     </p>
                                 </div>
@@ -214,7 +219,7 @@
                                 </div>
                             </div>
 
-                            <div class="flex items-center px-2 md:px-6">
+                            <div class="flex items-center px-1 md:px-6">
                                 <span class="material-symbols-outlined text-sm md:text-base opacity-20 group-hover:opacity-100 group-hover:translate-x-[-3px] transition-all duration-500" style="color: ${config.color}">arrow_back_ios</span>
                             </div>
                         </div>
