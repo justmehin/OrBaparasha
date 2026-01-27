@@ -1,5 +1,5 @@
 id: bereshit_1
-title: כותרתתת
+title: בראשית
 subtitle: כותרת משנה
 image: images/bereshit_cover.jpg
 writer: הרב נריה
