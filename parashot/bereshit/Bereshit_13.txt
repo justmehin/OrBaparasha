@@ -1,6 +1,6 @@
 id: bereshit_1
 title:פרשת בראשית
-subtitle: כותרת משנה
+subtitle: אני רוצה בכוונה משהו קצת ארוך ומשמעותי 
 image: images/bereshit_cover.jpg
 writer: הרב נריה
 profile picture: images/harav_neria.jpg
