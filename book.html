@@ -100,7 +100,6 @@
     </div>
 
     <script>
-        // הגדרות עיצוב לכל ספר (נשמר מהלוגיקה המקורית)
         const booksConfig = {
             'bereshit': { name: 'ספר בראשית', desc: 'יסודות האמונה ובניית המשפחה היהודית הראשונה.', color: '#10b981', lightColor: '#065f46', icon: 'public', hero: 'images/bereshit_cover.jpg', folder: 'bereshit' },
             'shmot': { name: 'ספר שמות', desc: 'מיציאה מעבדות לחירות, מעמד הר סיני ובניית המשכן.', color: '#f97316', lightColor: '#9a3412', icon: 'local_fire_department', hero: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?q=80&w=1600', folder: 'shmot' },
@@ -117,11 +116,10 @@
             container.innerHTML = `<span class="material-symbols-outlined text-4xl" style="color: ${color}88">menu_book</span>`;
         }
 
-        // פונקציה לפירוק תוכן הקובץ לפי הפורמט החדש
-        function parseArticle(text, fileName, bookId) {
+        function parseArticle(text) {
             const lines = text.split('\n');
             const data = {
-                id: fileName.replace('.txt', ''),
+                id: '',
                 title: '',
                 subtitle: '',
                 image: '',
@@ -136,21 +134,23 @@
             let bodyText = "";
 
             lines.forEach(line => {
-                if (line.trim() === '---') {
+                const cleanLine = line.trim();
+                if (cleanLine === '---') {
                     contentStarted = true;
                     return;
                 }
                 
                 if (!contentStarted) {
-                    if (line.startsWith('title:')) data.title = line.replace('title:', '').trim();
-                    else if (line.startsWith('subtitle:')) data.subtitle = line.replace('subtitle:', '').trim();
-                    else if (line.startsWith('image:')) data.image = line.replace('image:', '').trim();
-                    else if (line.startsWith('writer:')) data.writer = line.replace('writer:', '').trim();
-                    else if (line.startsWith('profile picture:')) data.profilePic = line.replace('profile picture:', '').trim();
-                    else if (line.startsWith('date:')) data.date = line.replace('date:', '').trim();
-                    else if (line.startsWith('time:')) data.time = line.replace('time:', '').trim();
+                    if (cleanLine.startsWith('id:')) data.id = cleanLine.replace('id:', '').trim();
+                    else if (cleanLine.startsWith('titel:')) data.title = cleanLine.replace('titel:', '').trim();
+                    else if (cleanLine.startsWith('subtitle:')) data.subtitle = cleanLine.replace('subtitle:', '').trim();
+                    else if (cleanLine.startsWith('image:')) data.image = cleanLine.replace('image:', '').trim();
+                    else if (cleanLine.startsWith('writer:')) data.writer = cleanLine.replace('writer:', '').trim();
+                    else if (cleanLine.startsWith('profile picture:')) data.profilePic = cleanLine.replace('profile picture:', '').trim();
+                    else if (cleanLine.startsWith('date:')) data.date = cleanLine.replace('date:', '').trim();
+                    else if (cleanLine.startsWith('time:')) data.time = cleanLine.replace('time:', '').trim();
                 } else {
-                    bodyText += line.trim();
+                    bodyText += cleanLine;
                 }
             });
 
@@ -163,7 +163,6 @@
             const bookId = params.get('book') || 'bereshit';
             const config = booksConfig[bookId] || booksConfig['bereshit'];
 
-            // הגדרת עיצוב דף
             document.getElementById('page-title').textContent = config.name;
             document.getElementById('main-title').textContent = config.name;
             document.getElementById('main-description').textContent = config.desc;
@@ -182,33 +181,29 @@
             document.getElementById('book-icon').textContent = config.icon;
 
             const grid = document.getElementById('parasha-grid');
-            
-            // מכיוון שלא ניתן לסרוק תיקייה ב-JS, ננסה לטעון קבצים לפי אינדקס (1 עד 50 למשל)
-            // או שתצטרך לספק רשימה. כאן אני בונה לוגיקה שמנסה לטעון עד שנעצרת.
-            let articleFound = false;
             grid.innerHTML = '';
-
-            // הערה: בשרת אמיתי כדאי להחזיק קובץ list.json בכל תיקייה. 
-            // כאן נבצע ניסיון טעינה של קבצים (נניח שמות הקבצים הם parasha1, parasha2 וכו' או לפי שמות הפרשות המוכרים)
-            const commonNames = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15']; // דוגמה לניסיון טעינה
             
-            // לטובת הגמישות שביקשת, ננסה לטעון רשימה רחבה. 
-            // אם יש לך שמות קבצים ספציפיים, אפשר להכניסם למערך כאן.
-            const fetchPromises = commonNames.map(name => 
-                fetch(`parashot/${config.folder}/${name}.txt`)
-                .then(res => res.ok ? res.text().then(t => ({text: t, name: name})) : null)
-                .catch(() => null)
-            );
+            let articleFound = false;
+
+            // סריקת קבצים 1 עד 35 לפי הבקשה
+            const fetchPromises = [];
+            for (let i = 1; i <= 35; i++) {
+                fetchPromises.push(
+                    fetch(`parashot/${config.folder}/${i}.txt`)
+                        .then(res => res.ok ? res.text() : null)
+                        .catch(() => null)
+                );
+            }
 
             const results = await Promise.all(fetchPromises);
             
-            results.forEach(result => {
-                if (!result) return;
+            results.forEach((textContent) => {
+                if (!textContent) return;
                 
-                const article = parseArticle(result.text, result.name, bookId);
+                const article = parseArticle(textContent);
                 
-                // בדיקה אם יש תוכן אחרי ה- ---
-                if (!article.hasContent) return;
+                // סינון מאמרים ללא תוכן או ללא ID
+                if (!article.hasContent || !article.id) return;
 
                 articleFound = true;
                 const card = document.createElement('div');
@@ -228,7 +223,7 @@
                                     <h3 class="text-xl md:text-2xl font-bold" style="color: ${config.color}">
                                         ${article.title}
                                     </h3>
-                                    <div class="text-[10px] md:text-xs text-slate-400 font-medium flex flex-col items-end">
+                                    <div class="text-[10px] md:text-xs text-slate-400 font-medium flex flex-col items-end leading-tight text-left">
                                         <span>${article.date}</span>
                                         <span>${article.time}</span>
                                     </div>
@@ -262,8 +257,10 @@
             const opacityValue = Math.max(0, 1 - scroll / 450);
             const blurValue = Math.min(20, scroll / 12);
             
-            heroContent.style.opacity = opacityValue;
-            heroContent.style.filter = `blur(${blurValue}px)`;
+            if(heroContent) {
+                heroContent.style.opacity = opacityValue;
+                heroContent.style.filter = `blur(${blurValue}px)`;
+            }
             if(backBtn) backBtn.style.opacity = opacityValue;
             if (heroBg) {
                 heroBg.style.filter = `blur(${blurValue / 2}px)`;
