@@ -89,6 +89,7 @@
         <div class="pb-24 px-6">
             <main class="max-w-4xl mx-auto">
                 <div id="parasha-grid" class="flex flex-col gap-8">
+                    <div id="loader" class="text-center py-10 opacity-50">טוען מאמרים...</div>
                 </div>
             </main>
         </div>
@@ -99,71 +100,13 @@
     </div>
 
     <script>
-        const booksData = {
-            'bereshit': { name: 'ספר בראשית', desc: 'יסודות האמונה ובניית המשפחה היהודית הראשונה.', color: '#10b981', lightColor: '#065f46', icon: 'public', hero: 'images/bereshit_cover.jpg', parashot: [
-                { id: 'bereshit', name: 'בראשית', desc: 'בריאת העולם, חטא אדם וחוה וסיפור קין והבל.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
-                { id: 'noach', name: 'נח', desc: 'תיבת נח, המבול וההבטחה לקיום העולם מחדש.', img: 'https://images.unsplash.com/photo-1533713619779-3c7333550066?w=400' },
-                { id: 'lech-lecha', name: 'לך לך', desc: 'מסעו של אברהם אבינו אל הארץ המובטחת.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
-                { id: 'vayeira', name: 'וירא', desc: 'ביקור המלאכים, הפיכת סדום ועקדת יצחק.', img: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400' },
-                { id: 'chayei-sarah', name: 'חיי שרה', desc: 'קניית מערת המכפלה ומציאת רבקה ליצחק.', img: 'https://images.unsplash.com/photo-1505305976870-c0be144022c4?w=400' },
-                { id: 'toledot', name: 'תולדות', desc: 'המאבק בין יעקב ועשיו על הבכורה והברכות.', img: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400' },
-                { id: 'vayetze', name: 'ויצא', desc: 'חלום הסולם, שנות העבודה אצל לבן והקמת השבטים.', img: 'https://images.unsplash.com/photo-1493246507139-91e8bef99c02?w=400' },
-                { id: 'vayishlach', name: 'וישלח', desc: 'המפגש עם עשיו והמאבק עם המלאך.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' },
-                { id: 'vayeishev', name: 'וישב', desc: 'מכירת יוסף, חלומותיו וירידתו למצרים.', img: 'https://images.unsplash.com/photo-1439853949127-fa647821eba0?w=400' },
-                { id: 'mikeitz', name: 'מקץ', desc: 'פתרון חלומות פרעה ומינוי יוסף למשנה למלך.', img: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400' },
-                { id: 'vayigash', name: 'ויגש', desc: 'חשיפת יוסף בפני אחיו וירידת יעקב למצרים.', img: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400' },
-                { id: 'vayechi', name: 'ויחי', desc: 'ברכות יעקב לבניו לפני מותו בסוף תקופת האבות.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' }
-            ]},
-            'shmot': { name: 'ספר שמות', desc: 'מיציאה מעבדות לחירות, מעמד הר סיני ובניית המשכן.', color: '#f97316', lightColor: '#9a3412', icon: 'local_fire_department', hero: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?q=80&w=1600', parashot: [
-                { id: 'shmot', name: 'שמות', desc: 'שעבוד מצרים, לידת משה והסנה הבוער.', img: 'https://images.unsplash.com/photo-1543722530-d2c3201371e7?w=400' },
-                { id: 'vaera', name: 'וארא', desc: 'שבע המכות הראשונות וחיזוק לב פרעה.', img: 'https://images.unsplash.com/photo-1510002165351-784860178385?w=400' },
-                { id: 'bo', name: 'בא', desc: 'שלוש המכות האחרונות ויציאת מצרים.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
-                { id: 'beshalach', name: 'בשלח', desc: 'קריעת ים סוף ושירת הים המפורסמת.', img: 'https://images.unsplash.com/photo-1439405326854-01517487c73b?w=400' },
-                { id: 'yitro', name: 'יתרו', desc: 'מעמד הר סיני ומתן עשרת הדיברות.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
-                { id: 'mishpatim', name: 'משפטים', desc: 'מצוות חברתיות רבות ודיני משפט.', img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400' },
-                { id: 'terumah', name: 'תרומה', desc: 'הציווי על הקמת המשכן וכליו.', img: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=400' },
-                { id: 'tetzaveh', name: 'תצוה', desc: 'בגדי הכהונה המפוארים והמנורה.', img: 'https://images.unsplash.com/photo-1510002165351-784860178385?w=400' },
-                { id: 'ki-tisa', name: 'כי תשא', desc: 'חטא העגל ומחצית השקל.', img: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400' },
-                { id: 'vayakhel', name: 'ויקהל', desc: 'התכנסות העם לבניית המשכן בפועל.', img: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=400' },
-                { id: 'pekudei', name: 'פקודי', desc: 'סיכום המלאכה והשראת השכינה.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' }
-            ]},
-            'vaikra': { name: 'ספר ויקרא', desc: 'עבודת המקדש, הקדושה והחובות המוסריות.', color: '#a855f7', lightColor: '#6b21a8', icon: 'temple_hindu', hero: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=1600', parashot: [
-                { id: 'vaikra', name: 'ויקרא', desc: 'דיני הקרבנות השונים במשכן.', img: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?w=400' },
-                { id: 'tzav', name: 'צו', desc: 'הוראות לכהנים על עבודת המזבח.', img: 'https://images.unsplash.com/photo-1533713619779-3c7333550066?w=400' },
-                { id: 'shemini', name: 'שמיני', desc: 'חנוכת המשכן ומאכלות אסורים.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
-                { id: 'tazria', name: 'תזריע', desc: 'דיני טומאה וטהרה בבני אדם.', img: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=400' },
-                { id: 'metzora', name: 'מצורע', desc: 'תהליך הטהרה והחיבור לקהילה.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
-                { id: 'acharei-mot', name: 'אחרי מות', desc: 'עבודת יום הכיפורים הקדושה.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
-                { id: 'kedoshim', name: 'קדושים', desc: 'ציווי הקדושה ומצוות ואהבת לרעך.', img: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400' },
-                { id: 'emor', name: 'אמור', desc: 'מועדי ישראל ודיני הכהונה.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' },
-                { id: 'behar', name: 'בהר', desc: 'שנת השמיטה ושנת היובל.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
-                { id: 'bechukotai', name: 'בחקותי', desc: 'הבטחות לברכה ואזהרות הברית.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' }
-            ]},
-            'bamidbar': { name: 'ספר במדבר', desc: 'מסע בני ישראל במדבר סיני אל הארץ המובטחת.', color: '#d97706', lightColor: '#92400e', icon: 'landscape', hero: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=1600', parashot: [
-                { id: 'bamidbar', name: 'במדבר', desc: 'מפקד בני ישראל וסידור המחנות.', img: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=400' },
-                { id: 'naso', name: 'נשא', desc: 'מצוות נזיר וברכת הכהנים.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
-                { id: 'behaalotcha', name: 'בהעלותך', desc: 'העלאת המנורה והנהגת הענן.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
-                { id: 'shelach', name: 'שלח לך', desc: 'חטא המרגלים ותוצאותיו.', img: 'https://images.unsplash.com/photo-1439853949127-fa647821eba0?w=400' },
-                { id: 'korach', name: 'קורח', desc: 'מחלוקת קורח ועדתו נגד משה.', img: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=400' },
-                { id: 'chukat', name: 'חוקת', desc: 'פרה אדומה ופטירת מרים ואהרון.', img: 'https://images.unsplash.com/photo-1507039228107-160565866160?w=400' },
-                { id: 'balak', name: 'בלק', desc: 'בלעם מנסה לקלל ונמצא מברך.', img: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400' },
-                { id: 'pinchas', name: 'פנחס', desc: 'שכר פנחס ומפקד בני ישראל.', img: 'https://images.unsplash.com/photo-1518005020250-68a0508b2400?w=400' },
-                { id: 'matot', name: 'מטות', desc: 'דיני נדרים והמלחמה במדין.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' },
-                { id: 'masei', name: 'מסעי', desc: 'סיכום מסעות ישראל וגבולות הארץ.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' }
-            ]},
-            'devarim': { name: 'ספר דברים', desc: 'נאום הפרידה של משה רבנו וסיכום המצוות.', color: '#0284c7', lightColor: '#075985', icon: 'record_voice_over', hero: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?q=80&w=1600', parashot: [
-                { id: 'devarim', name: 'דברים', desc: 'משה מתחיל את נאומו בסיכום המסע.', img: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?w=400' },
-                { id: 'vaetchanan', name: 'ואתחנן', desc: 'תפילת משה וקריאת שמע.', img: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400' },
-                { id: 'eikev', name: 'עקב', desc: 'ברכת המזון והבטחת השפע.', img: 'https://images.unsplash.com/photo-1445108849235-41a09707b931?w=400' },
-                { id: 'reeh', name: 'ראה', desc: 'הבחירה בין ברכה לקללה.', img: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?w=400' },
-                { id: 'shofetim', name: 'שופטים', desc: 'מינוי דיינים ומנהיגות בישראל.', img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400' },
-                { id: 'ki-tetze', name: 'כי תצא', desc: 'עשרות מצוות חברתיות ומוסריות.', img: 'https://images.unsplash.com/photo-1518005020250-68a0508b2400?w=400' },
-                { id: 'ki-tavo', name: 'כי תבוא', desc: 'מצוות הביכורים והברית בארץ.', img: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400' },
-                { id: 'nitzavim', name: 'ניצבים', desc: 'מעמד הברית והבחירה בחיים.', img: 'https://images.unsplash.com/photo-1426604966848-d7adac402bdb?w=400' },
-                { id: 'vayelech', name: 'וילך', desc: 'העברת ההנהגה ליהושע.', img: 'https://images.unsplash.com/photo-1472396961693-142e6e269027?w=400' },
-                { id: 'haazinu', name: 'האזינו', desc: 'שירת משה כעדות נצחית.', img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400' },
-                { id: 'vezot-haberacha', name: 'וזאת הברכה', desc: 'ברכות משה האחרונות וסיכום התורה.', img: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=400' }
-            ]}
+        // הגדרות עיצוב לכל ספר (נשמר מהלוגיקה המקורית)
+        const booksConfig = {
+            'bereshit': { name: 'ספר בראשית', desc: 'יסודות האמונה ובניית המשפחה היהודית הראשונה.', color: '#10b981', lightColor: '#065f46', icon: 'public', hero: 'images/bereshit_cover.jpg', folder: 'bereshit' },
+            'shmot': { name: 'ספר שמות', desc: 'מיציאה מעבדות לחירות, מעמד הר סיני ובניית המשכן.', color: '#f97316', lightColor: '#9a3412', icon: 'local_fire_department', hero: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?q=80&w=1600', folder: 'shmot' },
+            'vaikra': { name: 'ספר ויקרא', desc: 'עבודת המקדש, הקדושה והחובות המוסריות.', color: '#a855f7', lightColor: '#6b21a8', icon: 'temple_hindu', hero: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=1600', folder: 'vaikra' },
+            'bamidbar': { name: 'ספר במדבר', desc: 'מסע בני ישראל במדבר סיני אל הארץ המובטחת.', color: '#d97706', lightColor: '#92400e', icon: 'landscape', hero: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=1600', folder: 'bamidbar' },
+            'devarim': { name: 'ספר דברים', desc: 'נאום הפרידה של משה רבנו וסיכום המצוות.', color: '#0284c7', lightColor: '#075985', icon: 'record_voice_over', hero: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?q=80&w=1600', folder: 'devarim' }
         };
 
         function handleImageError(imgElement, color) {
@@ -174,56 +117,128 @@
             container.innerHTML = `<span class="material-symbols-outlined text-4xl" style="color: ${color}88">menu_book</span>`;
         }
 
+        // פונקציה לפירוק תוכן הקובץ לפי הפורמט החדש
+        function parseArticle(text, fileName, bookId) {
+            const lines = text.split('\n');
+            const data = {
+                id: fileName.replace('.txt', ''),
+                title: '',
+                subtitle: '',
+                image: '',
+                writer: '',
+                profilePic: '',
+                date: '',
+                time: '',
+                hasContent: false
+            };
+
+            let contentStarted = false;
+            let bodyText = "";
+
+            lines.forEach(line => {
+                if (line.trim() === '---') {
+                    contentStarted = true;
+                    return;
+                }
+                
+                if (!contentStarted) {
+                    if (line.startsWith('title:')) data.title = line.replace('title:', '').trim();
+                    else if (line.startsWith('subtitle:')) data.subtitle = line.replace('subtitle:', '').trim();
+                    else if (line.startsWith('image:')) data.image = line.replace('image:', '').trim();
+                    else if (line.startsWith('writer:')) data.writer = line.replace('writer:', '').trim();
+                    else if (line.startsWith('profile picture:')) data.profilePic = line.replace('profile picture:', '').trim();
+                    else if (line.startsWith('date:')) data.date = line.replace('date:', '').trim();
+                    else if (line.startsWith('time:')) data.time = line.replace('time:', '').trim();
+                } else {
+                    bodyText += line.trim();
+                }
+            });
+
+            data.hasContent = bodyText.length > 0;
+            return data;
+        }
+
         async function initPage() {
             const params = new URLSearchParams(window.location.search);
             const bookId = params.get('book') || 'bereshit';
-            const data = booksData[bookId] || booksData['bereshit'];
+            const config = booksConfig[bookId] || booksConfig['bereshit'];
 
-            document.getElementById('page-title').textContent = data.name;
-            document.getElementById('main-title').textContent = data.name;
-            document.getElementById('main-description').textContent = data.desc;
+            // הגדרת עיצוב דף
+            document.getElementById('page-title').textContent = config.name;
+            document.getElementById('main-title').textContent = config.name;
+            document.getElementById('main-description').textContent = config.desc;
             
             const heroBg = document.getElementById('hero-bg');
             const heroSection = document.getElementById('hero-section');
-            
-            if (data.hero) {
-                heroBg.style.backgroundImage = `url('${data.hero}')`;
+            if (config.hero) {
+                heroBg.style.backgroundImage = `url('${config.hero}')`;
             } else {
                 heroBg.style.opacity = '0';
-                heroSection.style.setProperty('--book-color-dark', data.lightColor);
-                heroSection.style.setProperty('--book-color-light', data.color);
+                heroSection.style.setProperty('--book-color-dark', config.lightColor);
+                heroSection.style.setProperty('--book-color-light', config.color);
                 heroSection.classList.add('hero-gradient-fallback');
             }
-
-            document.getElementById('icon-container').style.backgroundColor = data.color;
-            document.getElementById('book-icon').textContent = data.icon;
+            document.getElementById('icon-container').style.backgroundColor = config.color;
+            document.getElementById('book-icon').textContent = config.icon;
 
             const grid = document.getElementById('parasha-grid');
-            grid.innerHTML = ''; 
+            
+            // מכיוון שלא ניתן לסרוק תיקייה ב-JS, ננסה לטעון קבצים לפי אינדקס (1 עד 50 למשל)
+            // או שתצטרך לספק רשימה. כאן אני בונה לוגיקה שמנסה לטעון עד שנעצרת.
+            let articleFound = false;
+            grid.innerHTML = '';
 
-            data.parashot.forEach(p => {
+            // הערה: בשרת אמיתי כדאי להחזיק קובץ list.json בכל תיקייה. 
+            // כאן נבצע ניסיון טעינה של קבצים (נניח שמות הקבצים הם parasha1, parasha2 וכו' או לפי שמות הפרשות המוכרים)
+            const commonNames = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15']; // דוגמה לניסיון טעינה
+            
+            // לטובת הגמישות שביקשת, ננסה לטעון רשימה רחבה. 
+            // אם יש לך שמות קבצים ספציפיים, אפשר להכניסם למערך כאן.
+            const fetchPromises = commonNames.map(name => 
+                fetch(`parashot/${config.folder}/${name}.txt`)
+                .then(res => res.ok ? res.text().then(t => ({text: t, name: name})) : null)
+                .catch(() => null)
+            );
+
+            const results = await Promise.all(fetchPromises);
+            
+            results.forEach(result => {
+                if (!result) return;
+                
+                const article = parseArticle(result.text, result.name, bookId);
+                
+                // בדיקה אם יש תוכן אחרי ה- ---
+                if (!article.hasContent) return;
+
+                articleFound = true;
                 const card = document.createElement('div');
-                const gradientFrame = `linear-gradient(135deg, ${data.color}, ${data.lightColor})`;
+                const gradientFrame = `linear-gradient(135deg, ${config.color}, ${config.lightColor})`;
 
                 card.innerHTML = `
-                    <a href="article.html?parasha=${p.id}&book=${bookId}" 
+                    <a href="article.html?parasha=${article.id}&book=${bookId}" 
                        class="group relative p-[1.5px] rounded-3xl no-underline floating-card overflow-hidden block">
                         <div class="card-inner-bg relative rounded-[calc(1.5rem-1.5px)] overflow-hidden flex h-32 md:h-44 items-stretch p-2">
                             <div class="w-28 md:w-60 h-full overflow-hidden flex-shrink-0 rounded-2xl shadow-inner border border-black/5 relative bg-slate-50">
-                                <img src="${p.img}" id="img-${p.id}" 
-                                     onerror="handleImageError(this, '${data.color}')"
+                                <img src="${article.image}" id="img-${article.id}" 
+                                     onerror="handleImageError(this, '${config.color}')"
                                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
                             </div>
                             <div class="p-4 md:p-8 flex flex-col justify-center flex-grow">
-                                <h3 class="text-xl md:text-2xl font-bold mb-2" id="title-${p.id}" style="color: ${data.color}">
-                                    ${p.name}
-                                </h3>
-                                <p class="text-slate-600 text-sm md:text-lg line-clamp-2 leading-relaxed font-normal" id="desc-${p.id}">
-                                    ${p.desc}
+                                <div class="flex justify-between items-start mb-1">
+                                    <h3 class="text-xl md:text-2xl font-bold" style="color: ${config.color}">
+                                        ${article.title}
+                                    </h3>
+                                    <div class="text-[10px] md:text-xs text-slate-400 font-medium flex flex-col items-end">
+                                        <span>${article.date}</span>
+                                        <span>${article.time}</span>
+                                    </div>
+                                </div>
+                                <p class="text-slate-600 text-sm md:text-lg line-clamp-2 leading-relaxed font-normal">
+                                    ${article.subtitle}
                                 </p>
                             </div>
                             <div class="flex items-center px-4 md:px-8">
-                                <span class="material-symbols-outlined opacity-20 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all duration-500" style="color: ${data.color}">
+                                <span class="material-symbols-outlined opacity-20 group-hover:opacity-100 group-hover:translate-x-[-5px] transition-all duration-500" style="color: ${config.color}">
                                     arrow_back_ios
                                 </span>
                             </div>
@@ -232,25 +247,11 @@
                     </a>
                 `;
                 grid.appendChild(card);
-
-                fetch(`parashot/${p.id}.txt`)
-                    .then(response => response.ok ? response.text() : null)
-                    .then(text => {
-                        if (text) {
-                            const lines = text.split('\n');
-                            lines.forEach(line => {
-                                if (line.startsWith('title:')) document.getElementById(`title-${p.id}`).textContent = line.replace('title:', '').trim();
-                                if (line.startsWith('subtitle:')) document.getElementById(`desc-${p.id}`).textContent = line.replace('subtitle:', '').trim();
-                                if (line.startsWith('image:')) {
-                                    const imgUrl = line.replace('image:', '').trim();
-                                    if(imgUrl) document.getElementById(`img-${p.id}`).src = imgUrl;
-                                    else handleImageError(document.getElementById(`img-${p.id}`), data.color);
-                                }
-                            });
-                        }
-                    })
-                    .catch(() => {});
             });
+
+            if (!articleFound) {
+                grid.innerHTML = '<div class="text-center py-20 text-slate-500">בקרוב יעלו מאמרים חדשים לספר זה.</div>';
+            }
         }
 
         window.addEventListener('scroll', () => {
@@ -263,9 +264,7 @@
             
             heroContent.style.opacity = opacityValue;
             heroContent.style.filter = `blur(${blurValue}px)`;
-            if(backBtn) {
-                backBtn.style.opacity = opacityValue;
-            }
+            if(backBtn) backBtn.style.opacity = opacityValue;
             if (heroBg) {
                 heroBg.style.filter = `blur(${blurValue / 2}px)`;
                 heroBg.style.transform = `scale(${1 + scroll / 1200})`;
