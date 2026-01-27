@@ -25,6 +25,14 @@
         }
     </script>
     <style>
+        /* טעינת הפונט המקומי */
+        @font-face {
+            font-family: 'OHLiorAtias';
+            src: url('OHLiorAtias-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         body { 
             background: linear-gradient(to bottom, white 0%, white 15%, #f1dcc1 60%, #f1dcc1 100%);
             margin: 0; 
@@ -54,6 +62,11 @@
         }
         .hero-gradient-fallback {
             background: linear-gradient(180deg, var(--book-color-dark) 0%, var(--book-color-light) 100%);
+        }
+        
+        /* מחלקה עבור הפונט החדש */
+        .custom-subtitle-font {
+            font-family: 'OHLiorAtias', sans-serif;
         }
     </style>
 </head>
@@ -214,7 +227,6 @@
 
             const fetchPromises = [];
             config.parashotNames.forEach(pName => {
-                // תיקון קריטי: החלפת רווחים בקו תחתון בשם הקובץ
                 const safeFileName = pName.replace(/\s+/g, '_');
                 
                 for (let i = 1; i <= 20; i++) {
@@ -229,6 +241,10 @@
 
             const results = await Promise.all(fetchPromises);
             
+            // הגדרת צבע משלים לכותרת המשנה על בסיס הספר שנבחר
+            // משתמשים בצבע הכהה של הספר עם שקיפות מסוימת או גוון מיוחד
+            const subtitleColor = config.lightColor;
+
             results.forEach((textContent) => {
                 if (!textContent) return;
                 const article = parseArticle(textContent);
@@ -257,7 +273,7 @@
                                         <span>${article.time}</span>
                                     </div>
                                 </div>
-                                <p class="text-slate-600 text-sm md:text-lg line-clamp-2 leading-relaxed font-normal">
+                                <p class="custom-subtitle-font text-sm md:text-xl line-clamp-2 leading-relaxed" style="color: ${subtitleColor}">
                                     ${article.subtitle}
                                 </p>
                             </div>
