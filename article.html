@@ -43,10 +43,10 @@
 
         body { background-color: #fffaf5; }
         
-        .article-content p { @apply text-lg leading-relaxed mb-6 text-slate-700; font-family: 'Assistant', sans-serif; }
-        .article-content h3 { @apply text-2xl font-bold mt-10 mb-4 block; font-family: 'NoaShalev', serif; color: var(--primary-color); }
-        .article-content .quote { @apply border-r-4 pr-6 py-2 my-8 italic text-xl bg-black/5 rounded-l-lg; border-color: var(--primary-color); }
-        .article-content .centered { @apply text-center text-2xl font-bold my-10 block; font-family: 'NoaShalev', serif; color: var(--primary-color); }
+        .article-content p { @apply text-lg md:text-xl leading-relaxed mb-6 text-slate-700; font-family: 'Assistant', sans-serif; }
+        .article-content h3 { @apply text-2xl md:text-3xl font-bold mt-12 mb-6 block; font-family: 'NoaShalev', serif; color: var(--primary-color); }
+        .article-content .quote { @apply border-r-4 pr-6 py-4 my-8 italic text-xl md:text-2xl bg-black/[0.03] rounded-l-lg text-slate-600; border-color: var(--primary-color); }
+        .article-content .centered { @apply text-center text-2xl md:text-3xl font-bold my-12 block; font-family: 'NoaShalev', serif; color: var(--primary-color); }
         .article-content b { @apply font-bold text-slate-900; }
 
         .floating-btn { @apply w-14 h-14 rounded-full flex items-center justify-center text-white shadow-2xl transition-all active:scale-90 hover:scale-110; }
@@ -72,7 +72,7 @@
                 <p id="article-subtitle" class="text-2xl md:text-4xl font-subtitleFont opacity-80"></p>
                 
                 <div class="flex items-center justify-center gap-4 mt-8 pt-8 border-t border-slate-100">
-                    <img id="writer-img" src="" alt="" class="w-14 h-14 rounded-full object-cover border-2 border-bookColor">
+                    <img id="writer-img" src="" alt="" class="w-14 h-14 rounded-full object-cover border-2 border-bookColor bg-slate-100">
                     <div class="text-right">
                         <div id="writer-name" class="font-bold text-lg text-slate-800 leading-none"></div>
                         <div id="article-date" class="text-sm text-slate-500 mt-1"></div>
@@ -83,7 +83,8 @@
             <hr class="mb-10 opacity-50">
 
             <div id="article-body" class="article-content">
-                </div>
+                <div class="text-center py-10 opacity-30">טוען תוכן...</div>
+            </div>
 
         </div>
     </main>
@@ -113,7 +114,6 @@
 
             if (!articleId || !bookId) return;
 
-            // עדכון צבעים לפי הספר
             const config = booksConfig[bookId] || { color: '#64748b', light: '#f1f5f9' };
             document.documentElement.style.setProperty('--primary-color', config.color);
             document.documentElement.style.setProperty('--light-color', config.light);
@@ -129,69 +129,77 @@
         }
 
         function renderArticle(rawText) {
-            const parts = rawText.split('---');
-            const metadataText = parts[0];
-            const contentText = parts[1] || "";
+            // הפרדה בין מטא-דאטה לתוכן
+            const separatorIndex = rawText.indexOf('---');
+            const metadataText = rawText.substring(0, separatorIndex);
+            const contentText = rawText.substring(separatorIndex + 3).trim();
 
-            // שליפת מטא-דאטה
+            // שליפת מטא-דאטה בצורה בטוחה
             const metadata = {};
             metadataText.split('\n').forEach(line => {
-                const [key, ...val] = line.split(':');
-                if (key && val) metadata[key.trim()] = val.join(':').trim();
+                const colonIndex = line.indexOf(':');
+                if (colonIndex !== -1) {
+                    const key = line.substring(0, colonIndex).trim();
+                    const value = line.substring(colonIndex + 1).trim();
+                    metadata[key] = value;
+                }
             });
 
-            // מילוי שדות המאמר
-            document.getElementById('page-browser-title').textContent = metadata.title + " | אור בפרשה";
-            document.getElementById('article-title').textContent = metadata.title;
+            // עדכון ממשק המשתמש
+            document.getElementById('page-browser-title').textContent = (metadata.title || "מאמר") + " | אור בפרשה";
+            document.getElementById('article-title').textContent = metadata.title || "";
             document.getElementById('article-title').style.color = 'var(--primary-color)';
-            document.getElementById('article-subtitle').textContent = metadata.subtitle;
+            document.getElementById('article-subtitle').textContent = metadata.subtitle || "";
             document.getElementById('article-subtitle').style.color = 'var(--primary-color)';
-            document.getElementById('article-hero-img').style.backgroundImage = `url('${metadata.image}')`;
-            document.getElementById('writer-name').textContent = metadata.writer;
-            document.getElementById('writer-img').src = metadata['profile picture'];
-            document.getElementById('article-date').textContent = metadata.date;
+            document.getElementById('article-hero-img').style.backgroundImage = `url('${metadata.image || ''}')`;
+            
+            // כותב ותאריך
+            document.getElementById('writer-name').textContent = metadata.writer || "מערכת אור בפרשה";
+            document.getElementById('writer-img').src = metadata['profile picture'] || 'images/default-avatar.jpg';
+            document.getElementById('article-date').textContent = metadata.date || "";
 
-            // עיבוד תוכן המאמר (ה-Brain)
+            // עיבוד גוף המאמר
             const bodyContainer = document.getElementById('article-body');
-            const paragraphs = contentText.trim().split(/\n\s*\n/); // זיהוי פסקאות ע"י שורה ריקה
+            
+            // פיצול לפסקאות על בסיס שורה ריקה כפולה
+            const paragraphs = contentText.split(/\n\s*\n/);
 
-            bodyContainer.innerHTML = paragraphs.map(p => {
-                let processed = p.trim();
+            const renderedHtml = paragraphs.map(p => {
+                let text = p.trim();
+                if (!text) return '';
 
-                // הדגשה (**text**)
-                processed = processed.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+                // טיפול בהדגשה גלובלית
+                text = text.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
 
-                // כותרת משנה (H3:)
-                if (processed.startsWith('H3:')) {
-                    return `<h3>${processed.replace('H3:', '').trim()}</h3>`;
+                // זיהוי פקודות בתחילת פסקה
+                if (text.startsWith('H3:')) {
+                    return `<h3>${text.replace('H3:', '').trim()}</h3>`;
+                }
+                
+                if (text.startsWith('center-text:')) {
+                    return `<div class="centered">${text.replace('center-text:', '').trim()}</div>`;
                 }
 
-                // טקסט ממורכז (center-text:)
-                if (processed.startsWith('center-text:')) {
-                    return `<span class="centered">${processed.replace('center-text:', '').trim()}</span>`;
+                if (text.startsWith('quote:')) {
+                    // בציטוט נשמור על ירידות שורה בודדות בתוך הפסקה
+                    const quoteContent = text.replace('quote:', '').trim().replace(/\n/g, '<br>');
+                    return `<div class="quote">${quoteContent}</div>`;
                 }
 
-                // ציטוט (quote:)
-                if (processed.startsWith('quote:')) {
-                    // הציטוט נמשך עד סוף הפסקה (ירידת שורה כפולה)
-                    return `<div class="quote">${processed.replace('quote:', '').trim().replace(/\n/g, '<br>')}</div>`;
-                }
-
-                // פסקאות רגילות עם ירידות שורה בודדות
-                return `<p>${processed.replace(/\n/g, '<br>')}</p>`;
+                // פסקה רגילה - הפיכת ירידות שורה בודדות ל-br
+                return `<p>${text.replace(/\n/g, '<br>')}</p>`;
             }).join('');
+
+            bodyContainer.innerHTML = renderedHtml;
         }
 
         function shareArticle() {
+            const title = document.getElementById('article-title').textContent;
             if (navigator.share) {
-                navigator.share({
-                    title: document.getElementById('article-title').textContent,
-                    url: window.location.href
-                });
+                navigator.share({ title: title, url: window.location.href });
             } else {
-                // העתקה ללוח במידה ואין תמיכה בשיתוף
                 navigator.clipboard.writeText(window.location.href);
-                alert('הקישור הועתק ללוח!');
+                alert('הקישור הועתק!');
             }
         }
 
