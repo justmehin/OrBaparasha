@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-browser-title">טוען מאמר...</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;800&family=Noto+Sans+Hebrew:wght@300;400;700&family=Noto+Serif+Hebrew:wght@300;400;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;800&family=Noto+Sans+Hebrew:wght@300;400;700&family=Noto+Serif+Hebrew:wght@300;400;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -33,7 +33,6 @@
         :root { --primary-color: #64748b; --light-color: #f1f5f9; }
         body { background-color: #fdfaf7; color: #1e293b; overflow-x: hidden; }
         
-        /* טקסט מאמר */
         .article-content p { 
             font-family: 'Noto Serif Hebrew', serif;
             font-size: 1.25rem; line-height: 1.8; margin-bottom: 1.8rem;
@@ -41,13 +40,11 @@
         }
         @media (min-width: 768px) { .article-content p { font-size: 1.45rem; } }
         
-        /* כותרת H3 */
         .article-content h3 { 
             font-family: 'NoaShalev', serif; font-weight: bold; margin-top: 3rem; margin-bottom: 1.2rem;
             display: block; color: var(--primary-color); font-size: 1.8rem; text-align: right;
         }
 
-        /* טקסט ממורכז (דרוגלין) */
         .article-content .centered { 
             font-family: 'Noto Serif Hebrew', serif; font-weight: bold; margin-top: 3rem; margin-bottom: 1.2rem;
             display: block; color: var(--primary-color); font-size: 1.8rem; text-align: center;
@@ -55,7 +52,6 @@
 
         @media (min-width: 768px) { .article-content h3, .article-content .centered { font-size: 2.2rem; } }
         
-        /* ציטוט - פונט Heebo מודרני ומוטה */
         .article-content .quote { 
             margin-top: 3rem; margin-bottom: 3rem; padding: 1.5rem 2rem;
             font-family: 'Heebo', sans-serif; font-weight: 300; font-style: italic;
@@ -67,7 +63,6 @@
 
         .article-content b { @apply font-bold text-black; }
 
-        /* כפתור חזרה */
         .back-btn {
             display: flex; position: absolute; top: 1.5rem; right: 1.5rem; z-index: 40;
             width: 42px; height: 42px; align-items: center; justify-content: center;
@@ -75,7 +70,6 @@
             border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.3s;
         }
 
-        /* Hero Image */
         .hero-container {
             position: relative; height: 55vh; width: 100%; overflow: hidden;
             background: linear-gradient(135deg, var(--primary-color), var(--light-color));
@@ -92,7 +86,6 @@
         }
         .hero-fallback-icon span { font-size: 120px; }
 
-        /* כפתורי פעולה */
         .floating-container { position: fixed; bottom: 2rem; left: 2rem; display: flex; flex-direction: column; gap: 1rem; z-index: 50; }
         
         .action-btn {
@@ -126,13 +119,20 @@
                 <h1 id="article-title" class="text-6xl md:text-8xl font-titleFont mb-6 leading-tight"></h1>
                 <p id="article-subtitle" class="text-4xl md:text-6xl font-subtitleFont opacity-95 italic mb-10"></p>
                 
-                <div class="border-y border-slate-100 py-3 mt-8">
-                    <div class="flex items-center justify-between w-full gap-2">
-                        <div class="flex items-center gap-2 shrink">
-                            <img id="writer-img" src="" alt="" class="w-10 h-10 md:w-11 md:h-11 rounded-full object-cover border border-bookColor/20">
-                            <div id="writer-name" class="font-bold text-sm md:text-base text-slate-700 font-sans truncate"></div>
+                <div class="border-y border-slate-100 py-4 mt-8">
+                    <div class="flex flex-col md:flex-row items-center justify-between w-full gap-4">
+                        <div class="flex items-center gap-3">
+                            <img id="writer-img" src="" alt="" class="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-bookColor/20">
+                            <div class="text-right">
+                                <div id="writer-name" class="font-bold text-sm md:text-base text-slate-700 font-sans"></div>
+                                <div id="article-date" class="text-xs text-slate-400 font-light"></div>
+                            </div>
                         </div>
-                        <div id="article-date" class="text-xs md:text-sm text-slate-400 font-light whitespace-nowrap"></div>
+                        
+                        <div class="flex items-center gap-2 text-slate-500 bg-slate-50 px-4 py-1.5 rounded-full border border-slate-100">
+                            <span class="material-symbols-outlined text-lg">schedule</span>
+                            <span id="read-time" class="text-sm font-medium font-sans">מחשב זמן קריאה...</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -185,6 +185,13 @@
             }
         }
 
+        function calculateReadTime(text) {
+            const wordsPerMinute = 200;
+            const noOfWords = text.split(/\s+/).length;
+            const minutes = Math.ceil(noOfWords / wordsPerMinute);
+            return minutes;
+        }
+
         function renderArticle(rawText) {
             const separator = rawText.indexOf('---');
             const metaPart = rawText.substring(0, separator);
@@ -197,6 +204,10 @@
                     metadata[parts[0].trim()] = parts.slice(1).join(':').trim();
                 }
             });
+
+            // עדכון זמן קריאה
+            const minutes = calculateReadTime(contentPart);
+            document.getElementById('read-time').textContent = `זמן קריאה: ${minutes} דק'`;
 
             document.getElementById('page-browser-title').textContent = metadata.title;
             document.getElementById('article-title').textContent = metadata.title;
