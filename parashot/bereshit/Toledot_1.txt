@@ -1,7 +1,7 @@
 id: Toledot_1
 title: פרשת תולדות
 subtitle:  איך ההורים מגיבים כשהבן סוטה מן הדרך
-image: https://pixabay.com/images/download/non-224004_1920.jpg
+image: https://media.istockphoto.com/id/690054224/photo/sad-little-boy-crying-loudly.jpg?s=612x612&w=0&k=20&c=jvqizY3sdMUgyV0NLxsgz2rYLH77ymr6XNNWA0VCa5A=
 writer:  הרב נריה בולאק
  profile picture: images/harav_neria.jpg
 date: 
