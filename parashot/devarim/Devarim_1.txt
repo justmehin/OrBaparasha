@@ -1,0 +1,10 @@
+id: Devarim_1
+title: פרשת דברים
+subtitle: נסיון להבין איך זה יראה
+image: google.com
+weiter: הרב נריה בולאק
+profile picture: image.com
+date: ג כסלו
+time: 13:43
+---
+תוכןןן
