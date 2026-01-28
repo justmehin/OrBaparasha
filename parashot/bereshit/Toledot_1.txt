@@ -1,7 +1,7 @@
 id: Toledot_1
 title: פרשת תולדות
 subtitle:  איך ההורים מגיבים כשהבן סוטה מן הדרך
-image:
+image: https://storage.hidabroot.org/articles_new/312089_tumb_730X500.jpg
 writer:  הרב נריה בולאק
  profile picture: images/harav_neria.jpg
 date: 
