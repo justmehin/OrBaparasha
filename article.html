@@ -33,49 +33,48 @@
         :root { --primary-color: #64748b; --light-color: #f1f5f9; }
         body { background-color: #fdfaf7; color: #1e293b; overflow-x: hidden; }
         
-        /* טקסט מאמר - פונט Noto Serif, גודל מעודכן */
+        /* טקסט מאמר - יישור לשני הצדדים וגודל מאוזן */
         .article-content p { 
             font-family: 'Noto Serif Hebrew', serif;
-            font-size: 1.35rem; 
-            line-height: 1.85;
+            font-size: 1.25rem; 
+            line-height: 1.8;
             margin-bottom: 1.8rem;
             color: #1e293b;
             font-weight: 400;
+            text-align: justify;
+            text-justify: inter-word;
         }
         @media (min-width: 768px) {
-            .article-content p { font-size: 1.55rem; } 
+            .article-content p { font-size: 1.45rem; } 
         }
         
         /* כותרת משנה H3 */
         .article-content h3 { 
-            font-size: 2rem; 
+            font-size: 1.8rem; 
             font-weight: bold; 
-            margin-top: 3.2rem; 
+            margin-top: 3rem; 
             margin-bottom: 1.2rem; 
             display: block; 
             font-family: 'NoaShalev', serif; 
             color: var(--primary-color); 
+            text-align: right;
         }
         @media (min-width: 768px) {
-            .article-content h3 { font-size: 2.4rem; }
+            .article-content h3 { font-size: 2.2rem; }
         }
         
-        /* עיצוב ציטוט */
+        /* עיצוב ציטוט חדש - מינימליסטי ויוקרתי */
         .article-content .quote { 
-            @apply relative my-16 py-12 px-10 text-2xl md:text-3xl italic text-slate-600 bg-white shadow-md rounded-2xl border-r-[10px];
+            @apply my-12 py-8 pr-8 pl-6 text-xl md:text-2xl italic text-slate-700 bg-slate-50/50 rounded-l-lg border-r-4;
             font-family: 'Noto Serif Hebrew', serif;
             border-color: var(--primary-color);
-            background-image: linear-gradient(to left, var(--light-color), transparent);
-        }
-        .article-content .quote::before {
-            content: '"';
-            @apply absolute -top-8 right-6 text-7xl opacity-20 font-serif;
-            color: var(--primary-color);
+            text-align: right;
+            line-height: 1.6;
         }
 
         /* טקסט ממורכז */
         .article-content .centered { 
-            @apply text-center text-4xl md:text-6xl font-bold my-24 block w-full leading-tight; 
+            @apply text-center text-3xl md:text-5xl font-bold my-20 block w-full leading-tight; 
             font-family: 'NoaShalev', serif; 
             color: var(--primary-color);
         }
