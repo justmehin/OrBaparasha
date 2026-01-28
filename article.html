@@ -32,15 +32,35 @@
         :root { --primary-color: #64748b; --light-color: #f1f5f9; }
         body { background-color: #fdfaf7; color: #1e293b; overflow-x: hidden; }
         
-        /* טקסט מאמר - ענק וקריא */
-        .article-content p { @apply text-3xl md:text-4xl leading-[1.8] mb-12 text-slate-800 font-[300]; }
+        /* טקסט מאמר - הגדרה משמעותית (ענק) */
+        .article-content p { 
+            font-size: 2.2rem; /* גודל בסיס ענק */
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            color: #1e293b;
+            font-weight: 300;
+        }
+        @media (min-width: 768px) {
+            .article-content p { font-size: 2.8rem; } /* עוד יותר גדול בדסקטופ */
+        }
         
-        /* כותרת משנה H3 - פי 1.5 מגודל הטקסט */
-        .article-content h3 { @apply text-5xl md:text-6xl font-bold mt-24 mb-10 block; font-family: 'NoaShalev', serif; color: var(--primary-color); }
+        /* כותרת משנה H3 - פי 1.5 מטקסט המאמר */
+        .article-content h3 { 
+            font-size: 3.3rem; 
+            font-weight: bold; 
+            margin-top: 4rem; 
+            margin-bottom: 2rem; 
+            display: block; 
+            font-family: 'NoaShalev', serif; 
+            color: var(--primary-color); 
+        }
+        @media (min-width: 768px) {
+            .article-content h3 { font-size: 4.2rem; }
+        }
         
         /* עיצוב ציטוט */
         .article-content .quote { 
-            @apply relative my-20 py-14 px-14 text-4xl md:text-5xl italic text-slate-600 bg-white shadow-md rounded-2xl border-r-[12px];
+            @apply relative my-20 py-14 px-10 text-4xl md:text-5xl italic text-slate-600 bg-white shadow-md rounded-2xl border-r-[12px];
             border-color: var(--primary-color);
             background-image: linear-gradient(to left, var(--light-color), transparent);
         }
@@ -74,20 +94,20 @@
         </a>
     </div>
 
-    <main class="max-w-5xl mx-auto px-6 -mt-48 relative z-10 pb-40">
-        <div class="bg-white rounded-[3.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] p-10 md:p-20 border border-slate-50">
+    <main class="max-w-5xl mx-auto px-4 md:px-6 -mt-48 relative z-10 pb-40">
+        <div class="bg-white rounded-[3.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] p-8 md:p-20 border border-slate-50">
             
             <div class="text-center mb-8">
                 <h1 id="article-title" class="text-6xl md:text-8xl font-titleFont mb-6 leading-tight"></h1>
                 <p id="article-subtitle" class="text-3xl md:text-5xl font-subtitleFont opacity-90 italic mb-10"></p>
                 
-                <div class="border-y border-slate-200 py-4 mt-8">
-                    <div class="flex items-center justify-between w-full">
-                        <div class="flex items-center gap-4">
-                            <img id="writer-img" src="" alt="" class="w-16 h-16 rounded-full object-cover border-2 border-bookColor bg-slate-50">
-                            <div id="writer-name" class="font-bold text-2xl text-slate-800 font-sans"></div>
+                <div class="border-y border-slate-200 py-3 mt-8">
+                    <div class="flex items-center justify-between w-full gap-2">
+                        <div class="flex items-center gap-3 shrink">
+                            <img id="writer-img" src="" alt="" class="w-10 h-10 md:w-14 md:h-14 rounded-full object-cover border border-bookColor bg-slate-50">
+                            <div id="writer-name" class="font-bold text-lg md:text-xl text-slate-800 font-sans truncate"></div>
                         </div>
-                        <div id="article-date" class="text-xl text-slate-500 font-light"></div>
+                        <div id="article-date" class="text-base md:text-lg text-slate-500 font-light whitespace-nowrap"></div>
                     </div>
                 </div>
             </div>
