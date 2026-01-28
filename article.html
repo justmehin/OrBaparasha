@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="page-browser-title">טוען מאמר...</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;800&family=Noto+Sans+Hebrew:wght@300;400;700&family=Noto+Serif+Hebrew:wght@300;400;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -17,7 +17,8 @@
                         bookLight: 'var(--light-color)'
                     },
                     fontFamily: {
-                        sans: ['Heebo', 'sans-serif'],
+                        sans: ['Noto Sans Hebrew', 'Heebo', 'sans-serif'],
+                        serif: ['Noto Serif Hebrew', 'serif'],
                         titleFont: ['NoaShalev', 'serif'],
                         subtitleFont: ['OHLiorAtias', 'serif'],
                     }
@@ -32,47 +33,49 @@
         :root { --primary-color: #64748b; --light-color: #f1f5f9; }
         body { background-color: #fdfaf7; color: #1e293b; overflow-x: hidden; }
         
-        /* טקסט מאמר - גדול וקריא אך פרופורציונלי */
+        /* טקסט מאמר - פונט Noto Serif, גודל מעודכן */
         .article-content p { 
-            font-size: 1.5rem; 
-            line-height: 1.8;
-            margin-bottom: 2rem;
+            font-family: 'Noto Serif Hebrew', serif;
+            font-size: 1.35rem; 
+            line-height: 1.85;
+            margin-bottom: 1.8rem;
             color: #1e293b;
-            font-weight: 300;
+            font-weight: 400;
         }
         @media (min-width: 768px) {
-            .article-content p { font-size: 1.75rem; } 
+            .article-content p { font-size: 1.55rem; } 
         }
         
-        /* כותרת משנה H3 - פי 1.5 מטקסט המאמר */
+        /* כותרת משנה H3 */
         .article-content h3 { 
-            font-size: 2.25rem; 
+            font-size: 2rem; 
             font-weight: bold; 
-            margin-top: 3.5rem; 
-            margin-bottom: 1.5rem; 
+            margin-top: 3.2rem; 
+            margin-bottom: 1.2rem; 
             display: block; 
             font-family: 'NoaShalev', serif; 
             color: var(--primary-color); 
         }
         @media (min-width: 768px) {
-            .article-content h3 { font-size: 2.6rem; }
+            .article-content h3 { font-size: 2.4rem; }
         }
         
         /* עיצוב ציטוט */
         .article-content .quote { 
-            @apply relative my-16 py-12 px-10 text-3xl md:text-4xl italic text-slate-600 bg-white shadow-md rounded-2xl border-r-[10px];
+            @apply relative my-16 py-12 px-10 text-2xl md:text-3xl italic text-slate-600 bg-white shadow-md rounded-2xl border-r-[10px];
+            font-family: 'Noto Serif Hebrew', serif;
             border-color: var(--primary-color);
             background-image: linear-gradient(to left, var(--light-color), transparent);
         }
         .article-content .quote::before {
             content: '"';
-            @apply absolute -top-8 right-6 text-8xl opacity-20 font-serif;
+            @apply absolute -top-8 right-6 text-7xl opacity-20 font-serif;
             color: var(--primary-color);
         }
 
         /* טקסט ממורכז */
         .article-content .centered { 
-            @apply text-center text-5xl md:text-7xl font-bold my-24 block w-full leading-tight; 
+            @apply text-center text-4xl md:text-6xl font-bold my-24 block w-full leading-tight; 
             font-family: 'NoaShalev', serif; 
             color: var(--primary-color);
         }
@@ -113,7 +116,7 @@
             </div>
 
             <div id="article-body" class="article-content">
-                </div>
+            </div>
 
             <div class="mt-28 pt-12 border-t-2 border-dashed border-slate-100 text-center">
                 <p class="font-subtitleFont text-3xl opacity-40">מוגש באהבה מצוות אור בפרשה</p>
