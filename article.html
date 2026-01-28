@@ -48,78 +48,92 @@
             .article-content p { font-size: 1.45rem; } 
         }
         
-        /* כותרת משנה H3 */
-        .article-content h3 { 
-            font-size: 1.8rem; 
+        /* כותרת משנה H3 וטקסט ממורכז */
+        .article-content h3, .article-content .centered { 
             font-weight: bold; 
             margin-top: 3rem; 
             margin-bottom: 1.2rem; 
             display: block; 
             font-family: 'NoaShalev', serif; 
             color: var(--primary-color); 
-            text-align: right;
         }
+
+        .article-content h3 { 
+            font-size: 1.8rem; 
+            text-align: right; 
+        }
+
+        .article-content .centered { 
+            font-size: 1.8rem;
+            text-align: center;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         @media (min-width: 768px) {
-            .article-content h3 { font-size: 2.2rem; }
+            .article-content h3, .article-content .centered { font-size: 2.2rem; }
         }
         
-        /* עיצוב ציטוט - תיקון הגדרות CSS ישירות */
+        /* עיצוב ציטוט - פונט מוקטן */
         .article-content .quote { 
             margin-top: 3rem;
             margin-bottom: 3rem;
-            padding: 1.5rem 2rem;
+            padding: 1.2rem 1.8rem;
             font-style: italic;
             color: #334155;
-            background-color: var(--light-color); /* שימוש בצבע הבהיר של הספר כרקע */
-            border-right: 6px solid var(--primary-color);
+            background-color: var(--light-color);
+            border-right: 5px solid var(--primary-color);
             border-radius: 0 12px 12px 0;
             font-family: 'Noto Serif Hebrew', serif;
             text-align: right;
             line-height: 1.6;
-            font-size: 1.5rem;
+            font-size: 1.35rem; /* הקטנה קלה */
             box-shadow: inset 0 0 20px rgba(0,0,0,0.02);
         }
         @media (min-width: 768px) {
-            .article-content .quote { font-size: 1.85rem; padding: 2rem 3rem; }
-        }
-
-        /* טקסט ממורכז */
-        .article-content .centered { 
-            @apply text-center text-3xl md:text-5xl font-bold my-20 block w-full leading-tight; 
-            font-family: 'NoaShalev', serif; 
-            color: var(--primary-color);
+            .article-content .quote { font-size: 1.55rem; }
         }
 
         .article-content b { @apply font-bold text-black; }
 
-        .floating-btn { @apply w-16 h-16 rounded-full flex items-center justify-center text-white shadow-2xl transition-all active:scale-90 hover:scale-110; }
-        
-        /* כפתור חזרה מוקטן ואחיד */
+        /* כפתור חזרה */
         .back-btn {
-            display: flex;
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            z-index: 20;
-            width: 44px;
-            height: 44px;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            background-color: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(8px);
-            border-radius: 9999px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex; position: absolute; top: 1.5rem; right: 1.5rem; z-index: 20;
+            width: 44px; height: 44px; align-items: center; justify-content: center;
+            color: white; background-color: rgba(0, 0, 0, 0.3); backdrop-filter: blur(8px);
+            border-radius: 9999px; border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-        .back-btn:hover { background-color: rgba(0, 0, 0, 0.5); }
+
+        /* Hero Image & Fallback */
+        .hero-container {
+            position: relative; height: 55vh; width: 100%; overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-color), var(--light-color));
+        }
+        @media (min-width: 768px) { .hero-container { height: 70vh; } }
+
+        #article-hero-img {
+            position: absolute; inset: 0; background-size: cover; background-position: center;
+            transition: transform 2s;
+        }
+
+        .hero-fallback-icon {
+            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+            opacity: 0.2; color: white; pointer-events: none;
+        }
+        .hero-fallback-icon span { font-size: 120px; }
+
+        .floating-btn { @apply w-16 h-16 rounded-full flex items-center justify-center text-white shadow-2xl transition-all active:scale-90 hover:scale-110; }
     </style>
 </head>
 <body class="antialiased">
 
-    <div class="relative h-[55vh] md:h-[70vh] w-full overflow-hidden">
-        <div id="article-hero-img" class="absolute inset-0 bg-cover bg-center transition-transform duration-[2s]"></div>
+    <div class="hero-container">
+        <div id="article-hero-img"></div>
+        <div class="hero-fallback-icon">
+            <span class="material-symbols-outlined">menu_book</span>
+        </div>
         <div class="absolute inset-0 bg-gradient-to-t from-[#fdfaf7] via-transparent to-black/30"></div>
         
         <a href="javascript:history.back()" class="back-btn">
@@ -208,7 +222,13 @@
             document.getElementById('article-title').style.color = 'var(--primary-color)';
             document.getElementById('article-subtitle').textContent = metadata.subtitle;
             document.getElementById('article-subtitle').style.color = 'var(--primary-color)';
-            document.getElementById('article-hero-img').style.backgroundImage = `url('${metadata.image}')`;
+            
+            // הגדרת תמונה עם בדיקת תקינות
+            const heroImg = document.getElementById('article-hero-img');
+            if (metadata.image && metadata.image.trim() !== "") {
+                heroImg.style.backgroundImage = `url('${metadata.image}')`;
+            }
+
             document.getElementById('writer-name').textContent = metadata.writer;
             document.getElementById('writer-img').src = metadata['profile picture'];
             document.getElementById('article-date').textContent = metadata.date;
