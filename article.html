@@ -32,47 +32,47 @@
         :root { --primary-color: #64748b; --light-color: #f1f5f9; }
         body { background-color: #fdfaf7; color: #1e293b; overflow-x: hidden; }
         
-        /* טקסט מאמר - הגדרה משמעותית (ענק) */
+        /* טקסט מאמר - גדול וקריא אך פרופורציונלי */
         .article-content p { 
-            font-size: 2.2rem; /* גודל בסיס ענק */
-            line-height: 1.7;
-            margin-bottom: 2.5rem;
+            font-size: 1.5rem; 
+            line-height: 1.8;
+            margin-bottom: 2rem;
             color: #1e293b;
             font-weight: 300;
         }
         @media (min-width: 768px) {
-            .article-content p { font-size: 2.8rem; } /* עוד יותר גדול בדסקטופ */
+            .article-content p { font-size: 1.75rem; } 
         }
         
         /* כותרת משנה H3 - פי 1.5 מטקסט המאמר */
         .article-content h3 { 
-            font-size: 3.3rem; 
+            font-size: 2.25rem; 
             font-weight: bold; 
-            margin-top: 4rem; 
-            margin-bottom: 2rem; 
+            margin-top: 3.5rem; 
+            margin-bottom: 1.5rem; 
             display: block; 
             font-family: 'NoaShalev', serif; 
             color: var(--primary-color); 
         }
         @media (min-width: 768px) {
-            .article-content h3 { font-size: 4.2rem; }
+            .article-content h3 { font-size: 2.6rem; }
         }
         
         /* עיצוב ציטוט */
         .article-content .quote { 
-            @apply relative my-20 py-14 px-10 text-4xl md:text-5xl italic text-slate-600 bg-white shadow-md rounded-2xl border-r-[12px];
+            @apply relative my-16 py-12 px-10 text-3xl md:text-4xl italic text-slate-600 bg-white shadow-md rounded-2xl border-r-[10px];
             border-color: var(--primary-color);
             background-image: linear-gradient(to left, var(--light-color), transparent);
         }
         .article-content .quote::before {
             content: '"';
-            @apply absolute -top-10 right-8 text-[10rem] opacity-20 font-serif;
+            @apply absolute -top-8 right-6 text-8xl opacity-20 font-serif;
             color: var(--primary-color);
         }
 
         /* טקסט ממורכז */
         .article-content .centered { 
-            @apply text-center text-6xl md:text-8xl font-bold my-28 block w-full leading-tight; 
+            @apply text-center text-5xl md:text-7xl font-bold my-24 block w-full leading-tight; 
             font-family: 'NoaShalev', serif; 
             color: var(--primary-color);
         }
