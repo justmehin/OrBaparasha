@@ -1,13 +1,9 @@
 id: Devarim_1
 title: פרשת דברים
-subtitle: נסיון להבין איך זה יראה
-image: images/bereshit_over.jpg
+subtitle: 
+image: 
 writer: הרב נריה בולאק
 profile picture: images/harav_neria.jpg
 date: ג' כסלו תשפ"ה
 time: 13:43
 ---
-סתם נסיון להבין איך הדברים בדיוק יעבדו, אז יש צורך למלא אורך פסקה מסויים בטקסט - מוסן הדבר? **יופי!**
-H3: מה לגבי זה?
-quote: והאם זה יישאר?
-נראה
