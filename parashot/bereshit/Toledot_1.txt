@@ -1,7 +1,7 @@
 id: Toledot_1
 title: פרשת תולדות
 subtitle:  איך ההורים מגיבים כשהבן סוטה מן הדרך
-image: https://cdn.pixabay.com/photo/2016/04/16/00/53/crook-1332306_1280.jpg
+image: https://media.istockphoto.com/id/148072456/photo/tired-high-school-student.jpg?s=612x612&w=0&k=20&c=g3r7L_FV8thPMBnaHnZS3xwovs7tisv89XkNPRPXR9M=
 writer:  הרב נריה בולאק
  profile picture: images/harav_neria.jpg
 date: 
