@@ -77,8 +77,13 @@
         @media (min-width: 768px) { .hero-container { height: 70vh; } }
 
         #article-hero-img {
-            position: absolute; inset: 0; background-size: cover; 
-            background-position: center 40%; /* ממרכז את התמונה ומעלה אותה מעט כדי שיראו יותר מהמרכז */
+            position: absolute; 
+            top: -100px; /* מזיז את התמונה למעלה אל מחוץ למסך */
+            left: 0;
+            right: 0;
+            height: calc(100% + 100px); /* מפצה על ההזזה כדי שלא יהיה חור למטה */
+            background-size: cover; 
+            background-position: center; 
             z-index: 10;
         }
 
@@ -207,7 +212,6 @@
                 }
             });
 
-            // עדכון זמן קריאה
             const minutes = calculateReadTime(contentPart);
             document.getElementById('read-time').textContent = `${minutes} דק' קריאה`;
 
