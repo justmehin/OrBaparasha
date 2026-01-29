@@ -1,4 +1,4 @@
-id: Chayai_Sarah_1
+id: Chayei_Sarah_1
 title: פרשת חיי שרה
 subtitle:  שרה אמנו
 image: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/PikiWiki_Israel_67159_rachel39s_tomb.jpg/800px-PikiWiki_Israel_67159_rachel39s_tomb.jpg
