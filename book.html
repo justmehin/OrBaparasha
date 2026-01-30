@@ -66,7 +66,6 @@
 
         .main-title-font { font-family: 'NoaShalev', serif; }
 
-        /* עיצוב אנימציית טעינה */
         .loader-spinner {
             width: 50px; height: 50px;
             border: 5px solid #f3f3f3;
@@ -109,7 +108,7 @@
                 </div>
 
                 <div id="parasha-grid" class="flex flex-col gap-8 hidden">
-                    </div>
+                </div>
             </main>
         </div>
 
@@ -121,8 +120,8 @@
     <script>
         const booksConfig = {
             'bereshit': { name: 'ספר בראשית', desc: 'יסודות האמונה ובניית המשפחה היהודית הראשונה.', color: '#10b981', lightColor: '#065f46', icon: 'public', hero: 'images/bereshit_cover.jpg', folder: 'bereshit', parashotNames: ['Bereshit', 'Noach', 'Lech Lecha', 'Vayeira', 'Chayei Sarah', 'Toledot', 'Vayetzei', 'Vayishlach', 'Vayeshev', 'Miketz', 'Vayigash', 'Vayechi'] },
-            'shmot': { name: 'ספר שמות', desc: 'מיציאה מעבדות לחירות, מעמד הר סיני ובניית המשכן.', color: '#f97316', lightColor: '#9a3412', icon: 'local_fire_department', hero: 'https://images.unsplash.com/photo-1445262102387-5fbb30a5e59d?q=80&w=1600', folder: 'shmot', parashotNames: ['Shemot', 'Vaera', 'Bo', 'Beshalach', 'Yitro', 'Mishpatim', 'Terumah', 'Tetzaveh', 'Ki Tisa', 'Vayakhel', 'Pekudei'] },
-            'vaikra': { name: 'ספר ויקרא', desc: 'עבודת המקדש, הקדושה והחובות המוסריות.', color: '#a855f7', lightColor: '#6b21a8', icon: 'temple_hindu', hero: 'https://images.unsplash.com/photo-1543157145-f78c636d023d?q=80&w=1600', folder: 'vaikra', parashotNames: ['Vayikra', 'Tzav', 'Shemini', 'Tazria', 'Metzora', 'Acharei Mot', 'Kedoshim', 'Emor', 'Behar', 'Bechukotai'] },
+            'shmot': { name: 'ספר שמות', desc: 'מיציאה מעבדות לחירות, מעמד הר סיני ובניית המשכן.', color: '#f97316', lightColor: '#9a3412', icon: 'local_fire_department', hero: 'https://images.unsplash.com/photo-1506190500382-d27870f74917?q=80&w=1600', folder: 'shmot', parashotNames: ['Shemot', 'Vaera', 'Bo', 'Beshalach', 'Yitro', 'Mishpatim', 'Terumah', 'Tetzaveh', 'Ki Tisa', 'Vayakhel', 'Pekudei'] },
+            'vaikra': { name: 'ספר ויקרא', desc: 'עבודת המקדש, הקדושה והחובות המוסריות.', color: '#a855f7', lightColor: '#6b21a8', icon: 'temple_hindu', hero: 'https://upload.wikimedia.org/wikipedia/commons/1/15/Tabernacle_Mishkan_Tent.jpg', folder: 'vaikra', parashotNames: ['Vayikra', 'Tzav', 'Shemini', 'Tazria', 'Metzora', 'Acharei Mot', 'Kedoshim', 'Emor', 'Behar', 'Bechukotai'] },
             'bamidbar': { name: 'ספר במדבר', desc: 'מסע בני ישראל במדבר סיני אל הארץ המובטחת.', color: '#d97706', lightColor: '#92400e', icon: 'landscape', hero: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=1600', folder: 'bamidbar', parashotNames: ['Bamidbar', 'Nasso', 'Beha\'alotcha', 'Shelach', 'Korach', 'Chukat', 'Balak', 'Pinchas', 'Matot', 'Masei'] },
             'devarim': { name: 'ספר דברים', desc: 'נאום הפרידה של משה רבנו וסיכום המצוות.', color: '#0284c7', lightColor: '#075985', icon: 'record_voice_over', hero: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1600', folder: 'devarim', parashotNames: ['Devarim', 'Va\'etchanan', 'Eikev', 'Reeh', 'Shoftim', 'Ki Teitzei', 'Ki Tavo', 'Nitzavim', 'Vayeilech', 'Haazinu', 'VZot HaBerachah'] }
         };
@@ -237,7 +236,6 @@
                 grid.appendChild(card);
             });
 
-            // הסרת ה-Loader והצגת הגריד
             loader.classList.add('opacity-0');
             setTimeout(() => {
                 loader.style.display = 'none';
