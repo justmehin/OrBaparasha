@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <meta id="og-title" property="og:title" content="אור בפרשה">
-    <meta id="og-desc" property="og:description" content="טוען תוכן...">
+    <meta property="og:title" content="אור בפרשה">
+    <meta property="og:description" content="מאמרים מרתקים ותובנות עמוקות על פרשת השבוע">
     <meta property="og:image" content="https://orbaparasha.github.io/OrBaparasha/images/index_image.jpg">
     <meta property="og:type" content="article">
     
@@ -221,21 +221,12 @@
             const minutes = calculateReadTime(contentPart);
             document.getElementById('read-time').textContent = `${minutes} דק' קריאה`;
 
-            // כותרת הדפדפן
             document.getElementById('page-browser-title').textContent = `אור בפרשה | ${metadata.title}`;
-            
-            // תצוגה בדף המאמר
             document.getElementById('article-title').textContent = metadata.title;
             document.getElementById('article-title').style.color = 'var(--primary-color)';
             document.getElementById('article-subtitle').textContent = metadata.subtitle;
             document.getElementById('article-subtitle').style.color = 'var(--primary-color)';
             
-            // הגדרת תוכן השיתוף לוואטסאפ (og:title ו-og:description)
-            // פורמט: אור בפרשה
-            // תיאור: [כותרת המאמר] | [כותרת המשנה]
-            document.getElementById('og-title').setAttribute('content', 'אור בפרשה');
-            document.getElementById('og-desc').setAttribute('content', `${metadata.title} | ${metadata.subtitle}`);
-
             const heroImg = document.getElementById('article-hero-img');
             if (metadata.image && metadata.image.trim() !== "") {
                 heroImg.style.backgroundImage = `url('${metadata.image}')`;
@@ -280,16 +271,20 @@
         }
 
         function shareArticle() {
+            const title = document.getElementById('article-title').textContent;
+            const subtitle = document.getElementById('article-subtitle').textContent;
+            const fullText = `אור בפרשה | ${title} - ${subtitle}`;
+            
             if (navigator.share) {
-                const articleTitle = document.getElementById('article-title').textContent;
-                const articleSub = document.getElementById('article-subtitle').textContent;
-                
-                // כאן אנחנו קובעים בדיוק איך הקישור ייראה כשישלחו אותו
-                navigator.share({ 
+                navigator.share({
                     title: 'אור בפרשה',
-                    text: `${articleTitle} | ${articleSub}`,
-                    url: window.location.href 
-                });
+                    text: fullText,
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                // גיבוי למקרה שהדפדפן לא תומך בשיתוף (מחשב שולחני למשל)
+                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(fullText + " " + window.location.href)}`;
+                window.open(whatsappUrl, '_blank');
             }
         }
         window.onload = loadArticle;
