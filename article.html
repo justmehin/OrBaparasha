@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <meta property="og:title" content="אור בפרשה">
-    <meta property="og:description" content="מאמרים מרתקים ותובנות עמוקות על פרשת השבוע">
+    <meta property="og:description" content="מאירים אור על פרשת השבוע">
     <meta property="og:image" content="https://orbaparasha.github.io/OrBaparasha/images/index_image.jpg">
     <meta property="og:type" content="article">
     
@@ -273,17 +273,18 @@
         function shareArticle() {
             const title = document.getElementById('article-title').textContent;
             const subtitle = document.getElementById('article-subtitle').textContent;
-            const fullText = `אור בפרשה | ${title} - ${subtitle}`;
+            
+            // יצירת הטקסט עם ירידת שורה לפני הקישור
+            const shareText = `אור בפרשה | ${title} - ${subtitle}\n`;
             
             if (navigator.share) {
                 navigator.share({
                     title: 'אור בפרשה',
-                    text: fullText,
+                    text: shareText,
                     url: window.location.href
                 }).catch(() => {});
             } else {
-                // גיבוי למקרה שהדפדפן לא תומך בשיתוף (מחשב שולחני למשל)
-                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(fullText + " " + window.location.href)}`;
+                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText + window.location.href)}`;
                 window.open(whatsappUrl, '_blank');
             }
         }
