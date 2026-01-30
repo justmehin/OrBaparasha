@@ -22,33 +22,26 @@
         }
     </script>
     <style>
-        /* פונט כותרת משנה */
         @font-face {
             font-family: 'OHLiorAtias';
             src: url('OHLiorAtias-Regular.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
+            font-weight: normal; font-style: normal;
         }
 
-        /* פונט כותרת ראשית חדש */
         @font-face {
             font-family: 'NoaShalev';
             src: url('noa-shalev-regular-AlefAlefAlef.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
+            font-weight: normal; font-style: normal;
         }
 
         body { 
             background: linear-gradient(to bottom, white 0%, white 15%, #f1dcc1 60%, #f1dcc1 100%);
-            margin: 0; 
-            overflow-x: hidden; 
-            min-height: 100vh;
+            margin: 0; overflow-x: hidden; min-height: 100vh;
         }
         .floating-card { 
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            background-color: white; 
+            position: relative; background-color: white; 
         }
         .floating-card:hover { 
             box-shadow: 0 25px 45px -10px rgba(0, 0, 0, 0.12), 0 15px 20px -5px rgba(0, 0, 0, 0.05);
@@ -56,9 +49,7 @@
         }
         .image-fallback {
             background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.05));
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
         }
         .hero-mask {
             mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
@@ -70,22 +61,28 @@
         
         .custom-subtitle-font {
             font-family: 'OHLiorAtias', sans-serif;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
         }
 
-        .main-title-font {
-            font-family: 'NoaShalev', serif;
+        .main-title-font { font-family: 'NoaShalev', serif; }
+
+        /* עיצוב אנימציית טעינה */
+        .loader-spinner {
+            width: 50px; height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid currentColor;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
         }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="font-sans antialiased text-slate-800">
 
     <div id="hero-section" class="fixed top-0 left-0 w-full h-[60vh] md:h-[80vh] z-0 overflow-hidden hero-mask">
         <div id="hero-bg" class="absolute inset-0 bg-cover bg-center transition-opacity duration-700"></div>
-        <div id="hero-overlay" class="absolute inset-0 bg-black/25"></div>
+        <div id="hero-overlay" class="absolute inset-0 bg-black/35"></div>
         
         <div class="absolute top-8 right-8 z-20">
             <a href="index.html" id="back-link" class="inline-flex items-center gap-2 font-bold text-sm bg-white/20 backdrop-blur-md px-5 py-2.5 rounded-full hover:bg-white/40 transition-all no-underline text-white border border-white/30">
@@ -106,9 +103,13 @@
     <div class="relative z-10 mt-[60vh] md:mt-[85vh]">
         <div class="pb-24 px-6">
             <main class="max-w-4xl mx-auto">
-                <div id="parasha-grid" class="flex flex-col gap-8">
-                    <div id="loader" class="text-center py-10 opacity-50">טוען מאמרים...</div>
+                <div id="loader-container" class="text-center py-20 flex flex-col items-center transition-opacity duration-300">
+                    <div id="dynamic-spinner" class="loader-spinner"></div>
+                    <p class="text-xl font-medium text-slate-600">טוען את הפרשות...</p>
                 </div>
+
+                <div id="parasha-grid" class="flex flex-col gap-8 hidden">
+                    </div>
             </main>
         </div>
 
@@ -120,10 +121,10 @@
     <script>
         const booksConfig = {
             'bereshit': { name: 'ספר בראשית', desc: 'יסודות האמונה ובניית המשפחה היהודית הראשונה.', color: '#10b981', lightColor: '#065f46', icon: 'public', hero: 'images/bereshit_cover.jpg', folder: 'bereshit', parashotNames: ['Bereshit', 'Noach', 'Lech Lecha', 'Vayeira', 'Chayei Sarah', 'Toledot', 'Vayetzei', 'Vayishlach', 'Vayeshev', 'Miketz', 'Vayigash', 'Vayechi'] },
-            'shmot': { name: 'ספר שמות', desc: 'מיציאה מעבדות לחירות, מעמד הר סיני ובניית המשכן.', color: '#f97316', lightColor: '#9a3412', icon: 'local_fire_department', hero: 'https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?q=80&w=1600', folder: 'shmot', parashotNames: ['Shemot', 'Vaera', 'Bo', 'Beshalach', 'Yitro', 'Mishpatim', 'Terumah', 'Tetzaveh', 'Ki Tisa', 'Vayakhel', 'Pekudei'] },
-            'vaikra': { name: 'ספר ויקרא', desc: 'עבודת המקדש, הקדושה והחובות המוסריות.', color: '#a855f7', lightColor: '#6b21a8', icon: 'temple_hindu', hero: 'https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=1600', folder: 'vaikra', parashotNames: ['Vayikra', 'Tzav', 'Shemini', 'Tazria', 'Metzora', 'Acharei Mot', 'Kedoshim', 'Emor', 'Behar', 'Bechukotai'] },
+            'shmot': { name: 'ספר שמות', desc: 'מיציאה מעבדות לחירות, מעמד הר סיני ובניית המשכן.', color: '#f97316', lightColor: '#9a3412', icon: 'local_fire_department', hero: 'https://images.unsplash.com/photo-1445262102387-5fbb30a5e59d?q=80&w=1600', folder: 'shmot', parashotNames: ['Shemot', 'Vaera', 'Bo', 'Beshalach', 'Yitro', 'Mishpatim', 'Terumah', 'Tetzaveh', 'Ki Tisa', 'Vayakhel', 'Pekudei'] },
+            'vaikra': { name: 'ספר ויקרא', desc: 'עבודת המקדש, הקדושה והחובות המוסריות.', color: '#a855f7', lightColor: '#6b21a8', icon: 'temple_hindu', hero: 'https://images.unsplash.com/photo-1543157145-f78c636d023d?q=80&w=1600', folder: 'vaikra', parashotNames: ['Vayikra', 'Tzav', 'Shemini', 'Tazria', 'Metzora', 'Acharei Mot', 'Kedoshim', 'Emor', 'Behar', 'Bechukotai'] },
             'bamidbar': { name: 'ספר במדבר', desc: 'מסע בני ישראל במדבר סיני אל הארץ המובטחת.', color: '#d97706', lightColor: '#92400e', icon: 'landscape', hero: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?q=80&w=1600', folder: 'bamidbar', parashotNames: ['Bamidbar', 'Nasso', 'Beha\'alotcha', 'Shelach', 'Korach', 'Chukat', 'Balak', 'Pinchas', 'Matot', 'Masei'] },
-            'devarim': { name: 'ספר דברים', desc: 'נאום הפרידה של משה רבנו וסיכום המצוות.', color: '#0284c7', lightColor: '#075985', icon: 'record_voice_over', hero: 'https://images.unsplash.com/photo-1490682143124-b73ed7311835?q=80&w=1600', folder: 'devarim', parashotNames: ['Devarim', 'Va\'etchanan', 'Eikev', 'Reeh', 'Shoftim', 'Ki Teitzei', 'Ki Tavo', 'Nitzavim', 'Vayeilech', 'Haazinu', 'VZot HaBerachah'] }
+            'devarim': { name: 'ספר דברים', desc: 'נאום הפרידה של משה רבנו וסיכום המצוות.', color: '#0284c7', lightColor: '#075985', icon: 'record_voice_over', hero: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1600', folder: 'devarim', parashotNames: ['Devarim', 'Va\'etchanan', 'Eikev', 'Reeh', 'Shoftim', 'Ki Teitzei', 'Ki Tavo', 'Nitzavim', 'Vayeilech', 'Haazinu', 'VZot HaBerachah'] }
         };
 
         function handleImageError(imgElement, color) {
@@ -164,6 +165,7 @@
             document.getElementById('page-title').textContent = config.name;
             document.getElementById('main-title').textContent = config.name;
             document.getElementById('main-description').textContent = config.desc;
+            document.getElementById('dynamic-spinner').style.color = config.color;
             
             const heroBg = document.getElementById('hero-bg');
             const heroSection = document.getElementById('hero-section');
@@ -178,9 +180,9 @@
             document.getElementById('book-icon').textContent = config.icon;
 
             const grid = document.getElementById('parasha-grid');
-            grid.innerHTML = '';
+            const loader = document.getElementById('loader-container');
+            
             let articleFound = false;
-
             const fetchPromises = [];
             config.parashotNames.forEach(pName => {
                 const safeFileName = pName.replace(/\s+/g, '_');
@@ -206,23 +208,18 @@
                     <a href="article.html?parasha=${article.id}&book=${bookId}" 
                        class="group relative p-[1.5px] rounded-3xl no-underline floating-card overflow-hidden block">
                         <div class="card-inner-bg relative rounded-[calc(1.5rem-1.5px)] overflow-hidden flex items-center p-3 md:p-5 bg-white">
-                            
                             <div class="w-24 h-24 md:w-40 md:h-40 overflow-hidden flex-shrink-0 rounded-2xl shadow-inner border border-black/5 relative bg-slate-50">
                                 <img src="${article.image}" id="img-${article.id}" onerror="handleImageError(this, '${config.color}')" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
                             </div>
-
                             <div class="mr-4 md:mr-8 flex flex-col h-24 md:h-40 flex-grow py-1">
-                                
                                 <h3 class="main-title-font text-lg md:text-2xl font-bold truncate leading-tight shrink-0" style="color: ${config.color}">
                                     ${article.title}
                                 </h3>
-                                
                                 <div class="flex-grow flex flex-col justify-center">
                                     <p class="custom-subtitle-font text-xl md:text-[3rem] leading-[1.1] font-medium" style="color: ${subtitleColor}">
                                         ${article.subtitle}
                                     </p>
                                 </div>
-
                                 <div class="shrink-0 flex items-center">
                                     <span class="text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-md border" 
                                           style="color: ${config.color}; border-color: ${config.color}33; background-color: ${config.color}05;">
@@ -230,7 +227,6 @@
                                     </span>
                                 </div>
                             </div>
-
                             <div class="flex items-center px-1 md:px-6">
                                 <span class="material-symbols-outlined text-sm md:text-base opacity-20 group-hover:opacity-100 group-hover:translate-x-[-3px] transition-all duration-500" style="color: ${config.color}">arrow_back_ios</span>
                             </div>
@@ -241,9 +237,15 @@
                 grid.appendChild(card);
             });
 
-            if (!articleFound) {
-                grid.innerHTML = '<div class="text-center py-20 text-slate-500">בקרוב יעלו מאמרים חדשים לספר זה.</div>';
-            }
+            // הסרת ה-Loader והצגת הגריד
+            loader.classList.add('opacity-0');
+            setTimeout(() => {
+                loader.style.display = 'none';
+                grid.classList.remove('hidden');
+                if (!articleFound) {
+                    grid.innerHTML = '<div class="text-center py-20 text-slate-500">בקרוב יעלו מאמרים חדשים לספר זה.</div>';
+                }
+            }, 300);
         }
 
         window.addEventListener('scroll', () => {
