@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <meta id="og-title" property="og:title" content="אור בפרשה">
-    <meta id="og-desc" property="og:description" content="מאמרים מרתקים על פרשת השבוע">
+    <meta id="og-desc" property="og:description" content="טוען תוכן...">
     <meta property="og:image" content="https://orbaparasha.github.io/OrBaparasha/images/index_image.jpg">
     <meta property="og:type" content="article">
     
-    <title id="page-browser-title">טוען מאמר...</title>
+    <title id="page-browser-title">אור בפרשה</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;800&family=Noto+Sans+Hebrew:wght@300;400;700&family=Noto+Serif+Hebrew:wght@300;400;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0" rel="stylesheet">
     
@@ -221,17 +221,20 @@
             const minutes = calculateReadTime(contentPart);
             document.getElementById('read-time').textContent = `${minutes} דק' קריאה`;
 
-            // עדכון כותרות התצוגה בדף
-            document.getElementById('page-browser-title').textContent = metadata.title;
+            // כותרת הדפדפן
+            document.getElementById('page-browser-title').textContent = `אור בפרשה | ${metadata.title}`;
+            
+            // תצוגה בדף המאמר
             document.getElementById('article-title').textContent = metadata.title;
             document.getElementById('article-title').style.color = 'var(--primary-color)';
             document.getElementById('article-subtitle').textContent = metadata.subtitle;
             document.getElementById('article-subtitle').style.color = 'var(--primary-color)';
             
-            // עדכון פורמט השיתוף לוואטסאפ: אור בפרשה | [כותרת] - [משנה]
-            const fullShareTitle = `אור בפרשה | ${metadata.title} - ${metadata.subtitle}`;
-            document.getElementById('og-title').setAttribute('content', fullShareTitle);
-            document.getElementById('og-desc').setAttribute('content', `קראו מאמר מרתק על פרשת ${metadata.title} באתר אור בפרשה.`);
+            // הגדרת תוכן השיתוף לוואטסאפ (og:title ו-og:description)
+            // פורמט: אור בפרשה
+            // תיאור: [כותרת המאמר] | [כותרת המשנה]
+            document.getElementById('og-title').setAttribute('content', 'אור בפרשה');
+            document.getElementById('og-desc').setAttribute('content', `${metadata.title} | ${metadata.subtitle}`);
 
             const heroImg = document.getElementById('article-hero-img');
             if (metadata.image && metadata.image.trim() !== "") {
@@ -278,10 +281,13 @@
 
         function shareArticle() {
             if (navigator.share) {
-                // משתף את הכותרת בפורמט המבוקש
-                const shareTitle = `אור בפרשה | ${document.getElementById('article-title').textContent} - ${document.getElementById('article-subtitle').textContent}`;
+                const articleTitle = document.getElementById('article-title').textContent;
+                const articleSub = document.getElementById('article-subtitle').textContent;
+                
+                // כאן אנחנו קובעים בדיוק איך הקישור ייראה כשישלחו אותו
                 navigator.share({ 
-                    title: shareTitle, 
+                    title: 'אור בפרשה',
+                    text: `${articleTitle} | ${articleSub}`,
                     url: window.location.href 
                 });
             }
