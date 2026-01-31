@@ -73,7 +73,7 @@
 
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
             <h1 class="main-title-font text-5xl md:text-7xl font-bold drop-shadow-2xl mb-4">כל המאמרים</h1>
-            <p class="text-xl md:text-2xl font-light opacity-95 drop-shadow-lg">מאירים אור על פרשת השבוע בסדר כרונולוגי</p>
+            <p class="text-xl md:text-2xl font-light opacity-95 drop-shadow-lg">המאמרים החדשים ביותר בראש הרשימה</p>
         </div>
     </div>
 
@@ -82,7 +82,7 @@
             <main class="max-w-4xl mx-auto">
                 <div id="loader-container" class="text-center py-20 flex flex-col items-center">
                     <div class="loader-spinner"></div>
-                    <p class="text-xl font-medium text-slate-600">מסדר את המאמרים לפי תאריך כתיבה...</p>
+                    <p class="text-xl font-medium text-slate-600">ממיין מאמרים לפי זמן פרסום...</p>
                 </div>
 
                 <div id="parasha-grid" class="flex flex-col gap-8 hidden"></div>
@@ -105,6 +105,7 @@
         };
 
         function gimatriaToNum(str) {
+            if(!str) return 0;
             const cleanStr = str.replace(/[׳״'"]/g, '');
             const map = {'א':1,'ב':2,'ג':3,'ד':4,'ה':5,'ו':6,'ז':7,'ח':8,'ט':9,'י':10,'יא':11,'יב':12,'יג':13,'יד':14,'טו':15,'טז':16,'יז':17,'יח':18,'יט':19,'כ':20,'כא':21,'כב':22,'כג':23,'כד':24,'כה':25,'כו':26,'כז':27,'כח':28,'כט':29,'ל':30};
             return map[cleanStr] || parseInt(cleanStr) || 0;
@@ -119,16 +120,13 @@
                 const day = gimatriaToNum(parts[0]);
                 const month = monthMap[parts[1].replace(/[׳״'"]/g, '')] || 0;
                 
-                // טיפול בשנה
                 let yearRaw = parts[2].replace(/[׳״'"]/g, '');
                 let year = 0;
                 if (yearRaw.includes('תש')) {
                     const yearSuffix = yearRaw.slice(-1);
                     const yearBaseMap = {'א':5781,'ב':5782,'ג':5783,'ד':5784,'ה':5785,'ו':5786,'ז':5787};
                     year = yearBaseMap[yearSuffix] || 5700;
-                } else {
-                    year = parseInt(yearRaw) || 0;
-                }
+                } else { year = parseInt(yearRaw) || 0; }
 
                 let timeValue = 0;
                 if (timeStr && timeStr.includes(':')) {
@@ -136,6 +134,7 @@
                     timeValue = (h * 0.01) + (m * 0.0001);
                 }
 
+                // מחזיר מספר גדול מאוד עבור תאריך קיים
                 return (year * 10000) + (month * 100) + day + timeValue;
             } catch { return 0; }
         }
@@ -178,9 +177,19 @@
 
             let articles = (await Promise.all(allPromises)).filter(a => a !== null);
             
+            // המיון המתוקן - הכוח עובר לתאריך
             articles.sort((a, b) => {
                 const scoreA = parseHebrewDate(a.date, a.time);
                 const scoreB = parseHebrewDate(b.date, b.time);
+                
+                // אם לשניהם אין תאריך (ציון 0), שומרים על סדר מקורי (לפי פרשה)
+                if (scoreA === 0 && scoreB === 0) return 0;
+                
+                // אם לאחד יש תאריך ולשני אין - זה שיש לו תאריך תמיד ראשון
+                if (scoreA === 0) return 1;
+                if (scoreB === 0) return -1;
+                
+                // אם לשניהם יש תאריך - המאוחר ביותר למעלה
                 return scoreB - scoreA; 
             });
 
@@ -206,7 +215,7 @@
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <span class="text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-md border" style="color: ${cfg.color}; border-color: ${cfg.color}33">
-                                        ${art.date || 'תאריך חסר'} ${art.time ? ' | ' + art.time : ''}
+                                        ${art.date || 'לא הוגדר תאריך'} ${art.time ? ' | ' + art.time : ''}
                                     </span>
                                 </div>
                             </div>
