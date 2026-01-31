@@ -102,13 +102,23 @@
         const monthMap = { "תשרי": 1, "חשוון": 2, "כסלו": 3, "טבת": 4, "שבט": 5, "אדר": 6, "ניסן": 7, "אייר": 8, "סיוון": 9, "תמוז": 10, "אב": 11, "אלול": 12 };
 
         function parseHebrewDate(dateStr, timeStr) {
+            if (!dateStr || dateStr.trim() === "") return 0;
             try {
                 const parts = dateStr.replace(/'/g, '').replace(/"/g, '').split(' ');
+                if (parts.length < 3) return 0;
+                
                 const day = parseInt(parts[0]);
                 const month = monthMap[parts[1]] || 0;
                 const year = parseInt(parts[2]);
-                const time = timeStr ? timeStr.split(':').map(Number) : [0, 0];
-                return year * 1000000 + month * 10000 + day * 100 + (time[0] * 1 + time[1] * 0.01);
+                
+                let hour = 0, minute = 0;
+                if (timeStr && timeStr.includes(':')) {
+                    const t = timeStr.split(':');
+                    hour = parseInt(t[0]) || 0;
+                    minute = parseInt(t[1]) || 0;
+                }
+                // חישוב ערך מספרי למיון (שנה-חודש-יום-שעה-דקה)
+                return (year * 1000000) + (month * 10000) + (day * 100) + (hour * 0.01) + (minute * 0.0001);
             } catch { return 0; }
         }
 
@@ -118,11 +128,16 @@
             let content = "";
             let meta = true;
             lines.forEach(line => {
-                if (line.trim() === '---') { meta = false; return; }
+                const trimmed = line.trim();
+                if (trimmed === '---') { meta = false; return; }
                 if (meta) {
-                    const [key, ...val] = line.split(':');
-                    if (key && val) data[key.trim()] = val.join(':').trim();
-                } else { content += line; }
+                    const sep = line.indexOf(':');
+                    if (sep > -1) {
+                        const key = line.substring(0, sep).trim();
+                        const val = line.substring(sep + 1).trim();
+                        data[key] = val;
+                    }
+                } else { content += trimmed; }
             });
             return (content.trim() && data.id) ? data : null;
         }
@@ -132,7 +147,7 @@
             Object.entries(booksConfig).forEach(([key, book]) => {
                 book.parashot.forEach(p => {
                     const safeName = p.replace(/\s+/g, '_');
-                    for (let i = 1; i <= 3; i++) { // סורק 3 גרסאות לכל פרשה
+                    for (let i = 1; i <= 5; i++) { // סורק עד 5 מאמרים לכל פרשה
                         allPromises.push(
                             fetch(`parashot/${book.folder}/${safeName}_${i}.txt`)
                             .then(r => r.ok ? r.text() : null)
@@ -148,10 +163,15 @@
             articles.sort((a, b) => {
                 const scoreA = parseHebrewDate(a.date, a.time);
                 const scoreB = parseHebrewDate(b.date, b.time);
-                return scoreB - scoreA;
+                return scoreB - scoreA; // החדש ביותר למעלה
             });
 
             const grid = document.getElementById('parasha-grid');
+            if (articles.length === 0) {
+                document.getElementById('loader-container').innerHTML = '<p class="text-slate-500">לא נמצאו מאמרים.</p>';
+                return;
+            }
+
             articles.forEach(art => {
                 const cfg = booksConfig[art.bookKey];
                 const card = document.createElement('div');
@@ -159,7 +179,7 @@
                     <a href="article.html?parasha=${art.id}&book=${art.bookKey}" class="group relative p-[1.5px] rounded-3xl no-underline floating-card block overflow-hidden">
                         <div class="relative rounded-[calc(1.5rem-1.5px)] overflow-hidden flex items-center p-3 md:p-5 bg-white">
                             <div class="w-24 h-24 md:w-40 md:h-40 overflow-hidden flex-shrink-0 rounded-2xl border border-black/5 bg-slate-50">
-                                <img src="${art.image}" onerror="this.src='images/index_image.jpg'" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                <img src="${art.image || 'images/index_image.jpg'}" onerror="this.src='images/index_image.jpg'" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                             </div>
                             <div class="mr-4 md:mr-8 flex flex-col h-24 md:h-40 flex-grow py-1">
                                 <h3 class="main-title-font text-lg md:text-2xl font-bold truncate" style="color: ${cfg.color}">${art.title}</h3>
@@ -168,7 +188,7 @@
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <span class="text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-md border" style="color: ${cfg.color}; border-color: ${cfg.color}33">
-                                        ${art.date} ${art.time ? ' | ' + art.time : ''}
+                                        ${art.date || 'תאריך לא צוין'} ${art.time ? ' | ' + art.time : ''}
                                     </span>
                                 </div>
                             </div>
