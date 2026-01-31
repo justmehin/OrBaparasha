@@ -82,7 +82,7 @@
             <main class="max-w-4xl mx-auto">
                 <div id="loader-container" class="text-center py-20 flex flex-col items-center">
                     <div class="loader-spinner"></div>
-                    <p class="text-xl font-medium text-slate-600">סורק את כל חומשי התורה...</p>
+                    <p class="text-xl font-medium text-slate-600">מסדר את המאמרים לפי תאריך כתיבה...</p>
                 </div>
 
                 <div id="parasha-grid" class="flex flex-col gap-8 hidden"></div>
@@ -99,26 +99,44 @@
             'devarim': { color: '#0284c7', dark: '#075985', folder: 'devarim', parashot: ['Devarim', 'Va\'etchanan', 'Eikev', 'Reeh', 'Shoftim', 'Ki Teitzei', 'Ki Tavo', 'Nitzavim', 'Vayeilech', 'Haazinu', 'VZot HaBerachah'] }
         };
 
-        const monthMap = { "תשרי": 1, "חשוון": 2, "כסלו": 3, "טבת": 4, "שבט": 5, "אדר": 6, "ניסן": 7, "אייר": 8, "סיוון": 9, "תמוז": 10, "אב": 11, "אלול": 12 };
+        const monthMap = { 
+            "תשרי": 1, "חשון": 2, "חשוון": 2, "כסלו": 3, "טבת": 4, "שבט": 5, "אדר": 6, "אדר א": 6, "אדר ב": 6.5,
+            "ניסן": 7, "אייר": 8, "סיון": 9, "סיוון": 9, "תמוז": 10, "אב": 11, "אלול": 12 
+        };
+
+        function gimatriaToNum(str) {
+            const cleanStr = str.replace(/[׳״'"]/g, '');
+            const map = {'א':1,'ב':2,'ג':3,'ד':4,'ה':5,'ו':6,'ז':7,'ח':8,'ט':9,'י':10,'יא':11,'יב':12,'יג':13,'יד':14,'טו':15,'טז':16,'יז':17,'יח':18,'יט':19,'כ':20,'כא':21,'כב':22,'כג':23,'כד':24,'כה':25,'כו':26,'כז':27,'כח':28,'כט':29,'ל':30};
+            return map[cleanStr] || parseInt(cleanStr) || 0;
+        }
 
         function parseHebrewDate(dateStr, timeStr) {
             if (!dateStr || dateStr.trim() === "") return 0;
             try {
-                const parts = dateStr.replace(/'/g, '').replace(/"/g, '').split(' ');
+                const parts = dateStr.trim().split(/\s+/);
                 if (parts.length < 3) return 0;
+
+                const day = gimatriaToNum(parts[0]);
+                const month = monthMap[parts[1].replace(/[׳״'"]/g, '')] || 0;
                 
-                const day = parseInt(parts[0]);
-                const month = monthMap[parts[1]] || 0;
-                const year = parseInt(parts[2]);
-                
-                let hour = 0, minute = 0;
-                if (timeStr && timeStr.includes(':')) {
-                    const t = timeStr.split(':');
-                    hour = parseInt(t[0]) || 0;
-                    minute = parseInt(t[1]) || 0;
+                // טיפול בשנה
+                let yearRaw = parts[2].replace(/[׳״'"]/g, '');
+                let year = 0;
+                if (yearRaw.includes('תש')) {
+                    const yearSuffix = yearRaw.slice(-1);
+                    const yearBaseMap = {'א':5781,'ב':5782,'ג':5783,'ד':5784,'ה':5785,'ו':5786,'ז':5787};
+                    year = yearBaseMap[yearSuffix] || 5700;
+                } else {
+                    year = parseInt(yearRaw) || 0;
                 }
-                // חישוב ערך מספרי למיון (שנה-חודש-יום-שעה-דקה)
-                return (year * 1000000) + (month * 10000) + (day * 100) + (hour * 0.01) + (minute * 0.0001);
+
+                let timeValue = 0;
+                if (timeStr && timeStr.includes(':')) {
+                    const [h, m] = timeStr.split(':').map(n => parseInt(n) || 0);
+                    timeValue = (h * 0.01) + (m * 0.0001);
+                }
+
+                return (year * 10000) + (month * 100) + day + timeValue;
             } catch { return 0; }
         }
 
@@ -147,7 +165,7 @@
             Object.entries(booksConfig).forEach(([key, book]) => {
                 book.parashot.forEach(p => {
                     const safeName = p.replace(/\s+/g, '_');
-                    for (let i = 1; i <= 5; i++) { // סורק עד 5 מאמרים לכל פרשה
+                    for (let i = 1; i <= 5; i++) {
                         allPromises.push(
                             fetch(`parashot/${book.folder}/${safeName}_${i}.txt`)
                             .then(r => r.ok ? r.text() : null)
@@ -163,7 +181,7 @@
             articles.sort((a, b) => {
                 const scoreA = parseHebrewDate(a.date, a.time);
                 const scoreB = parseHebrewDate(b.date, b.time);
-                return scoreB - scoreA; // החדש ביותר למעלה
+                return scoreB - scoreA; 
             });
 
             const grid = document.getElementById('parasha-grid');
@@ -188,7 +206,7 @@
                                 </div>
                                 <div class="flex items-center gap-2">
                                     <span class="text-[10px] md:text-xs font-bold px-2 py-0.5 rounded-md border" style="color: ${cfg.color}; border-color: ${cfg.color}33">
-                                        ${art.date || 'תאריך לא צוין'} ${art.time ? ' | ' + art.time : ''}
+                                        ${art.date || 'תאריך חסר'} ${art.time ? ' | ' + art.time : ''}
                                     </span>
                                 </div>
                             </div>
