@@ -67,13 +67,12 @@
         <div class="absolute top-8 right-8 z-20">
             <a href="index.html" class="inline-flex items-center gap-2 font-bold text-sm bg-white/20 backdrop-blur-md px-5 py-2.5 rounded-full hover:bg-white/40 transition-all no-underline text-white border border-white/30">
                 <span class="material-symbols-outlined text-lg">arrow_forward</span>
-                חזרה לראשי
+                חזרה
             </a>
         </div>
 
         <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
-            <h1 class="main-title-font text-5xl md:text-7xl font-bold drop-shadow-2xl mb-4">כל המאמרים</h1>
-            <p class="text-xl md:text-2xl font-light opacity-95 drop-shadow-lg">המאמרים החדשים ביותר בראש הרשימה</p>
+            <p class="text-xl md:text-2xl font-light opacity-95 drop-shadow-lg">כל דברי התורה לפי סדר ההעלאה</p>
         </div>
     </div>
 
@@ -82,7 +81,7 @@
             <main class="max-w-4xl mx-auto">
                 <div id="loader-container" class="text-center py-20 flex flex-col items-center">
                     <div class="loader-spinner"></div>
-                    <p class="text-xl font-medium text-slate-600">ממיין מאמרים לפי זמן פרסום...</p>
+                    <p class="text-xl font-medium text-slate-600">טוען פרשות...</p>
                 </div>
 
                 <div id="parasha-grid" class="flex flex-col gap-8 hidden"></div>
@@ -133,8 +132,6 @@
                     const [h, m] = timeStr.split(':').map(n => parseInt(n) || 0);
                     timeValue = (h * 0.01) + (m * 0.0001);
                 }
-
-                // מחזיר מספר גדול מאוד עבור תאריך קיים
                 return (year * 10000) + (month * 100) + day + timeValue;
             } catch { return 0; }
         }
@@ -177,19 +174,12 @@
 
             let articles = (await Promise.all(allPromises)).filter(a => a !== null);
             
-            // המיון המתוקן - הכוח עובר לתאריך
             articles.sort((a, b) => {
                 const scoreA = parseHebrewDate(a.date, a.time);
                 const scoreB = parseHebrewDate(b.date, b.time);
-                
-                // אם לשניהם אין תאריך (ציון 0), שומרים על סדר מקורי (לפי פרשה)
                 if (scoreA === 0 && scoreB === 0) return 0;
-                
-                // אם לאחד יש תאריך ולשני אין - זה שיש לו תאריך תמיד ראשון
                 if (scoreA === 0) return 1;
                 if (scoreB === 0) return -1;
-                
-                // אם לשניהם יש תאריך - המאוחר ביותר למעלה
                 return scoreB - scoreA; 
             });
 
