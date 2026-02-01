@@ -56,23 +56,44 @@
             margin: 0 auto 15px;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        #hero-content { transition: opacity 0.3s ease-out; }
+
+        /* עיצוב כפתור חזרה למעלה */
+        #back-to-top {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+        #back-to-top.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
     </style>
 </head>
 <body class="font-sans antialiased text-slate-800">
+
+    <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 left-8 z-50 bg-white/80 backdrop-blur-md text-slate-600 p-3 rounded-full shadow-lg border border-white/50 hover:bg-white hover:scale-110 transition-all active:scale-95">
+        <span class="material-symbols-outlined block text-2xl">expand_less</span>
+    </button>
 
     <div id="hero-section" class="fixed top-0 left-0 w-full h-[50vh] z-0 overflow-hidden hero-mask">
         <div id="hero-bg" class="absolute inset-0 bg-cover bg-center" style="background-image: url('images/index_image_desktop.png');"></div>
         <div class="absolute inset-0 bg-black/40"></div>
         
-        <div class="absolute top-8 right-8 z-20">
-            <a href="index.html" class="inline-flex items-center gap-2 font-bold text-sm bg-white/20 backdrop-blur-md px-5 py-2.5 rounded-full hover:bg-white/40 transition-all no-underline text-white border border-white/30">
-                <span class="material-symbols-outlined text-lg">arrow_forward</span>
-                חזרה
-            </a>
-        </div>
+        <div id="hero-content" class="absolute inset-0 z-20">
+            <div class="absolute top-8 right-8">
+                <a href="index.html" class="inline-flex items-center gap-2 font-bold text-sm bg-white/20 backdrop-blur-md px-5 py-2.5 rounded-full hover:bg-white/40 transition-all no-underline text-white border border-white/30">
+                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                    חזרה
+                </a>
+            </div>
 
-        <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
-            <p class="text-xl md:text-2xl font-light opacity-95 drop-shadow-lg">כל דברי התורה לפי סדר ההעלאה</p>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6 pt-12">
+                <p class="text-xl md:text-2xl font-light opacity-95 drop-shadow-lg">כל דברי התורה לפי סדר ההעלאה</p>
+            </div>
         </div>
     </div>
 
@@ -90,6 +111,27 @@
     </div>
 
     <script>
+        // לוגיקת גלילה להעלמת תוכן והצגת כפתור "למעלה"
+        window.addEventListener('scroll', function() {
+            const heroContent = document.getElementById('hero-content');
+            const btt = document.getElementById('back-to-top');
+            const scrollPos = window.scrollY;
+            
+            // טיפול ב-Hero
+            let heroOpacity = 1 - (scrollPos - 50) / 200;
+            if (heroOpacity < 0) heroOpacity = 0;
+            if (heroOpacity > 1) heroOpacity = 1;
+            heroContent.style.opacity = heroOpacity;
+            heroContent.style.pointerEvents = heroOpacity === 0 ? 'none' : 'auto';
+
+            // טיפול בכפתור חזרה למעלה
+            if (scrollPos > 400) {
+                btt.classList.add('show');
+            } else {
+                btt.classList.remove('show');
+            }
+        });
+
         const booksConfig = {
             'bereshit': { color: '#10b981', dark: '#065f46', folder: 'bereshit', parashot: ['Bereshit', 'Noach', 'Lech Lecha', 'Vayeira', 'Chayei Sarah', 'Toledot', 'Vayetzei', 'Vayishlach', 'Vayeshev', 'Miketz', 'Vayigash', 'Vayechi'] },
             'shmot': { color: '#f97316', dark: '#9a3412', folder: 'shmot', parashot: ['Shemot', 'Vaera', 'Bo', 'Beshalach', 'Yitro', 'Mishpatim', 'Terumah', 'Tetzaveh', 'Ki Tisa', 'Vayakhel', 'Pekudei'] },
@@ -115,10 +157,8 @@
             try {
                 const parts = dateStr.trim().split(/\s+/);
                 if (parts.length < 3) return 0;
-
                 const day = gimatriaToNum(parts[0]);
                 const month = monthMap[parts[1].replace(/[׳״'"]/g, '')] || 0;
-                
                 let yearRaw = parts[2].replace(/[׳״'"]/g, '');
                 let year = 0;
                 if (yearRaw.includes('תש')) {
@@ -126,7 +166,6 @@
                     const yearBaseMap = {'א':5781,'ב':5782,'ג':5783,'ד':5784,'ה':5785,'ו':5786,'ז':5787};
                     year = yearBaseMap[yearSuffix] || 5700;
                 } else { year = parseInt(yearRaw) || 0; }
-
                 let timeValue = 0;
                 if (timeStr && timeStr.includes(':')) {
                     const [h, m] = timeStr.split(':').map(n => parseInt(n) || 0);
